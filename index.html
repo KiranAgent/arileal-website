@@ -128,6 +128,8 @@
       <div class="eyebrow">Begin</div>
       <h2 style="font-size:clamp(26px,3.4vw,38px);margin:16px 0 18px">The first step is a conversation.</h2>
       <p class="muted" style="max-width:52ch;margin:0 auto 28px">Write a few lines about where you are and what you're turning toward. You'll hear back from Ari — a person, not a funnel.</p>
+      <div class="btnrow" style="margin-bottom:6px"><a class="btn" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Book the First Conversation</a></div>
+      <div class="book-note">15 minutes, free — or write:</div>
       <a class="email" href="mailto:ari@arileal.com">ari@arileal.com</a>
     </div>
   </section>
@@ -167,6 +169,20 @@
     if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }
   }), {threshold:.15});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // mobile: first tap opens The Work submenu, second tap follows the link; tap-away closes
+  document.querySelectorAll('nav li.has-menu > a').forEach(a => {
+    a.addEventListener('click', e => {
+      if (window.matchMedia('(max-width:760px)').matches) {
+        const li = a.parentElement;
+        if (!li.classList.contains('open')) { e.preventDefault(); li.classList.add('open'); }
+      }
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('li.has-menu'))
+      document.querySelectorAll('li.has-menu.open').forEach(li => li.classList.remove('open'));
+  });
 </script>
 </body>
 </html>

@@ -66,6 +66,8 @@
     <div class="eyebrow">Begin</div>
     <h2>The first step is a conversation.</h2>
     <p>Write a few lines about the person, the question, and where things stand. You'll hear back from Ari — a person, not a funnel.</p>
+    <div class="btnrow" style="margin-bottom:6px"><a class="btn" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Book the First Conversation</a></div>
+    <div class="book-note">15 minutes, free — or write:</div>
     <a class="email" href="mailto:ari@arileal.com">ari@arileal.com</a>
     <a class="rb-phone" href="tel:+16592745325">(659) ARI-LEAL · 659-274-5325</a>
   </section>
@@ -104,6 +106,20 @@
 <script>
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }}), {threshold:.14});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // mobile: first tap opens The Work submenu, second tap follows the link; tap-away closes
+  document.querySelectorAll('nav li.has-menu > a').forEach(a => {
+    a.addEventListener('click', e => {
+      if (window.matchMedia('(max-width:760px)').matches) {
+        const li = a.parentElement;
+        if (!li.classList.contains('open')) { e.preventDefault(); li.classList.add('open'); }
+      }
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('li.has-menu'))
+      document.querySelectorAll('li.has-menu.open').forEach(li => li.classList.remove('open'));
+  });
 </script>
 </body>
 </html>

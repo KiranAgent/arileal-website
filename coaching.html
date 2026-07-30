@@ -63,17 +63,23 @@
   </section>
 
   <div class="arcs">
-    <div class="arc"><div class="aname">The Session</div><div class="adesc">A single conversation — for when one thing needs to be seen clearly.</div></div>
+    <div class="arc"><div class="aname">The Session</div><div class="adesc">A single conversation, for when one thing needs to be seen clearly.</div></div>
     <div class="arc"><div class="aname">The Short Arc</div><div class="adesc">Three sessions, to move through a specific threshold from near side to far.</div></div>
-    <div class="arc"><div class="aname">The Season</div><div class="adesc">Five to seven sessions, for a passage that needs time and tending.</div></div>
-    <div class="arc"><div class="aname">The Long Walk</div><div class="adesc">Ten sessions, for the deep remaking — walked slowly, all the way through.</div></div>
+    <div class="arc"><div class="aname">The Season</div><div class="adesc">Twelve weekly sessions — a true season, one turn of the year, for a passage that needs sustained tending.</div></div>
+    <div class="arc"><div class="aname">The Long Walk</div><div class="adesc">Twenty-six sessions across a full year, met every other week — the deep remaking, walked at a stride you can keep.</div></div>
   </div>
   <p class="arcs-note">Pricing on inquiry. Sessions held remotely, wherever you are.</p>
+  <div class="arcs-begin">
+    <a class="btn" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Book the First Conversation</a>
+    <div class="book-note">every arc begins there — 15 minutes, free</div>
+  </div>
 
   <section class="room-begin" id="begin">
     <div class="eyebrow">Begin</div>
     <h2>The first step is a conversation.</h2>
     <p>Write a few lines about where you are and what you're turning toward. You'll hear back from Ari — a person, not a funnel.</p>
+    <div class="btnrow" style="margin-bottom:6px"><a class="btn" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Book the First Conversation</a></div>
+    <div class="book-note">15 minutes, free — or write:</div>
     <a class="email" href="mailto:ari@arileal.com">ari@arileal.com</a>
     <a class="rb-phone" href="tel:+16592745325">(659) ARI-LEAL · 659-274-5325</a>
   </section>
@@ -112,6 +118,20 @@
 <script>
   const io = new IntersectionObserver(es => es.forEach(e => { if (e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); }}), {threshold:.14});
   document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+  // mobile: first tap opens The Work submenu, second tap follows the link; tap-away closes
+  document.querySelectorAll('nav li.has-menu > a').forEach(a => {
+    a.addEventListener('click', e => {
+      if (window.matchMedia('(max-width:760px)').matches) {
+        const li = a.parentElement;
+        if (!li.classList.contains('open')) { e.preventDefault(); li.classList.add('open'); }
+      }
+    });
+  });
+  document.addEventListener('click', e => {
+    if (!e.target.closest('li.has-menu'))
+      document.querySelectorAll('li.has-menu.open').forEach(li => li.classList.remove('open'));
+  });
 </script>
 </body>
 </html>
