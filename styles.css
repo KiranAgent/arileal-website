@@ -529,3 +529,5 @@ nav ul li.has-menu:focus-within .submenu{opacity:1;visibility:visible;transform:
   .ch-dev::before{content:"Developer: ";color:var(--muted)}
   .ch-ind::before{content:"Indication: ";color:var(--muted)}
 }
+.vol-soon{cursor:default}
+.vol-soon:hover .vbody h3{color:var(--ink)}
