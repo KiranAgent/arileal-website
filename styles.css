@@ -531,3 +531,8 @@ nav ul li.has-menu:focus-within .submenu{opacity:1;visibility:visible;transform:
 }
 .vol-soon{cursor:default}
 .vol-soon:hover .vbody h3{color:var(--ink)}
+
+/* centred sections: keep the button on the axis */
+.room-begin .btnrow,
+.contact .btnrow,
+.arcs-begin .btnrow{justify-content:center}
