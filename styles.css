@@ -369,9 +369,21 @@ nav ul li.has-menu:focus-within .submenu{opacity:1;visibility:visible;transform:
 .submenu a:hover{background:rgba(226,180,92,.1);color:var(--gold)}
 .submenu .sub-kind{font-family:var(--fr);font-style:italic;font-size:11.5px;color:var(--muted);display:block;margin-top:1px}
 @media(max-width:760px){
-  .submenu{display:none;position:static;transform:none;opacity:1;visibility:visible;background:transparent;border:none;
-    box-shadow:none;padding:2px 0 2px 14px;min-width:0;backdrop-filter:none}
+  /* breathing room: drop the Begin pill, tighten the row */
+  nav{padding:14px 4vw}
+  nav ul{gap:15px}
+  nav ul a{font-size:12px;letter-spacing:.03em;white-space:nowrap}
+  nav ul a.cta{display:none}
+  nav .wordmark img{height:30px}
+
+  /* submenu floats below the nav instead of expanding the row */
+  .submenu{display:none;position:absolute;top:calc(100% + 10px);left:0;right:auto;transform:none;
+    opacity:1;visibility:visible;min-width:172px;padding:6px;
+    background:rgba(10,15,26,.98);border:1px solid var(--line);border-radius:12px;
+    box-shadow:0 18px 40px rgba(0,0,0,.55);backdrop-filter:blur(8px)}
   nav ul li.has-menu.open .submenu{display:block}
+  .submenu a{padding:11px 14px;font-size:14px;white-space:nowrap;letter-spacing:.02em}
+  .submenu .sub-kind{display:none}
 }
 
 /* ---- cross-room links at page bottom ---- */
