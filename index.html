@@ -48,7 +48,7 @@
 <!-- ══ 1 · SURFACE ══ -->
 <section class="panel" id="top" data-tone="dark">
   <div class="bed">
-    <video src="assets/hero-video.mp4" poster="assets/hero-video-poster.jpg" autoplay muted loop playsinline preload="auto" aria-hidden="true"></video>
+    <video src="assets/hero-video.mp4" poster="assets/hero-video-poster.jpg" autoplay muted loop playsinline webkit-playsinline disableRemotePlayback preload="auto" aria-hidden="true"></video>
   </div>
   <div class="wrap hero-inner">
     <p class="eyebrow">Coaching · St. Petersburg &amp; remote</p>
@@ -240,6 +240,25 @@
     if(v){ v.removeAttribute('autoplay'); v.pause(); }
   }
 })();
+
+  /* iOS Safari: autoplay can be refused (Low Power Mode). Retry, then wait for a touch. */
+  (function(){
+    var v = document.querySelector('#top video');
+    if(!v) return;
+    v.muted = true; v.defaultMuted = true; v.playsInline = true;
+    function attempt(){
+      var p = v.play();
+      if (p && p.catch) p.catch(function(){});
+    }
+    attempt();
+    v.addEventListener('loadeddata', attempt, {once:true});
+    ['touchstart','click'].forEach(function(evt){
+      document.addEventListener(evt, function once(){
+        attempt();
+        document.removeEventListener(evt, once);
+      }, {passive:true});
+    });
+  })();
 </script>
 <!--BODY-END-->
 </body>
