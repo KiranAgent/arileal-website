@@ -646,3 +646,10 @@ a.vol:hover h3{color:var(--gold)}
 .art-byline h3{font-family:var(--fr);font-weight:400;font-size:19px;color:var(--fg);margin-bottom:6px}
 .art-byline p{color:var(--dim);font-size:14.5px;line-height:1.7;margin:0}
 .art-back{max-width:660px;margin:32px auto 0;padding-top:24px;border-top:1px solid var(--rule);text-align:center}
+
+/* give-back note in the About panel */
+.giveback{margin-top:26px;padding-top:22px;border-top:1px solid var(--rule)}
+.giveback .eyebrow{margin-bottom:8px}
+.giveback p{color:var(--dim);font-size:15.5px;line-height:1.65;max-width:52ch;margin:0}
+.giveback a{color:var(--accent);border-bottom:1px solid color-mix(in srgb,var(--accent) 40%,transparent)}
+.giveback a:hover{border-bottom-color:var(--accent)}
