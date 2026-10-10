@@ -81,8 +81,8 @@ nav.top > *{pointer-events:auto}
 .sig{display:block;position:relative;height:28px;width:180px}
 .sig img{position:absolute;left:0;top:0;height:28px;width:auto;transition:opacity .45s ease}
 .sig .sig-light{opacity:0}
-body.dark-nav .sig .sig-ink,body.menu .sig .sig-ink{opacity:0}
-body.dark-nav .sig .sig-light,body.menu .sig .sig-light{opacity:1}
+body.dark-nav .sig .sig-ink,body.menu-open .sig .sig-ink{opacity:0}
+body.dark-nav .sig .sig-light,body.menu-open .sig .sig-light{opacity:1}
 .bar{width:1px;height:18px;background:currentColor;opacity:.5}
 .talk{font-family:var(--display);font-size:15px;font-weight:500;letter-spacing:.02em;color:inherit;display:inline-flex;align-items:center;gap:7px;min-height:44px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
 .talk i{font-style:normal;color:var(--gold-deep);display:inline-block;transition:color .45s ease,transform .25s var(--out)}
@@ -90,20 +90,20 @@ body.dark-nav .sig .sig-light,body.menu .sig .sig-light{opacity:1}
 .burger i{display:block;height:1.5px;background:currentColor;width:34px;transition:transform .5s var(--out),width .5s var(--out)}
 .burger i:nth-child(1){width:34px;transform:translateX(-12px)}
 .burger i:nth-child(2){width:34px}
-body.menu .burger i:nth-child(1){transform:translateY(3.2px) rotate(-45deg);width:28px}
-body.menu .burger i:nth-child(2){transform:translateY(-3.2px) rotate(45deg);width:28px}
+body.menu-open .burger i:nth-child(1){transform:translateY(3.2px) rotate(-45deg);width:28px}
+body.menu-open .burger i:nth-child(2){transform:translateY(-3.2px) rotate(45deg);width:28px}
 nav.top{color:var(--ink-deep);transition:color .45s ease}
-body.dark-nav nav.top,body.menu nav.top{color:var(--ink)}
-body.dark-nav .talk i,body.menu .talk i{color:var(--gold)}
+body.dark-nav nav.top,body.menu-open nav.top{color:var(--ink)}
+body.dark-nav .talk i,body.menu-open .talk i{color:var(--gold)}
 
 .menu{position:fixed;inset:0;z-index:55;background:var(--night);color:var(--ink);clip-path:inset(0 0 100% 0);transition:clip-path .6s var(--io);display:grid;align-items:end;padding:clamp(80px,12vh,120px) clamp(20px,4vw,56px) clamp(40px,8vh,72px)}
-body.menu .menu{clip-path:inset(0 0 0 0)}
+body.menu-open .menu{clip-path:inset(0 0 0 0)}
 .menu ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
 .menu a{font-family:var(--display);font-weight:500;font-size:clamp(2rem,6.2vw,4.4rem);letter-spacing:-.04em;line-height:1.1;color:var(--ink);text-decoration:none;display:inline-flex;align-items:baseline;gap:18px;opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .6s var(--out),color .2s ease}
 .menu a small{font-family:var(--body);font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft)}
-body.menu .menu a{opacity:1;transform:none}
-body.menu .menu li:nth-child(1) a{transition-delay:.18s}body.menu .menu li:nth-child(2) a{transition-delay:.22s}body.menu .menu li:nth-child(3) a{transition-delay:.26s}body.menu .menu li:nth-child(4) a{transition-delay:.3s}body.menu .menu li:nth-child(5) a{transition-delay:.34s}body.menu .menu li:nth-child(6) a{transition-delay:.38s}
-.menu .foot{margin-top:40px;font-size:13px;letter-spacing:.01em;color:var(--muted);display:flex;gap:28px;flex-wrap:wrap}
+body.menu-open .menu a{opacity:1;transform:none}
+body.menu-open .menu li:nth-child(1) a{transition-delay:.18s}body.menu-open .menu li:nth-child(2) a{transition-delay:.22s}body.menu-open .menu li:nth-child(3) a{transition-delay:.26s}body.menu-open .menu li:nth-child(4) a{transition-delay:.3s}body.menu-open .menu li:nth-child(5) a{transition-delay:.34s}body.menu-open .menu li:nth-child(6) a{transition-delay:.38s}
+.menu-foot{margin-top:40px;font-size:13px;letter-spacing:.01em;color:var(--muted);display:flex;gap:28px;flex-wrap:wrap}
 
 /* ============ pills ============ */
 .btn{font-family:var(--display);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:14px 22px 14px 24px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap;transition:background .25s ease,color .25s ease,border-color .25s ease,box-shadow .4s ease,scale .16s var(--out)}
@@ -295,7 +295,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   .btn:active,.chip:active,.pill:active{scale:none}
   .row > div,.row > .body,.row img,.row .go i,.enter span,.talk i,.cover{transition:none}
   .menu{clip-path:none;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s}
-  body.menu .menu{opacity:1;visibility:visible;transition:opacity .25s ease}
+  body.menu-open .menu{opacity:1;visibility:visible;transition:opacity .25s ease}
   .menu a{transform:none;transition:color .2s ease}
 }
 
@@ -354,7 +354,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
       <li><a href="#begin" data-close>Begin</a></li>
       <li><a href="https://clinicians.arileal.com">For Clinicians</a></li>
     </ul>
-    <div class="foot"><span>ari@arileal.com</span><span>St. Petersburg, Florida · sessions held remotely</span></div>
+    <div class="menu-foot"><span>ari@arileal.com</span><span>St. Petersburg, Florida · sessions held remotely</span></div>
   </div>
 </div>
 
@@ -549,10 +549,10 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   /* ---------- menu ---------- */
   var burger = document.getElementById('burger');
   var menuEl = document.getElementById('menu');
-  function setMenu(open){ body.classList.toggle('menu', open); burger.setAttribute('aria-expanded', open ? 'true' : 'false'); menuEl.setAttribute('aria-hidden', open ? 'false' : 'true'); menuEl.inert = !open; if(open){ var f = menuEl.querySelector('a'); if(f) setTimeout(function(){ f.focus({ preventScroll:true }); }, 120); } else if(document.activeElement && menuEl.contains(document.activeElement)){ burger.focus(); } }
-  burger.addEventListener('click', function(){ setMenu(!body.classList.contains('menu')); });
+  function setMenu(open){ body.classList.toggle('menu-open', open); burger.setAttribute('aria-expanded', open ? 'true' : 'false'); menuEl.setAttribute('aria-hidden', open ? 'false' : 'true'); menuEl.inert = !open; if(open){ var f = menuEl.querySelector('a'); if(f) setTimeout(function(){ f.focus({ preventScroll:true }); }, 120); } else if(document.activeElement && menuEl.contains(document.activeElement)){ burger.focus(); } }
+  burger.addEventListener('click', function(){ setMenu(!body.classList.contains('menu-open')); });
   document.querySelectorAll('#menu a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
-  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && body.classList.contains('menu')) setMenu(false); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && body.classList.contains('menu-open')) setMenu(false); });
 
   /* ---------- reveals ---------- */
   if('IntersectionObserver' in window){
