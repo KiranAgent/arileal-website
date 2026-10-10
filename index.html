@@ -2,20 +2,14 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<!--HEAD-START-->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
 <title>Ari Leal — Integrative Life &amp; Spiritual Coaching</title>
 <meta name="description" content="Integrative coaching with Ari Leal for people in transition — life direction, psychedelic preparation and integration, and relationships. Clinically trained. Coaching, not therapy. Sessions by video. Free 15-minute first call.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
-<link rel="stylesheet" href="styles.css?v=4">
-<!--HEAD-END-->
 <link rel="icon" href="favicon.ico" sizes="any">
 <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
 <link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
 <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-<meta name="theme-color" content="#070B14">
+<meta name="theme-color" content="#F3F1EC">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Ari Leal">
 <meta property="og:title" content="Ari Leal — Integrative Life & Spiritual Coaching">
@@ -28,262 +22,705 @@
 <meta name="twitter:title" content="Ari Leal — Integrative Life & Spiritual Coaching">
 <meta name="twitter:description" content="Integrative coaching with Ari Leal for people in transition — life direction, psychedelic preparation and integration, and relationships. Clinically trained. Coaching, not therapy. Sessions by video. Free 15-minute first call.">
 <meta name="twitter:image" content="https://www.arileal.com/assets/og-image.jpg">
-</head>
-<body data-tone="dark">
-<!--BODY-START-->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
 
-<nav id="nav" aria-label="Primary">
-  <a class="wordmark" href="#top" aria-label="Ari Leal — home"><img src="assets/signature.png" alt="Ari Leal"></a>
-  <ul>
-    <li><a href="#work">The Work</a></li>
-    <li><a href="#unfold">UNFOLD</a></li>
-    <li><a href="library.html">Library</a></li>
-    <li><a href="#ari">About</a></li>
-    <li><a href="https://clinicians.arileal.com">For Clinicians</a></li>
-  </ul>
-  <a class="pill pill--nav" href="#begin">Begin</a>
-  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer">Menu</button>
+<style>
+/* =====================================================================
+   ARI LEAL. Built on the mdx.so model: a lit studio where a frosted form
+   changes as you scroll, then light sections carried by warm glows,
+   one dark rounded panel, the three ways in orbiting a soft ball, the
+   work on night.
+   Palette is the site's own: shore and paper for light, night for dark,
+   gold as the glow (on night) and gold-deep as the accent (on shore),
+   ember spent once on UNFOLD.
+   Shape rule: 24px radius on panels, full radius on buttons and pills.
+   ===================================================================== */
+:root{
+  --night:#070B14;--panel:#0D1220;--line:#232B42;
+  --gold:#E2B45C;--gold-soft:#A9874A;--gold-rgb:226,180,92;
+  --ink:#EFE7DA;--muted:#A39B90;
+  --shore:#E4E1D8;--shore-2:#D6D2C7;--shore-line:#C3BEB1;
+  --paper:#F3F1EC;
+  --ink-deep:#0A0F19;--muted-deep:#56534B;--gold-deep:#7A5A28;
+  --ember:#D4784A;--ember-deep:#A8512A;--ember-ink:#8F4524;
+  --dim:#6E6A62;--gold-hi:#EAC57E;--night-hi:#121A2C;
+
+  --display:'Schibsted Grotesk',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --body:'Instrument Sans',system-ui,-apple-system,'Segoe UI',sans-serif;
+  --r:24px;
+  --ease:cubic-bezier(.22,.61,.36,1);
+  --out:cubic-bezier(.23,1,.32,1);
+  --io:cubic-bezier(.77,0,.175,1);
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+html{background:var(--paper)}
+body{background:var(--paper);color:var(--ink-deep);font-family:var(--body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;margin:0}
+img{max-width:100%;display:block}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:500;letter-spacing:-.035em;line-height:1.02;text-wrap:balance;color:var(--ink-deep)}
+h1 b,h2 b{font-weight:800}
+p{margin:0 0 14px}p:last-child{margin-bottom:0}
+em{font-style:normal}
+.dim{color:var(--dim)}
+::selection{background:rgba(var(--gold-rgb),.38);color:var(--ink-deep)}
+html{scrollbar-color:var(--shore-line) transparent}
+.tag{font-family:var(--body);font-size:11.5px;font-weight:600;letter-spacing:.32em;text-transform:uppercase;color:var(--gold-deep);margin:0 0 18px}
+
+/* ============ preloader ============ */
+.veil{position:fixed;inset:0;z-index:100;background:var(--paper);display:flex;align-items:center;justify-content:center;transition:clip-path .8s var(--io);clip-path:inset(0 0 0 0)}
+.veil.off{clip-path:inset(0 0 100% 0);pointer-events:none}
+.veil img{width:min(260px,60vw);opacity:0;animation:sigin 1.1s var(--ease) .15s forwards}
+@keyframes sigin{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+
+/* ============ nav, mdx-style: mark | … | Begin ↗ | lines ============ */
+nav.top{position:fixed;top:0;left:0;right:0;z-index:60;padding:calc(14px + env(safe-area-inset-top,0px)) clamp(18px,1.8vw,28px) 14px;display:flex;align-items:center;justify-content:space-between;pointer-events:none}
+nav.top > *{pointer-events:auto}
+.nav-l,.nav-r{display:flex;align-items:center;gap:18px}
+.sig{display:block;position:relative;height:28px;width:180px}
+.sig img{position:absolute;left:0;top:0;height:28px;width:auto;transition:opacity .45s ease}
+.sig .sig-light{opacity:0}
+body.dark-nav .sig .sig-ink,body.menu .sig .sig-ink{opacity:0}
+body.dark-nav .sig .sig-light,body.menu .sig .sig-light{opacity:1}
+.bar{width:1px;height:18px;background:currentColor;opacity:.5}
+.talk{font-family:var(--display);font-size:15px;font-weight:500;letter-spacing:.02em;color:inherit;display:inline-flex;align-items:center;gap:7px;min-height:44px;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:5px}
+.talk i{font-style:normal;color:var(--gold-deep);display:inline-block;transition:color .45s ease,transform .25s var(--out)}
+.burger{width:46px;height:44px;background:none;border:0;cursor:pointer;display:flex;flex-direction:column;justify-content:center;gap:5px;align-items:flex-end;padding:0;color:inherit}
+.burger i{display:block;height:1.5px;background:currentColor;width:34px;transition:transform .5s var(--out),width .5s var(--out)}
+.burger i:nth-child(1){width:34px;transform:translateX(-12px)}
+.burger i:nth-child(2){width:34px}
+body.menu .burger i:nth-child(1){transform:translateY(3.2px) rotate(-45deg);width:28px}
+body.menu .burger i:nth-child(2){transform:translateY(-3.2px) rotate(45deg);width:28px}
+nav.top{color:var(--ink-deep);transition:color .45s ease}
+body.dark-nav nav.top,body.menu nav.top{color:var(--ink)}
+body.dark-nav .talk i,body.menu .talk i{color:var(--gold)}
+
+.menu{position:fixed;inset:0;z-index:55;background:var(--night);color:var(--ink);clip-path:inset(0 0 100% 0);transition:clip-path .6s var(--io);display:grid;align-items:end;padding:clamp(80px,12vh,120px) clamp(20px,4vw,56px) clamp(40px,8vh,72px)}
+body.menu .menu{clip-path:inset(0 0 0 0)}
+.menu ul{list-style:none;margin:0;padding:0;display:grid;gap:2px}
+.menu a{font-family:var(--display);font-weight:500;font-size:clamp(2rem,6.2vw,4.4rem);letter-spacing:-.04em;line-height:1.1;color:var(--ink);text-decoration:none;display:inline-flex;align-items:baseline;gap:18px;opacity:0;transform:translateY(18px);transition:opacity .45s ease,transform .6s var(--out),color .2s ease}
+.menu a small{font-family:var(--body);font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-soft)}
+body.menu .menu a{opacity:1;transform:none}
+body.menu .menu li:nth-child(1) a{transition-delay:.18s}body.menu .menu li:nth-child(2) a{transition-delay:.22s}body.menu .menu li:nth-child(3) a{transition-delay:.26s}body.menu .menu li:nth-child(4) a{transition-delay:.3s}body.menu .menu li:nth-child(5) a{transition-delay:.34s}body.menu .menu li:nth-child(6) a{transition-delay:.38s}
+.menu .foot{margin-top:40px;font-size:13px;letter-spacing:.01em;color:var(--muted);display:flex;gap:28px;flex-wrap:wrap}
+
+/* ============ pills ============ */
+.btn{font-family:var(--display);font-size:13px;font-weight:500;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;padding:14px 22px 14px 24px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;gap:12px;white-space:nowrap;transition:background .25s ease,color .25s ease,border-color .25s ease,box-shadow .4s ease,scale .16s var(--out)}
+.btn:active{scale:.97}
+
+.btn i{font-style:normal;color:var(--gold)}
+.btn-night{background:var(--night);color:var(--ink);border:1px solid var(--night);box-shadow:0 18px 40px -16px rgba(7,11,20,.55)}
+.btn-night:hover,.btn-night:focus-visible{background:var(--night-hi)}
+.btn-gold{background:var(--gold);color:var(--night);border:1px solid var(--gold)}
+.btn-gold i{color:var(--night)}
+.btn-gold:hover{background:var(--gold-hi)}
+.btn-ghost{border:1px solid color-mix(in srgb,var(--ink) 40%,transparent);color:var(--ink);background:transparent}
+.btn-ghost:hover{border-color:var(--ink)}
+.chip{font-family:var(--display);font-size:11.5px;font-weight:500;letter-spacing:.05em;text-transform:uppercase;padding:6px 12px;border:1px solid var(--ink-deep);border-radius:999px;color:var(--ink-deep);text-decoration:none;transition:background .2s ease,color .2s ease,scale .16s var(--out)}
+.chip:active{scale:.97}
+
+
+/* ============ HERO: the studio and the form ============ */
+.journey{position:relative;height:560vh;z-index:2}
+.pin{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;isolation:isolate}
+.studio{position:absolute;inset:0;z-index:0;background:radial-gradient(120% 90% at 50% 38%,#EEECE6 0%,#E1DED6 42%,#CBC6BB 100%)}
+.studio::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(150,144,132,.28) 0%,rgba(150,144,132,0) 22%,rgba(150,144,132,0) 78%,rgba(150,144,132,.28) 100%)}
+.studio::after{content:'';position:absolute;left:0;right:0;top:70%;bottom:0;background:linear-gradient(180deg,rgba(247,246,242,0) 0%,rgba(247,246,242,.92) 14%,#F6F4EF 34%,#ECE9E3 74%,#DCD8CF 100%);filter:blur(2px)}
+.stage{position:absolute;inset:0;z-index:1;isolation:isolate}
+.shadow{position:absolute;left:50%;top:80%;width:44vmin;height:5vmin;transform:translate(-50%,-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(96,90,78,.34),rgba(96,90,78,0) 70%);filter:blur(8px);will-change:transform,opacity}
+.frames{position:absolute;left:50%;top:47%;width:var(--seq);height:var(--seq);margin:calc(var(--seq)/-2) 0 0 calc(var(--seq)/-2);display:block;will-change:transform;--seq:min(80vh,84vw)}
+.glow{position:absolute;left:50%;top:47%;width:58vmin;height:58vmin;margin:-29vmin 0 0 -29vmin;border-radius:50%;background:radial-gradient(circle,rgba(var(--gold-rgb),1) 0%,rgba(var(--gold-rgb),.75) 26%,rgba(var(--gold-rgb),.25) 50%,rgba(var(--gold-rgb),0) 68%);mix-blend-mode:overlay;pointer-events:none;will-change:transform,opacity}
+.hero{position:absolute;inset:0;z-index:3;display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:end;gap:clamp(24px,4vw,60px);padding:0 clamp(20px,2.6vw,36px) clamp(40px,6vh,64px);pointer-events:none}
+.hero > *{pointer-events:auto}
+.hero h1{font-size:clamp(2rem,3.5vw,3.25rem);line-height:1.04;letter-spacing:-.04em}
+.hero h1 .ln{display:block;overflow:hidden;padding-bottom:.06em}
+.hero h1 .ln > span{display:block}
+.hero h1 .ln:first-child{font-weight:700}
+.hero h1 .ln:last-child{font-weight:400}
+.hero-sub{color:var(--dim);max-width:40ch;margin-top:16px;font-size:15px;line-height:1.35}
+.hero .actions{margin-top:24px}
+.hero-r{justify-self:end;max-width:300px;font-family:var(--display);font-size:15px;line-height:1.3;font-weight:500;color:var(--ink-deep);padding-bottom:4px}
+.hero-r .dim{color:var(--dim)}
+.hero-r .chips{display:flex;gap:5px;flex-wrap:wrap;margin-top:14px}
+.ticks{position:absolute;left:50%;bottom:calc(16px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:4;display:flex;gap:26px;align-items:flex-end}
+.ticks i{display:block;width:1.5px;height:16px;background:var(--ink-deep);opacity:.9;transition:height .5s var(--out),transform .5s var(--out)}
+.ticks i.on{height:26px;transform:translateY(-6px)}
+
+/* ============ FEELING: two statements carried by glows ============ */
+.feel{position:relative;height:320vh;z-index:2;background:var(--paper)}
+.feel .pin{background:var(--paper)}
+.disc{position:absolute;left:50%;top:50%;width:min(112vmin,1150px);height:min(112vmin,1150px);border-radius:50%;transform:translate(-50%,-50%);background:radial-gradient(circle,rgba(255,255,255,.5) 0%,rgba(255,255,255,.75) 68%,rgba(255,255,255,0) 71%);box-shadow:0 0 90px 10px rgba(255,255,255,.9),inset 0 0 70px rgba(214,210,199,.55);will-change:transform}
+.blob{position:absolute;left:50%;top:50%;width:46vmin;height:62vmin;margin:-31vmin 0 0 -23vmin;border-radius:50%;background:radial-gradient(ellipse,rgba(var(--gold-rgb),.95) 0%,rgba(var(--gold-rgb),.55) 34%,rgba(var(--gold-rgb),0) 70%);filter:blur(36px);will-change:transform,opacity}
+.stmt{position:absolute;inset:0;z-index:3;display:grid;place-items:center;text-align:center;padding:0 24px;will-change:opacity,transform}
+.stmt > div{display:flex;flex-direction:column;align-items:center}
+.stmt h2{font-size:clamp(2.5rem,5.8vw,5.6rem);font-weight:400;letter-spacing:-.04em;line-height:1;max-width:16ch}
+.stmt .btn{margin-top:clamp(28px,4vh,40px)}
+.feel .ticks{bottom:calc(20px + env(safe-area-inset-bottom,0px))}
+
+/* ============ ARI: the one dark rounded panel ============ */
+.inset{position:relative;z-index:2;padding:clamp(24px,4vw,60px) clamp(16px,2.6vw,40px)}
+.panel-night{position:relative;background:var(--night);color:var(--ink);border-radius:var(--r);overflow:hidden;isolation:isolate}
+.panel-night h2,.panel-night h3{color:var(--ink)}
+.panel-night .tag{color:var(--gold)}
+.panel-night::before{content:'';position:absolute;left:-10%;top:-30%;width:70%;height:90%;background:radial-gradient(ellipse,rgba(var(--gold-rgb),.16),rgba(var(--gold-rgb),0) 65%);filter:blur(30px);pointer-events:none}
+.ari{position:relative;z-index:2;display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(28px,5vw,80px);align-items:center;padding:clamp(48px,7vw,100px) clamp(24px,5vw,80px)}
+.portrait{margin:0;text-align:center}
+.portrait img{width:100%;max-width:400px;aspect-ratio:4/5;object-fit:cover;object-position:center 34%;margin:0 auto;border-radius:16px}
+.portrait figcaption{font-size:11.5px;font-weight:600;letter-spacing:.22em;text-transform:uppercase;color:var(--muted);margin-top:14px}
+.ari h2{font-size:clamp(2.6rem,5.2vw,4.6rem);margin-bottom:22px;font-weight:500}
+.ari .lede{color:var(--muted);font-size:clamp(15px,1.25vw,17px);max-width:54ch}
+.meta{font-size:11.5px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);display:flex;flex-wrap:wrap;gap:8px 20px;border-top:1px solid var(--line);padding-top:16px;margin-top:8px}
+.giveback{margin-top:24px;padding-top:20px;border-top:1px solid var(--line)}
+.giveback .tag{margin-bottom:10px}
+.giveback p:not(.tag){color:var(--muted);font-size:15px;line-height:1.65;max-width:52ch}
+.giveback a{color:var(--gold);border-bottom:1px solid rgba(var(--gold-rgb),.4);text-decoration:none}
+
+/* ============ THE THREE WAYS: a soft ball and its pills ============ */
+.orbit{position:relative;height:260vh;z-index:2;background:var(--paper)}
+.orbit .pin{display:grid;place-items:center;background:var(--paper)}
+.orbit .pin::before{content:'';position:absolute;left:-8%;top:20%;width:30%;height:70%;background:radial-gradient(ellipse,rgba(var(--gold-rgb),.22),rgba(var(--gold-rgb),0) 65%);filter:blur(40px)}
+.orbit .pin::after{content:'';position:absolute;right:-8%;top:30%;width:28%;height:70%;background:radial-gradient(ellipse,rgba(var(--gold-rgb),.18),rgba(var(--gold-rgb),0) 65%);filter:blur(40px)}
+.orbit .head{position:absolute;top:clamp(90px,14vh,140px);left:0;right:0;z-index:3;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px;align-items:start;padding:0 clamp(20px,2.6vw,36px);will-change:opacity,transform}
+.orbit .head h2{font-size:clamp(2.2rem,3.6vw,3.4rem);font-weight:400;letter-spacing:-.04em}
+.orbit .head p{justify-self:end;max-width:320px;font-family:var(--display);font-weight:500;font-size:15px;line-height:1.3;margin:6px 0 0}
+.ballwrap{position:relative;width:min(50vmin,460px);height:min(50vmin,460px);z-index:2;isolation:isolate;will-change:transform,opacity}
+.ballwrap img{width:100%;height:100%;object-fit:contain;animation:turn 60s linear infinite;animation-play-state:paused}
+.orbit.on .ballwrap img{animation-play-state:running}
+.ballwrap::after{content:'';position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(var(--gold-rgb),.8) 0%,rgba(var(--gold-rgb),.4) 40%,rgba(var(--gold-rgb),0) 72%);mix-blend-mode:overlay;pointer-events:none}
+@keyframes turn{to{transform:rotate(360deg)}}
+.pills{position:absolute;inset:0;z-index:4;pointer-events:none}
+.pill{position:absolute;left:50%;top:50%;pointer-events:auto;text-decoration:none;color:var(--ink-deep);font-family:var(--display);font-size:clamp(15px,1.3vw,19px);font-weight:500;display:inline-flex;align-items:center;gap:10px;padding:9px 22px 9px 10px;min-height:44px;border:1.5px solid rgba(var(--gold-rgb),.7);border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 12px 34px -12px rgba(var(--gold-rgb),.5);will-change:transform;transition:background .25s ease,border-color .25s ease,scale .3s var(--out)}
+.pill:active{scale:.97}
+.pill img{width:26px;height:26px;border-radius:50%;background:var(--night);padding:3px}
+.orbit .over{position:absolute;inset:0;z-index:5;display:grid;place-items:center;text-align:center;padding:0 24px;pointer-events:none;opacity:0;will-change:opacity,transform}
+.orbit .over h2{font-size:clamp(2.4rem,5.2vw,5rem);font-weight:400;letter-spacing:-.04em;max-width:14ch}
+
+/* ============ THE WORK, on night ============ */
+.work{position:relative;z-index:2;background:var(--night);color:var(--ink);padding-block:clamp(84px,11vw,150px)}
+.shell{max-width:1360px;margin:0 auto;padding-inline:clamp(20px,2.6vw,36px);position:relative;z-index:2}
+.work h2,.work h3{color:var(--ink)}
+.work .tag{color:var(--gold)}
+.work-head{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:24px;align-items:center;margin-bottom:clamp(36px,5vw,60px)}
+.work-head h2{font-size:clamp(2.4rem,4.4vw,4rem);font-weight:500}
+.rows{border-top:1px solid var(--line)}
+.row{display:grid;grid-template-columns:88px minmax(0,.9fr) minmax(0,1.5fr) auto;gap:clamp(18px,3vw,44px);align-items:center;padding-block:clamp(24px,3vw,40px);border-bottom:1px solid var(--line);text-decoration:none;color:inherit;position:relative}
+.row > div,.row > .body{transition:transform .45s var(--out)}
+.row::before{content:'';position:absolute;left:0;right:0;top:-1px;height:1px;background:var(--gold);transform:scaleX(0);transform-origin:left;transition:transform .5s var(--out)}
+.row img{width:88px;height:88px;object-fit:contain;mix-blend-mode:screen;transition:transform .6s var(--out)}
+.row h3{font-size:clamp(1.6rem,2.4vw,2.1rem);font-weight:500}
+.row .kicker{color:var(--gold);margin:6px 0 0;font-size:15px;font-style:italic}
+.row p.body{color:var(--muted);max-width:52ch;margin:0;font-size:15.5px}
+.row .go{font-family:var(--display);font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--gold);display:inline-flex;align-items:center;gap:8px;white-space:nowrap}
+.row .go i{font-style:normal;display:inline-block;transition:transform .3s var(--out)}
+
+/* ============ UNFOLD: ember, spent once ============ */
+.unfold-sec{position:relative;z-index:2;background:var(--shore)}
+.unfold{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(30px,5vw,80px);align-items:center;padding-block:clamp(80px,10vw,140px)}
+.cover{justify-self:center;width:min(100%,280px);box-shadow:0 30px 60px -26px rgba(10,15,25,.55);transform:rotate(-1.4deg);transition:transform .6s var(--out),box-shadow .6s var(--out)}
+.unfold h2{font-size:clamp(3rem,7.4vw,6rem);letter-spacing:.04em;line-height:.9;font-weight:500}
+.unfold .rule{width:64px;height:2px;background:var(--ember);border:0;margin:24px 0 18px}
+.unfold .kicker{font-style:italic;color:var(--muted-deep);font-size:clamp(16px,1.6vw,19px);margin-bottom:12px}
+.unfold .lede{color:var(--muted-deep);max-width:46ch}
+.enter{display:inline-flex;align-items:center;gap:.65em;margin-top:12px;font-family:var(--display);font-size:12px;font-weight:500;letter-spacing:.18em;text-transform:uppercase;color:var(--ember-ink);text-decoration:none;padding-block:12px 6px;border-bottom:1px solid rgba(143,69,36,.45);transition:border-color .25s ease}
+.enter span{display:inline-block;transition:transform .3s var(--out)}
+
+
+/* ============ BEGIN, inset on night ============ */
+.begin .panel-night{text-align:center;padding:clamp(56px,8vw,110px) clamp(24px,5vw,80px)}
+.begin .panel-night::before{left:50%;top:auto;bottom:-55%;width:90%;height:100%;transform:translateX(-50%);background:radial-gradient(ellipse,rgba(var(--gold-rgb),.3),rgba(var(--gold-rgb),0) 62%)}
+.begin .inner{position:relative;z-index:2;max-width:760px;margin:0 auto;display:flex;flex-direction:column;align-items:center}
+.emblem{width:92px;opacity:.92;margin-bottom:22px}
+.begin h2{font-size:clamp(2.2rem,4.8vw,4rem);font-weight:400}
+.begin h2 b{font-weight:700}
+.begin .lede{color:var(--muted);margin:18px auto 0;max-width:50ch}
+.begin .actions{display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:30px}
+.reach{font-size:13.5px;line-height:2;color:var(--muted);margin-top:30px}
+.reach b{display:block;color:var(--ink);font-weight:500;user-select:all}
+
+/* ============ footer ============ */
+footer{position:relative;z-index:2;padding-block:20px 56px;font-size:13.5px;color:var(--muted-deep);background:var(--paper)}
+.foot{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:28px 40px;margin-bottom:32px;border-top:1px solid var(--shore-line);padding-top:24px}
+.foot .fh{margin:0 0 10px;font-size:11.5px;font-weight:600;letter-spacing:.24em;text-transform:uppercase;color:var(--gold-deep)}
+.foot a,.foot span{display:block;color:var(--muted-deep);text-decoration:none;padding-block:3px;transition:color .3s ease}
+
+.fine{max-width:80ch;line-height:1.6;font-size:12px;color:var(--muted-deep);opacity:.85}
+a:focus-visible,button:focus-visible{outline:2px solid var(--gold-deep);outline-offset:4px;border-radius:2px}
+.panel-night a:focus-visible,.work a:focus-visible{outline-color:var(--gold)}
+
+/* ============ hover, only for a real pointer ============ */
+@media (hover:hover) and (pointer:fine){
+  .talk:hover i{transform:translate(2px,-2px)}
+  .chip:hover{background:var(--ink-deep);color:var(--paper)}
+  .pill:hover{background:#fff;border-color:var(--gold);scale:1.03}
+  .menu a:hover{color:var(--gold)}
+  .row:hover::before{transform:scaleX(1)}
+  .row:hover > div,.row:hover > .body{transform:translateX(8px)}
+  .row:hover img{transform:scale(1.06) rotate(-3deg)}
+  .row:hover .go i{transform:translateX(5px)}
+  html.m .unfold .cover.rise.in:hover,html:not(.m) .unfold .cover:hover{transform:rotate(0deg) translateY(-6px);box-shadow:0 40px 70px -28px rgba(10,15,25,.5)}
+  .enter:hover{border-bottom-color:var(--ember-ink)}
+  .enter:hover span{transform:translateX(5px)}
+  .foot a:hover{color:var(--ink-deep)}
+}
+
+/* ============ motion ============ */
+.rise{transition:opacity .9s var(--out),transform .9s var(--out)}
+html.m .rise{opacity:0;transform:translateY(16px)}
+html.m .rise.in{opacity:1;transform:none}
+html.m .stagger > *{transition:opacity .8s var(--out),transform .8s var(--out);opacity:0;transform:translateY(14px)}
+html.m .stagger.in > *{opacity:1;transform:none}
+html.m .stagger.in > *:nth-child(2){transition-delay:.07s}html.m .stagger.in > *:nth-child(3){transition-delay:.14s}html.m .stagger.in > *:nth-child(4){transition-delay:.21s}html.m .stagger.in > *:nth-child(5){transition-delay:.28s}
+/* the portrait develops from the bottom up, like a print */
+html.m .ari .portrait img{clip-path:inset(0 0 100% 0 round 16px);transform:scale(1.05)}
+html.m .ari.in .portrait img{clip-path:inset(0 0 0 0 round 16px);transform:none;transition:clip-path 1.1s var(--io) .1s,transform 1.4s var(--out) .1s}
+/* the journal settles onto its tilt */
+html.m .unfold .cover.rise{transform:translateY(20px) rotate(-4deg)}
+html.m .unfold .cover.rise.in{transform:rotate(-1.4deg)}
+html.m .hero h1 .ln > span{transform:translateY(110%)}
+html.m.go .hero h1 .ln > span{transform:none;transition:transform 1.2s cubic-bezier(.19,1,.22,1) .2s}
+html.m.go .hero h1 .ln:nth-child(2) > span{transition-delay:.3s}
+html.m .hero .up{opacity:0;transform:translateY(14px)}
+html.m.go .hero .up{opacity:1;transform:none;transition:opacity .9s ease .6s,transform .9s var(--out) .6s}
+html.m.go .hero .up.d2{transition-delay:.72s}
+html.m .journey .frames{opacity:0}
+html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
+@media (prefers-reduced-motion:reduce){
+  .veil{display:none}
+  html.m .rise,html.m .stagger > *,html.m .hero .up{transform:none!important;transition:opacity .4s ease!important}
+  html.m .hero h1 .ln > span{transform:none!important}
+  html.m .ari .portrait img{clip-path:none;transform:none}
+  html.m .unfold .cover.rise{transform:rotate(-1.4deg)!important}
+  .ballwrap img{animation:none}
+  .btn:active,.chip:active,.pill:active{scale:none}
+  .row > div,.row > .body,.row img,.row .go i,.enter span,.talk i,.cover{transition:none}
+  .menu{clip-path:none;opacity:0;visibility:hidden;transition:opacity .25s ease,visibility 0s linear .25s}
+  body.menu .menu{opacity:1;visibility:visible;transition:opacity .25s ease}
+  .menu a{transform:none;transition:color .2s ease}
+}
+
+@media (max-width:900px){
+  .frames{top:40%;--seq:min(66vh,98vw)}
+  .glow{top:40%}
+  .shadow{top:70%}
+  .hero{grid-template-columns:1fr;padding-bottom:clamp(58px,9vh,80px)}
+  .hero-r{display:none}
+  .orbit .head{grid-template-columns:1fr}
+  .orbit .head p{display:none}
+  .ari{grid-template-columns:1fr}
+  .row{grid-template-columns:64px minmax(0,1fr);gap:8px 18px}
+  .row img{width:64px;height:64px;grid-row:span 3}
+  .row .go{grid-column:2}
+  .work-head{grid-template-columns:1fr}
+  .work-head .btn{justify-self:start}
+  .unfold{grid-template-columns:1fr}
+  .cover{width:min(64%,220px)}
+  .blob{width:60vmin;height:80vmin;margin:-40vmin 0 0 -30vmin}
+}
+@media (max-width:900px){
+  .foot a{padding-block:11px}
+}
+@media (max-width:560px){
+  .sig{width:150px;height:23px}.sig img{height:23px}
+  .talk{font-size:13px}
+  .nav-l .bar,.nav-l .dot{display:none}
+}
+</style>
+</head>
+<body>
+<div class="veil" id="veil" aria-hidden="true"><img src="assets/signature-ink.png" alt=""></div>
+
+<nav class="top" aria-label="Primary">
+  <div class="nav-l">
+    <a class="sig" href="#top" aria-label="Ari Leal, home">
+      <img class="sig-ink" src="assets/signature-ink.png" alt="Ari Leal">
+      <img class="sig-light" src="assets/signature.png" alt="" aria-hidden="true">
+    </a>
+  </div>
+  <div class="nav-r">
+    <a class="talk" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Begin <i>&#8599;</i></a>
+    <span class="bar"></span>
+    <button class="burger" id="burger" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+  </div>
 </nav>
 
-<div id="drawer" aria-hidden="true">
-  <button class="close" id="drawerClose">Close</button>
-  <a href="#work">The Work</a>
-  <a href="#unfold">UNFOLD</a>
-  <a href="library.html">Library</a>
-  <a href="#ari">About</a>
-  <a href="#begin">Begin</a>
-  <a href="https://clinicians.arileal.com">For Clinicians</a>
+<div class="menu" id="menu" aria-hidden="true" inert>
+  <div>
+    <ul>
+      <li><a href="#work" data-close>The Work</a></li>
+      <li><a href="#unfold" data-close>UNFOLD <small>The Cabinet</small></a></li>
+      <li><a href="https://www.arileal.com/library.html">Library</a></li>
+      <li><a href="#ari" data-close>About</a></li>
+      <li><a href="#begin" data-close>Begin</a></li>
+      <li><a href="https://clinicians.arileal.com">For Clinicians</a></li>
+    </ul>
+    <div class="foot"><span>ari@arileal.com</span><span>St. Petersburg, Florida · sessions held remotely</span></div>
+  </div>
 </div>
 
-<nav class="gauge" aria-label="Sections">
-  <div class="gauge-track"></div><div class="gauge-fill"></div>
-  <a href="#top"><span class="lbl">Top</span><span class="dot"></span></a>
-  <a href="#ari"><span class="lbl">Ari</span><span class="dot"></span></a>
-  <a href="#work"><span class="lbl">The Work</span><span class="dot"></span></a>
-  <a href="#unfold"><span class="lbl">UNFOLD</span><span class="dot"></span></a>
-  <a href="#begin"><span class="lbl">Begin</span><span class="dot"></span></a>
-</nav>
+<main>
 
-<!-- ══ 1 · SURFACE ══ -->
-<section class="panel" id="top" data-tone="dark">
-  <div class="bed">
-    <video src="assets/hero-video.mp4" poster="assets/hero-video-poster.jpg" autoplay muted loop playsinline webkit-playsinline disableRemotePlayback preload="auto" aria-hidden="true"></video>
-  </div>
-  <div class="wrap hero-inner">
-    <p class="eyebrow">Coaching · St. Petersburg &amp; remote</p>
-    <h1>What heals in one level, heals in <em>all</em>. What is released in one level, resonates <em>throughout</em>.</h1>
-    <p class="lede">Coaching for people in transition — life direction, psychedelic integration, and relationships.</p>
-    <div class="cta-row">
-      <a class="pill pill--solid" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Begin</a>
-      <a class="pill pill--ghost" href="#work">The Work</a>
-    </div>
-  </div>
-</section>
+  <!-- ===== HERO: the studio, the form changing as you scroll ===== -->
+  <section class="journey" id="top">
+    <div class="pin">
+      <div class="studio" aria-hidden="true"></div>
+      <div class="stage" aria-hidden="true">
+        <div class="shadow" id="shadow"></div>
+        <canvas id="frames" class="frames" role="img" aria-label="A frosted form that becomes a sphere, a galaxy, a brain, a pinecone and Metatron's cube"></canvas>
+        <div class="glow" id="glow"></div>
+      </div>
 
-<!-- ══ 2 · ARI ══ -->
-<section class="panel" id="ari" data-tone="light">
-  <div class="wrap split">
-    <figure class="figure rv">
-      <img src="assets/ari-portrait-duotone.jpg" alt="Portrait of Ari Leal" loading="lazy">
-      <figcaption>Sessions one-to-one, by video</figcaption>
-    </figure>
-    <div class="stack">
-      <p class="eyebrow rv">About</p>
-      <h2 class="rv">Ari Leal</h2>
-      <p class="lede rv">A coach working with people in transition — in their direction, their relationships, and their experience of meaning. He is clinically trained, which shapes how he listens and where he draws the line: this is coaching, not treatment, and when something is better served by therapy he says so directly.</p>
-      <p class="lede rv">His clients are typically people functioning well and facing a question bigger than a technique — a career that no longer fits, a relationship at a crossroads, a ceremony that opened something, a life that works on paper and not in the body.</p>
-      <p class="meta rv"><span>Clinically trained</span><span>Coaching, not therapy</span><span>60–90 minutes</span></p>
-        <div class="giveback rv">
-          <p class="eyebrow">Giving back</p>
-          <p>What this work earns, it owes forward. 1.5% of revenue goes to <a href="https://twloha.com">To Write Love on Her Arms</a>, a Florida nonprofit funding treatment and recovery for people who need it.</p>
+      <div class="hero">
+        <div>
+          <h1>
+            <span class="ln"><span>What heals in one level,</span></span>
+            <span class="ln"><span>heals in all.</span></span>
+          </h1>
+          <p class="hero-sub up">Coaching for people in transition — life direction, psychedelic integration, and relationships.</p>
+          <div class="actions up d2">
+            <a class="btn btn-night mag" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Begin <i>&#8599;</i></a>
+          </div>
         </div>
+        <div class="hero-r up d2">
+          <p>Sessions are 60 to 90 minutes, <span class="dim">by video.</span></p>
+          <div class="chips">
+            <a class="chip" href="https://www.arileal.com/coaching.html">Coaching</a>
+            <a class="chip" href="https://www.arileal.com/integration.html">Integration</a>
+            <a class="chip" href="https://www.arileal.com/match-checking.html">Relationships</a>
+            <a class="chip" href="#work">+</a>
+          </div>
+        </div>
+      </div>
+
+      <div class="ticks" id="ticks" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
     </div>
-  </div>
-</section>
+  </section>
 
-<!-- ══ 3 · COACHING ══ -->
-<!-- ══ THE WORK ══ -->
-<section class="panel" id="work" data-tone="dark">
-  <div class="wrap">
-    <div class="work-head">
-      <p class="eyebrow rv">The Work</p>
-      <h2 class="rv">Three ways to work together.</h2>
-      <p class="lede rv">All three are coaching, not therapy: no diagnosis, no clinical record, no insurance. Sessions are 60 to 90 minutes by video, and every one of them starts with a free 15-minute call.</p>
+  <!-- ===== FEELING: the credo's second line, then the line it draws ===== -->
+  <section class="feel" aria-label="What is released in one level resonates throughout">
+    <div class="pin">
+      <div class="disc" id="disc"></div>
+      <div class="blob" id="blobA"></div>
+      <div class="blob" id="blobB"></div>
+      <div class="stmt" id="stmt1">
+        <div>
+          <h2>What is <b>released</b> in one level, resonates throughout</h2>
+          <a class="btn btn-night mag" href="#ari">About Ari <i>&#8599;</i></a>
+        </div>
+      </div>
+      <div class="stmt" id="stmt2" style="opacity:0">
+        <div>
+          <h2>Clinically trained. <b>Coaching,</b> not therapy</h2>
+        </div>
+      </div>
+      <div class="ticks" id="fticks" aria-hidden="true"><i class="on"></i><i></i></div>
     </div>
+  </section>
 
-    <div class="tiles">
-      <a class="tile rv" href="coaching.html">
-        <img src="assets/motif-becoming.png" alt="" aria-hidden="true" loading="lazy">
-        <h3>Coaching</h3>
-        <p class="kicker">life direction and transitions</p>
-        <p class="tile-body">For people moving through a change in work, relationship, meaning, or identity. Structured, depth-oriented conversation with someone clinically trained.</p>
-        <span class="enter">Enter <span aria-hidden="true">&rarr;</span></span>
-      </a>
-
-      <a class="tile rv" href="integration.html">
-        <img src="assets/motif-mystery.png" alt="" aria-hidden="true" loading="lazy">
-        <h3>Integration</h3>
-        <p class="kicker">preparation and integration</p>
-        <p class="tile-body">For people working with psychedelic medicine &mdash; preparing well beforehand, and making sense of it in the months after. Coaching and education only.</p>
-        <span class="enter">Enter <span aria-hidden="true">&rarr;</span></span>
-      </a>
-
-      <a class="tile rv" href="match-checking.html">
-        <img src="assets/motif-kinship.png" alt="" aria-hidden="true" loading="lazy">
-        <h3>Match Checking</h3>
-        <p class="kicker">compatibility and couples work</p>
-        <p class="tile-body">A structured read on whether two people fit &mdash; come alone or together &mdash; plus ongoing sessions for couples who want to deepen what they have.</p>
-        <span class="enter">Enter <span aria-hidden="true">&rarr;</span></span>
-      </a>
-    </div>
-  </div>
-</section>
-
-<section class="panel" id="unfold" data-tone="light">
-  <div class="wrap split flip">
-    <img class="cover rv" src="assets/unfold-cover.jpg" alt="UNFOLD journal cover" loading="lazy">
-    <div class="stack">
-      <p class="eyebrow rv">The Cabinet</p>
-      <h2 class="rv">UNFOLD</h2>
-      <hr class="rule rv">
-      <p class="kicker rv">a season of integration</p>
-      <p class="lede rv">A 90-day journal that sits beside your practice — books and objects that support the work between sessions, or on your own.</p>
-      <a class="enter rv" href="unfold.html">Enter <span aria-hidden="true">→</span></a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 7 · BEGIN ══ -->
-<section class="panel" id="begin" data-tone="dark">
-  <div class="begin-inner">
-    <img class="emblem rv" src="assets/emblem.png" alt="" aria-hidden="true" loading="lazy">
-    <p class="eyebrow rv">Begin</p>
-    <h2 class="rv">Start with a free 15-minute call.</h2>
-    <p class="lede rv">A short conversation to work out what you need and whether this is the right fit. No pressure and no pitch — if it isn't a fit, Ari will say so and point you somewhere better.</p>
-    <div class="cta-row rv">
-      <a class="pill pill--solid" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Book the first conversation</a>
-      <a class="pill pill--ghost" href="mailto:ari@arileal.com">ari@arileal.com</a>
-    </div>
-  </div>
-
-  <footer>
-    <div>
-      <span class="f-title">Reach</span>
-      <a href="mailto:ari@arileal.com">ari@arileal.com</a><br>
-      <a href="tel:+16592745325">(659) ARI-LEAL · 659-274-5325</a><br>
-      St. Petersburg, Florida · sessions held remotely
-    </div>
-    <div>
-      <span class="f-title">The Work</span>
-      <div class="f-links">
-        <a href="coaching.html">Coaching</a>
-        <a href="integration.html">Integration</a>
-        <a href="match-checking.html">Match Checking</a>
+  <!-- ===== ARI: the one dark panel ===== -->
+  <section class="inset" id="ari">
+    <div class="panel-night">
+      <div class="ari rise">
+        <figure class="portrait">
+          <img src="assets/ari-portrait-duotone.jpg" alt="Portrait of Ari Leal" loading="lazy">
+          <figcaption>Sessions one-to-one, by video</figcaption>
+        </figure>
+        <div>
+          <h2>Ari Leal</h2>
+          <p class="lede">A coach working with people in transition — in their direction, their relationships, and their experience of meaning. He is clinically trained, which shapes how he listens and where he draws the line: this is coaching, not treatment, and when something is better served by therapy he says so directly.</p>
+          <p class="lede">His clients are typically people functioning well and facing a question bigger than a technique — a career that no longer fits, a relationship at a crossroads, a ceremony that opened something. Or a life that looks right on paper — the job, the home, the routine all in place — while the body keeps saying something is off: a tiredness that sleep doesn't fix, a knot that comes back every Sunday night.</p>
+          <p class="meta"><span>Clinically trained</span><span>Coaching, not therapy</span><span>60–90 minutes</span></p>
+          <div class="giveback">
+            <p class="tag">Giving back</p>
+            <p>What this work earns, it owes forward. 1.5% of revenue goes to <a href="https://twloha.com">To Write Love on Her Arms</a>, a Florida nonprofit funding treatment and recovery for people who need it.</p>
+          </div>
+        </div>
       </div>
     </div>
-    <div>
-      <span class="f-title">Elsewhere</span>
-      <div class="f-links">
-        <a href="unfold.html">UNFOLD</a>
-        <a href="library.html">Library</a>
-        <a href="#ari">About Ari</a>
-        <a href="https://clinicians.arileal.com">For Clinicians</a>
+  </section>
+
+  <!-- ===== THE THREE WAYS ===== -->
+  <section class="orbit" aria-label="Three ways to work together">
+    <div class="pin">
+      <div class="head" id="orbitHead">
+        <h2>Three ways<br>to work <b>together.</b></h2>
+        <p>All three are coaching, not therapy: <span class="dim">no diagnosis, no clinical record, no insurance.</span></p>
+      </div>
+      <div class="ballwrap" id="ball"><img src="assets/ball.avif" alt="" aria-hidden="true"></div>
+      <div class="pills" id="pills">
+        <a class="pill" href="https://www.arileal.com/coaching.html" data-a="-150"><img src="assets/motif-becoming.png" alt="" aria-hidden="true">Coaching</a>
+        <a class="pill" href="https://www.arileal.com/integration.html" data-a="-25"><img src="assets/motif-mystery.png" alt="" aria-hidden="true">Integration</a>
+        <a class="pill" href="https://www.arileal.com/match-checking.html" data-a="140"><img src="assets/motif-kinship.png" alt="" aria-hidden="true">Relationships</a>
+      </div>
+      <div class="over" id="orbitOver"><h2>Every one starts with a <b>free 15&#8209;minute call.</b></h2></div>
+    </div>
+  </section>
+
+  <!-- ===== THE WORK (night) ===== -->
+  <section class="work" id="work">
+    <div class="shell">
+      <div class="work-head rise">
+        <div>
+          <h2>The Work</h2>
+        </div>
+        <a class="btn btn-gold mag" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Begin <i>&#8599;</i></a>
+      </div>
+      <div class="rows stagger">
+        <a class="row" href="https://www.arileal.com/coaching.html">
+          <img src="assets/motif-becoming.png" alt="" aria-hidden="true" loading="lazy">
+          <div><h3>Coaching</h3><p class="kicker">life direction and transitions</p></div>
+          <p class="body">For people moving through a change in work, relationship, meaning, or identity. Structured, depth-oriented conversation with someone clinically trained.</p>
+          <span class="go">Enter <i>&rarr;</i></span>
+        </a>
+        <a class="row" href="https://www.arileal.com/integration.html">
+          <img src="assets/motif-mystery.png" alt="" aria-hidden="true" loading="lazy">
+          <div><h3>Integration</h3><p class="kicker">preparation and integration</p></div>
+          <p class="body">For people working with psychedelic medicine — preparing well beforehand, and making sense of it in the months after. Coaching and education only.</p>
+          <span class="go">Enter <i>&rarr;</i></span>
+        </a>
+        <a class="row" href="https://www.arileal.com/match-checking.html">
+          <img src="assets/motif-kinship.png" alt="" aria-hidden="true" loading="lazy">
+          <div><h3>Relationships</h3><p class="kicker">compatibility and couples work</p></div>
+          <p class="body">A structured read on whether two people fit — come alone or together — plus ongoing sessions for couples who want to deepen what they have.</p>
+          <span class="go">Enter <i>&rarr;</i></span>
+        </a>
       </div>
     </div>
-    <div class="disclaimer">
-      Ari Leal LLC offers coaching and educational services. This work is not psychotherapy, medical care, or mental-health treatment, and no offering here provides, encourages, or sources controlled substances.<br><br>
-      © 2026 Ari Leal LLC
+  </section>
+
+  <!-- ===== UNFOLD (shore, ember) ===== -->
+  <section class="unfold-sec" id="unfold">
+    <div class="shell unfold">
+      <img class="cover rise" src="assets/unfold-cover.jpg" alt="UNFOLD journal cover" loading="lazy">
+      <div class="rise">
+        <h2>UNFOLD</h2>
+        <hr class="rule">
+        <p class="kicker">a season of integration</p>
+        <p class="lede">A 90-day journal that sits beside your practice — books and objects that support the work between sessions, or on your own.</p>
+        <a class="enter" href="https://www.arileal.com/unfold.html">Enter the Cabinet <span aria-hidden="true">&rarr;</span></a>
+      </div>
     </div>
-  </footer>
-</section>
+  </section>
+
+  <!-- ===== BEGIN (night, inset) ===== -->
+  <section class="inset begin" id="begin">
+    <div class="panel-night">
+      <div class="inner stagger">
+        <img class="emblem" src="assets/emblem.png" alt="" aria-hidden="true" loading="lazy">
+        <h2>Start with a <b>free 15&#8209;minute call.</b></h2>
+        <p class="lede">A short conversation to work out what you need and whether this is the right fit. No pressure and no pitch — if it isn't a fit, Ari will say so and point you somewhere better.</p>
+        <div class="actions">
+          <a class="btn btn-gold mag" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Book the first conversation <i>&#8599;</i></a>
+          <a class="btn btn-ghost mag" href="mailto:ari@arileal.com">ari@arileal.com</a>
+        </div>
+        <p class="reach"><b>(659) ARI-LEAL · 659-274-5325</b>St. Petersburg, Florida · sessions held remotely</p>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="shell">
+    <div class="foot">
+      <div><p class="fh">Reach</p><span style="user-select:all">ari@arileal.com</span><span>(659) ARI-LEAL · 659-274-5325</span><span>St. Petersburg, Florida · sessions held remotely</span></div>
+      <div><p class="fh">The Work</p><a href="https://www.arileal.com/coaching.html">Coaching</a><a href="https://www.arileal.com/integration.html">Integration</a><a href="https://www.arileal.com/match-checking.html">Relationships</a></div>
+      <div><p class="fh">Elsewhere</p><a href="https://www.arileal.com/unfold.html">UNFOLD</a><a href="https://www.arileal.com/library.html">Library</a><a href="#ari">About Ari</a><a href="https://clinicians.arileal.com">For Clinicians</a></div>
+    </div>
+    <p class="fine">Ari Leal LLC offers coaching and educational services. This work is not psychotherapy, medical care, or mental-health treatment, and no offering here provides, encourages, or sources controlled substances.</p>
+    <p class="fine" style="margin-top:10px">© 2026 Ari Leal LLC</p>
+  </div>
+</footer>
 
 <script>
 (function(){
-  var root=document.documentElement;
-  root.classList.add('js');
-  document.body.setAttribute('data-tone','dark');
+  var root = document.documentElement, body = document.body;
+  var reduce = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine = window.matchMedia && window.matchMedia('(pointer: fine)').matches;
+  var small = window.innerWidth < 900;
+  root.classList.add('m');
 
-  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-  var panels=Array.prototype.slice.call(document.querySelectorAll('.panel'));
-  var dots=Array.prototype.slice.call(document.querySelectorAll('.gauge a'));
-  var nav=document.getElementById('nav');
-  var fill=document.querySelector('.gauge-fill');
+  /* ---------- preloader ---------- */
+  var veil = document.getElementById('veil');
+  function ignite(){ root.classList.add('go'); }
+  if(reduce){ veil.classList.add('off'); ignite(); }
+  else{ setTimeout(function(){ veil.classList.add('off'); setTimeout(ignite, 300); }, 950); }
 
-  /* reveal on entry — the first panel is already in */
+  /* ---------- menu ---------- */
+  var burger = document.getElementById('burger');
+  var menuEl = document.getElementById('menu');
+  function setMenu(open){ body.classList.toggle('menu', open); burger.setAttribute('aria-expanded', open ? 'true' : 'false'); menuEl.setAttribute('aria-hidden', open ? 'false' : 'true'); menuEl.inert = !open; if(open){ var f = menuEl.querySelector('a'); if(f) setTimeout(function(){ f.focus({ preventScroll:true }); }, 120); } else if(document.activeElement && menuEl.contains(document.activeElement)){ burger.focus(); } }
+  burger.addEventListener('click', function(){ setMenu(!body.classList.contains('menu')); });
+  document.querySelectorAll('#menu a').forEach(function(a){ a.addEventListener('click', function(){ setMenu(false); }); });
+  document.addEventListener('keydown', function(e){ if(e.key === 'Escape' && body.classList.contains('menu')) setMenu(false); });
+
+  /* ---------- reveals ---------- */
   if('IntersectionObserver' in window){
-    var reveal=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){ if(e.isIntersecting) e.target.classList.add('is-in'); });
-    },{threshold:0.2});
-    panels.forEach(function(p){ reveal.observe(p); });
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { rootMargin:'0px 0px -10% 0px', threshold:0.06 });
+    document.querySelectorAll('.rise,.stagger').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.rise,.stagger').forEach(function(el){ el.classList.add('in'); });
+  }
 
-    /* active level → gauge, nav tone, nav solidity */
-    var active=new IntersectionObserver(function(entries){
-      entries.forEach(function(e){
-        if(!e.isIntersecting) return;
-        var i=panels.indexOf(e.target);
-        document.body.setAttribute('data-tone', e.target.getAttribute('data-tone'));
-        dots.forEach(function(d,j){ d.classList.toggle('on', j===i); });
-        nav.classList.toggle('solid', i>0);
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){ es.forEach(function(e){ e.target.classList.toggle('on', e.isIntersecting); }); }).observe(document.querySelector('.orbit'));
+  } else { document.querySelector('.orbit').classList.add('on'); }
+
+  /* ---------- magnetic pills ---------- */
+  var px = window.innerWidth/2, py = window.innerHeight/2;
+  if(fine && !reduce){
+    window.addEventListener('pointermove', function(e){ px = e.clientX; py = e.clientY; }, { passive:true });
+    document.querySelectorAll('.mag').forEach(function(b){
+      var tx = 0, ty = 0, x = 0, y = 0, vx = 0, vy = 0, run = false;
+      function step(){
+        /* light spring: settles in ~400ms, no visible bounce */
+        vx = (vx + (tx - x) * .16) * .72; vy = (vy + (ty - y) * .16) * .72;
+        x += vx; y += vy;
+        b.style.transform = 'translate(' + x.toFixed(2) + 'px,' + y.toFixed(2) + 'px)';
+        if(Math.abs(tx - x) + Math.abs(ty - y) + Math.abs(vx) + Math.abs(vy) > .05) requestAnimationFrame(step);
+        else { run = false; if(!tx && !ty) b.style.transform = ''; }
+      }
+      function kick(){ if(!run){ run = true; requestAnimationFrame(step); } }
+      b.addEventListener('pointermove', function(e){
+        var r = b.getBoundingClientRect();
+        tx = (e.clientX - r.left - r.width/2) * .16; ty = (e.clientY - r.top - r.height/2) * .22; kick();
       });
-    },{threshold:0.5});
-    panels.forEach(function(p){ active.observe(p); });
-  }else{
-    panels.forEach(function(p){ p.classList.add('is-in'); });
-  }
-  panels[0].classList.add('is-in');
-  dots[0].classList.add('on');
-
-  /* descent gauge fill */
-  if(fill){
-    var tick=function(){
-      var max=root.scrollHeight-window.innerHeight;
-      fill.style.transform='scaleY('+(max>0?Math.min(1,window.scrollY/max):0)+')';
-    };
-    window.addEventListener('scroll',tick,{passive:true});
-    window.addEventListener('resize',tick);
-    tick();
-  }
-
-  /* mobile drawer */
-  var btn=document.getElementById('menuBtn'),
-      drawer=document.getElementById('drawer'),
-      closeBtn=document.getElementById('drawerClose');
-  function setDrawer(open){
-    drawer.classList.toggle('open',open);
-    drawer.setAttribute('aria-hidden',String(!open));
-    btn.setAttribute('aria-expanded',String(open));
-  }
-  btn.addEventListener('click',function(){ setDrawer(!drawer.classList.contains('open')); });
-  closeBtn.addEventListener('click',function(){ setDrawer(false); });
-  drawer.addEventListener('click',function(e){ if(e.target.tagName==='A') setDrawer(false); });
-  document.addEventListener('keydown',function(e){ if(e.key==='Escape') setDrawer(false); });
-
-  /* stillness for anyone who asked for it */
-  if(reduce){
-    var v=document.querySelector('video');
-    if(v){ v.removeAttribute('autoplay'); v.pause(); }
-  }
-})();
-
-  /* iOS Safari: autoplay can be refused (Low Power Mode). Retry, then wait for a touch. */
-  (function(){
-    var v = document.querySelector('#top video');
-    if(!v) return;
-    v.muted = true; v.defaultMuted = true; v.playsInline = true;
-    function attempt(){
-      var p = v.play();
-      if (p && p.catch) p.catch(function(){});
-    }
-    attempt();
-    v.addEventListener('loadeddata', attempt, {once:true});
-    ['touchstart','click'].forEach(function(evt){
-      document.addEventListener(evt, function once(){
-        attempt();
-        document.removeEventListener(evt, once);
-      }, {passive:true});
+      b.addEventListener('pointerleave', function(){ tx = 0; ty = 0; kick(); });
     });
+  }
+
+  /* ---------- scroll scenes ---------- */
+  function clamp(v,a,b){ return Math.min(b, Math.max(a, v)); }
+  function ease(t){ return t*t*(3-2*t); }
+  function prog(el){ var r = el.getBoundingClientRect(); var total = el.offsetHeight - window.innerHeight; return clamp(-r.top / total, 0, 1); }
+  function lerp(a,b,t){ return a + (b - a)*t; }
+
+  var journey = document.querySelector('.journey'), feel = document.querySelector('.feel'), orbitSec = document.querySelector('.orbit');
+  var ticks = Array.prototype.slice.call(document.querySelectorAll('#ticks i'));
+  var fticks = Array.prototype.slice.call(document.querySelectorAll('#fticks i'));
+  var disc = document.getElementById('disc'), blobA = document.getElementById('blobA'), blobB = document.getElementById('blobB');
+  var stmt1 = document.getElementById('stmt1'), stmt2 = document.getElementById('stmt2');
+  var orbitHead = document.getElementById('orbitHead'), orbitOver = document.getElementById('orbitOver'), ball = document.getElementById('ball');
+  var pills = Array.prototype.slice.call(document.querySelectorAll('.pill'));
+  var darks = Array.prototype.slice.call(document.querySelectorAll('.panel-night,.work'));
+  var morph = 0, morphTarget = 0;
+
+  function paint(){
+    var vw = window.innerWidth, vh = window.innerHeight;
+
+    /* hero: five forms across the pinned scroll, the words holding still, as on mdx */
+    var pj = prog(journey);
+    morphTarget = clamp((pj / 0.9) * 4.2 - 0.1, 0, 4);
+    var kk = Math.floor(morphTarget), active = (morphTarget - kk) < 0.55 ? kk : kk + 1;
+    ticks.forEach(function(t,i){ t.classList.toggle('on', i === Math.min(4, active)); });
+
+    /* feeling: two glows inside a great disc; they turn, then gather into a sun over its rim */
+    var pf = prog(feel);
+    var a1 = clamp(pf / 0.12, 0, 1) * (1 - clamp((pf - 0.46) / 0.1, 0, 1));
+    var a2 = clamp((pf - 0.6) / 0.1, 0, 1);
+    var lift = reduce ? 0 : 24;
+    stmt1.style.opacity = a1.toFixed(2); stmt1.style.transform = 'translateY(' + ((1 - a1) * lift).toFixed(1) + 'px)';
+    stmt2.style.opacity = a2.toFixed(2); stmt2.style.transform = 'translateY(' + ((1 - a2) * lift).toFixed(1) + 'px)';
+    stmt1.style.pointerEvents = a1 > .5 ? 'auto' : 'none';
+    var sun = reduce ? (pf < 0.55 ? 0 : 1) : ease(clamp((pf - 0.44) / 0.24, 0, 1));
+    var ang = (-130 + (reduce ? 40 : pf * 150)) * Math.PI / 180, R = Math.min(vw, vh) * 0.3;
+    var ax = Math.cos(ang) * R, ay = Math.sin(ang) * R * 0.9, bx = -ax * 1.05, by = -ay * 1.05;
+    var dy = sun * vh * 0.52;
+    blobA.style.transform = 'translate(' + lerp(ax, 0, sun).toFixed(1) + 'px,' + lerp(ay, -vh * 0.06, sun).toFixed(1) + 'px) rotate(' + lerp(35, 0, sun).toFixed(1) + 'deg) scale(' + lerp(1, .72, sun).toFixed(3) + ')';
+    blobB.style.transform = 'translate(' + lerp(bx, 0, sun).toFixed(1) + 'px,' + lerp(by, -vh * 0.06, sun).toFixed(1) + 'px) rotate(' + lerp(35, 0, sun).toFixed(1) + 'deg) scale(' + lerp(1, .6, sun).toFixed(3) + ')';
+    disc.style.transform = 'translate(-50%, calc(-50% + ' + dy.toFixed(1) + 'px)) scale(' + lerp(reduce ? 1 : 0.92 + pf * 0.12, 1.15, sun).toFixed(3) + ')';
+    fticks.forEach(function(t,i){ t.classList.toggle('on', i === (pf < 0.55 ? 0 : 1)); });
+
+    /* the three ways: pills drift outward, the ball comes forward, the line about the first call arrives */
+    var po = ease(prog(orbitSec)), drift = reduce ? 0 : po;
+    var base = small ? Math.min(vw * 0.34, 150) : Math.min(vw * 0.2, 290);
+    var rad = base * (1 + 0.55 * drift);
+    pills.forEach(function(p){
+      var a = parseFloat(p.getAttribute('data-a')) * Math.PI / 180;
+      var x = Math.cos(a) * rad, y = Math.sin(a) * rad * (small ? 1.1 : 0.62);
+      var lim = vw / 2 - (p._w || (p._w = p.offsetWidth)) / 2 - 16;
+      x = clamp(x, -lim, lim);
+      p.style.transform = 'translate(calc(-50% + ' + x.toFixed(1) + 'px), calc(-50% + ' + y.toFixed(1) + 'px))';
+    });
+    var oh = 1 - clamp(po * 1.8, 0, 1);
+    orbitHead.style.opacity = oh.toFixed(2);
+    orbitHead.style.transform = reduce ? '' : 'translateY(' + ((1 - oh) * -18).toFixed(1) + 'px)';
+    var oo = clamp((po - 0.42) / 0.28, 0, 1);
+    orbitOver.style.opacity = oo.toFixed(2);
+    orbitOver.style.transform = reduce ? '' : 'translateY(' + ((1 - oo) * 20).toFixed(1) + 'px)';
+    ball.style.transform = reduce ? '' : 'translateY(' + (oo * -2).toFixed(1) + 'vh) scale(' + (1 + 0.12 * po).toFixed(3) + ')';
+    ball.style.opacity = (1 - 0.25 * oo).toFixed(2);
+
+    /* nav turns light over the dark panels */
+    var dark = false;
+    for(var i=0;i<darks.length;i++){ var r = darks[i].getBoundingClientRect(); if(r.top <= 40 && r.bottom >= 40){ dark = true; break; } }
+    body.classList.toggle('dark-nav', dark);
+  }
+  var lastY = -1, lastH = -1;
+  (function loop(){
+    var y = window.scrollY, h = window.innerHeight;
+    if(y !== lastY || h !== lastH){ lastY = y; lastH = h; paint(); }
+    morph += (morphTarget - morph) * (reduce || window.__instant ? 1 : .085);
+    if(Math.abs(morphTarget - morph) < .0005) morph = morphTarget;
+    requestAnimationFrame(loop);
   })();
+  paint();
+
+  /* ---------- the hero sequence: pre-rendered frames scrubbed by scroll ---------- */
+  (function(){
+    var canvas = document.getElementById('frames'), glow = document.getElementById('glow'), shadow = document.getElementById('shadow');
+    var ctx = canvas.getContext('2d');
+    var COUNT = 121, PER = 30, frames = new Array(COUNT);
+    function src(i){ return 'frames/f-' + String(i).padStart(3, '0') + '.avif'; }
+    function nearest(i){ for(var d=0; d<COUNT; d++){ if(frames[i-d] && frames[i-d].ok) return frames[i-d]; if(frames[i+d] && frames[i+d].ok) return frames[i+d]; } return null; }
+    var queue = []; for(var i=0;i<COUNT;i++) queue.push(i);
+    function pump(){
+      if(!queue.length) return;
+      var i = queue.shift(), img = new Image();
+      img.decoding = 'async';
+      img.onload = function(){ img.ok = true; dirty = true; pump(); };
+      img.onerror = function(){ pump(); };
+      img.src = src(i); frames[i] = img;
+    }
+    pump(); setTimeout(function(){ for(var k=0;k<5;k++) pump(); }, 120);
+
+    var dirty = true, lastFi = -1, dpr = Math.min(window.devicePixelRatio || 1, 2), size = 0;
+    function resize(){ var css = canvas.getBoundingClientRect().width || 600; size = Math.min(1100, Math.round(css * dpr)); canvas.width = size; canvas.height = size; dirty = true; }
+    resize(); window.addEventListener('resize', resize, { passive:true });
+
+    var t0 = performance.now(), sx = 0, sy = 0, live = true, raf = 0;
+    /* the studio only animates while it is on screen */
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){ es.forEach(function(e){ var was = live; live = e.isIntersecting; if(live && !was){ dirty = true; raf = requestAnimationFrame(draw); } }); }).observe(document.querySelector('.journey'));
+    }
+    function draw(){
+      if(!live) return;
+      var t = (performance.now() - t0) * .001;
+      var fi = Math.max(0, Math.min(COUNT - 1, morph * PER));
+      if(fi !== lastFi){ lastFi = fi; dirty = true; }
+      if(dirty){
+        var i0 = Math.floor(fi), i1 = Math.min(COUNT - 1, i0 + 1), a = fi - i0;
+        var f0 = frames[i0] && frames[i0].ok ? frames[i0] : nearest(i0);
+        var f1 = frames[i1] && frames[i1].ok ? frames[i1] : null;
+        ctx.clearRect(0, 0, size, size);
+        if(f0){ ctx.globalAlpha = 1; ctx.drawImage(f0, 0, 0, size, size); }
+        if(f1 && a > 0.01){ ctx.globalAlpha = a; ctx.drawImage(f1, 0, 0, size, size); }
+        ctx.globalAlpha = 1; dirty = false;
+      }
+      var gx = fine ? (px / window.innerWidth - .5) : 0, gy = fine ? (py / window.innerHeight - .5) : 0;
+      sx += (gx - sx) * .05; sy += (gy - sy) * .05;
+      var bob = reduce ? 0 : Math.sin(t * .8) * 6;
+      canvas.style.transform = 'perspective(1000px) translate3d(' + (sx * 12).toFixed(1) + 'px,' + (bob + sy * 8).toFixed(1) + 'px,0) rotateX(' + (-sy * 4).toFixed(2) + 'deg) rotateY(' + (sx * 6).toFixed(2) + 'deg)';
+      glow.style.transform = 'translate3d(' + (sx * 12).toFixed(1) + 'px,' + (bob + sy * 8).toFixed(1) + 'px,0) scale(' + (1 + .03 * Math.sin(t * .7)).toFixed(3) + ')';
+      shadow.style.transform = 'translate(calc(-50% + ' + (sx * 10).toFixed(1) + 'px), -50%) scale(' + (1 - bob * .006).toFixed(3) + ')';
+      shadow.style.opacity = (0.9 + bob * .015).toFixed(2);
+      raf = requestAnimationFrame(draw);
+    }
+    raf = requestAnimationFrame(draw);
+  })();
+})();
 </script>
-<!--BODY-END-->
 </body>
 </html>
