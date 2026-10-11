@@ -7,8 +7,13 @@
 <meta name="description" content="An instrument for locating where an unusual or spiritual experience is sitting in a life — what it costs, how much room it takes, how alone you are in it. Not whether it was real.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Newsreader:ital,opsz,wght@0,6..72,300;0,6..72,400;1,6..72,300&display=swap">
-<link rel="stylesheet" href="styles.css?v=4">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="styles.css?v=5">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F3F1EC">
 <style>
 /* ===== The Holding Map — page-scoped; inherits the tone tokens ===== */
 .hm-wide{max-width:1040px;margin:0 auto}
@@ -21,42 +26,44 @@
 #art-body .hm-intro p{font-size:16px;line-height:1.72;margin:0}
 .hm-intro b{color:var(--fg);font-weight:400}
 
-.hm-ask{background:var(--surface);border:1px solid var(--rule);padding:30px 32px;margin-top:24px}
-.hm-ask h3{font-family:var(--fr);font-weight:400;font-size:clamp(20px,2.4vw,27px);line-height:1.26;color:var(--fg);margin-bottom:14px;max-width:26ch}
+.hm-ask{background:var(--surface);border:1px solid var(--rule);border-radius:24px;padding:clamp(26px,3vw,36px) clamp(22px,3vw,40px);margin-top:24px}
+.hm-ask h3{font-family:var(--fr);font-weight:500;font-size:clamp(20px,2.4vw,27px);line-height:1.2;color:var(--fg);margin-bottom:14px;max-width:26ch}
 #art-body .hm-ask p{font-size:16px;line-height:1.72;margin:0}
 
-.hm-dims{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);margin-top:26px}
-.hm-dim{background:var(--surface);padding:26px 28px 22px}
+.hm-dims{display:grid;gap:1px;background:var(--rule);border:1px solid var(--rule);border-radius:24px;overflow:hidden;margin-top:26px}
+.hm-dim{background:var(--surface);padding:clamp(24px,2.6vw,32px) clamp(20px,2.6vw,32px) 24px}
 .hm-dim-top{display:flex;align-items:baseline;gap:13px;flex-wrap:wrap}
-.hm-ord{font-family:var(--ar);font-size:10.5px;font-weight:600;letter-spacing:.18em;color:var(--accent)}
+.hm-ord{font-family:var(--ar);font-size:11.5px;font-weight:600;letter-spacing:.18em;color:var(--accent)}
 .hm-dim h3{font-family:var(--fr);font-weight:500;font-size:20px;color:var(--fg);margin:0}
-.hm-dim .kicker{font-size:16px}
+.hm-dim .kicker{font-size:15px}
 #art-body .hm-body{font-size:15.5px;line-height:1.7;margin:10px 0 20px;max-width:62ch}
-.hm-scale{display:flex;border:0;padding:0;margin:0;max-width:540px}
+.hm-scale{display:flex;border:0;padding:0;margin:16px 0 0;max-width:540px}
 .hm-scale legend{position:absolute;left:-9999px}
 .hm-opt{flex:1;position:relative}
 .hm-opt input{position:absolute;inset:0;opacity:0;width:100%;height:100%;margin:0;cursor:pointer;z-index:2}
-.hm-box{display:flex;align-items:center;justify-content:center;height:46px;
+.hm-box{display:flex;align-items:center;justify-content:center;height:48px;
   border:1px solid var(--rule);border-right:0;background:var(--bg);
-  font-family:var(--ar);font-size:12.5px;color:var(--dim);
-  transition:background .2s var(--ease),color .2s var(--ease)}
-.hm-opt:last-child .hm-box{border-right:1px solid var(--rule)}
-.hm-opt input:checked + .hm-box{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}
-.hm-opt input:focus-visible + .hm-box{outline:2px solid var(--fg);outline-offset:2px;z-index:3}
+  font-family:var(--display);font-size:13px;font-weight:500;font-variant-numeric:tabular-nums;color:var(--dim);
+  transition:background .2s var(--ease),color .2s var(--ease),border-color .2s var(--ease)}
+.hm-opt:first-of-type .hm-box{border-radius:999px 0 0 999px}
+.hm-opt:last-child .hm-box{border-right:1px solid var(--rule);border-radius:0 999px 999px 0}
+.hm-opt:hover .hm-box{color:var(--fg)}
+.hm-opt input:checked + .hm-box{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.hm-opt input:focus-visible + .hm-box{outline:2px solid var(--focus);outline-offset:3px;position:relative;z-index:3}
 .hm-poles{display:flex;justify-content:space-between;max-width:540px;margin-top:9px;
-  font-family:var(--ar);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  font-family:var(--ar);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 .hm-poles span:last-child{text-align:right}
 
-.hm-other{margin-top:30px;border:1px solid var(--fg);padding:28px 30px}
+.hm-other{margin-top:30px;border:1px solid var(--fg);border-radius:24px;padding:clamp(26px,3vw,36px) clamp(22px,3vw,40px)}
 .hm-other h3{font-family:var(--fr);font-weight:500;font-size:21px;color:var(--fg);margin-bottom:8px}
 .hm-pair{display:grid;grid-template-columns:1fr 1fr;gap:28px;margin-top:20px}
-.hm-pair h4{font-family:var(--ar);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
+.hm-pair h4{font-family:var(--ar);font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--accent);margin-bottom:8px}
 #art-body .hm-pair p{font-size:15.5px;line-height:1.7;margin:0}
 .hm-who{margin-top:24px;padding-top:18px;border-top:1px solid var(--rule);
-  font-family:var(--nw);font-style:italic;font-size:18px;line-height:1.45;color:var(--fg);max-width:46ch}
+  font-family:var(--display);font-weight:400;font-size:19px;line-height:1.4;letter-spacing:-.015em;color:var(--fg);max-width:46ch}
 
 .hm-map{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:44px;align-items:start;margin-top:26px}
-.hm-plot{background:var(--surface);border:1px solid var(--rule);padding:20px}
+.hm-plot{background:var(--surface);border:1px solid var(--rule);border-radius:24px;padding:clamp(16px,2vw,24px)}
 .hm-plot svg{width:100%;height:auto;display:block}
 .hm-ring{fill:none;stroke:var(--rule)}
 .hm-axis{stroke:var(--rule);stroke-width:.7}
@@ -66,46 +73,45 @@
 .hm-bead{fill:var(--accent)}
 .hm-ghost{fill:none;stroke:var(--accent);stroke-width:1.1}
 .hm-legend{display:flex;gap:22px;flex-wrap:wrap;margin-top:15px;padding-top:14px;border-top:1px solid var(--rule);
-  font-family:var(--ar);font-size:10.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
+  font-family:var(--ar);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--dim)}
 .hm-legend i{display:inline-block;width:16px;border-top:2px solid var(--accent);vertical-align:middle;margin-right:7px}
 .hm-legend i.g{opacity:.34}
 .hm-acts{display:flex;gap:10px;flex-wrap:wrap;margin-top:24px}
-.hm-acts button.pill{cursor:pointer;-webkit-appearance:none;appearance:none;
-  font-family:var(--ar);font-size:12.5px;font-weight:500;letter-spacing:.12em;text-transform:uppercase}
+.hm-acts button.pill{cursor:pointer;-webkit-appearance:none;appearance:none}
 .hm-acts button.pill--ghost{background:transparent}
 .hm-acts .pill[disabled]{opacity:.38;cursor:not-allowed}
-.hm-acts .pill[disabled]:hover{transform:none;background:none}
+.hm-acts .pill--ghost[disabled]:hover{background:transparent;color:var(--fg);border-color:var(--ghost-line)}
 #art-body .hm-privacy{font-family:var(--ar);font-size:11.5px;letter-spacing:.04em;color:var(--dim);margin:16px 0 0;max-width:44ch}
 .hm-saved{font-family:var(--ar);font-size:11.5px;color:var(--dim);margin-top:14px}
 .hm-saved ul{list-style:none;margin:8px 0 0;padding:0}
-.hm-saved li{padding:5px 0;border-bottom:1px dotted var(--rule)}
+.hm-saved li{padding:6px 0;border-bottom:1px solid var(--rule)}
 
 .hm-read h3{font-family:var(--fr);font-weight:500;font-size:22px;color:var(--fg);margin-bottom:16px}
-.hm-pat{border-left:2px solid var(--accent);padding-left:18px;margin-bottom:24px}
-.hm-pat .tag{font-family:var(--ar);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+.hm-pat{border-left:1px solid var(--accent);padding-left:20px;margin-bottom:26px}
+.hm-pat .tag{font-family:var(--ar);font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
   color:var(--accent);display:block;margin-bottom:8px}
 #art-body .hm-pat p{font-size:16px;line-height:1.7;margin:0}
-.hm-pat .mv{margin-top:12px;padding-top:11px;border-top:1px dotted var(--rule)}
-.hm-pat .mv b{font-family:var(--ar);font-size:10.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+.hm-pat .mv{margin-top:12px;padding-top:11px;border-top:1px solid var(--rule)}
+.hm-pat .mv b{font-family:var(--ar);font-size:11.5px;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
   color:var(--fg);display:block;margin-bottom:5px}
 .hm-pat.hold{border-left-color:var(--fg)}
 .hm-pat.hold .tag{color:var(--fg)}
 .hm-moves{margin-top:30px;padding-top:24px;border-top:1px solid var(--rule)}
 #art-body .hm-moves .intro{font-size:15.5px;margin:6px 0 20px}
 .hm-mi{margin-bottom:26px}
-.hm-mi .ax{font-family:var(--ar);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+.hm-mi .ax{font-family:var(--ar);font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
   color:var(--accent);display:flex;gap:10px;margin-bottom:8px}
 .hm-mi .ax em{font-style:normal;color:var(--dim);letter-spacing:.12em}
 #art-body .hm-mi .mean{font-size:16px;line-height:1.7;color:var(--fg);margin:0 0 10px}
-#art-body .hm-mi .do{font-size:15.5px;line-height:1.7;margin:0;padding-left:15px;border-left:2px solid var(--rule)}
+#art-body .hm-mi .do{font-size:15.5px;line-height:1.7;margin:0;padding-left:16px;border-left:1px solid var(--rule)}
 .hm-mi .do b{font-family:var(--ar);font-size:11.5px;color:var(--fg);font-weight:600}
 .hm-out{margin-top:28px;padding-top:20px;border-top:1px solid var(--fg)}
-.hm-out .lab{font-family:var(--ar);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
+.hm-out .lab{font-family:var(--ar);font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;
   color:var(--dim);display:block;margin-bottom:8px}
 #art-body .hm-out p{font-size:16px;line-height:1.7;margin:0;color:var(--fg)}
 
-.hm-outside{margin-top:40px;border:1px solid var(--fg);border-left-width:4px;padding:26px 30px;background:var(--surface)}
-.hm-outside .lab{font-family:var(--ar);font-size:10.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.hm-outside{margin-top:40px;border:1px solid var(--fg);border-radius:24px;padding:clamp(26px,3vw,36px) clamp(22px,3vw,40px);background:var(--surface)}
+.hm-outside .lab{font-family:var(--ar);font-size:11.5px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
 #art-body .hm-outside p{font-size:16.5px;line-height:1.66;color:var(--fg);margin:10px 0 0;max-width:64ch}
 #art-body .hm-outside p.q{color:var(--dim);font-size:15px}
 .hm-fade{animation:hmIn .3s var(--ease)}
@@ -116,27 +122,35 @@
 </head>
 <body>
 
-<nav id="nav" aria-label="Primary">
-  <a class="wordmark" href="index.html">Ari Leal</a>
-  <ul>
-    <li><a href="index.html#coaching">The Work</a></li>
-    <li><a href="index.html#unfold">UNFOLD</a></li>
-    <li><a href="library.html">Library</a></li>
-    <li><a href="index.html#ari">About</a></li>
-  </ul>
-  <a class="pill pill--nav" href="#begin">Begin</a>
-  <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="drawer">Menu</button>
+<nav class="top" aria-label="Primary">
+  <div class="nav-l">
+    <a class="sig" href="index.html" aria-label="Ari Leal, home">
+      <img class="sig-ink" src="assets/signature-ink.png" alt="Ari Leal">
+      <img class="sig-light" src="assets/signature.png" alt="" aria-hidden="true">
+    </a>
+  </div>
+  <div class="nav-r">
+    <a class="talk" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Begin <i>&#8599;</i></a>
+    <span class="bar"></span>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+  </div>
 </nav>
-<div id="drawer" aria-hidden="true">
-  <button class="close" id="drawerClose">Close</button>
-  <a href="index.html#coaching">The Work</a>
-  <a href="index.html#unfold">UNFOLD</a>
-  <a href="library.html">Library</a>
-  <a href="index.html#ari">About</a>
-  <a href="#begin">Begin</a>
+
+<div class="menu" id="menu" aria-hidden="true" inert>
+  <div>
+    <ul>
+      <li><a href="index.html#work">The Work</a></li>
+      <li><a href="index.html#unfold">UNFOLD <small>The Cabinet</small></a></li>
+      <li><a href="library.html">Library</a></li>
+      <li><a href="index.html#ari">About</a></li>
+      <li><a href="#begin">Begin</a></li>
+      <li><a href="https://clinicians.arileal.com">For Clinicians</a></li>
+    </ul>
+    <div class="menu-foot"><span>ari@arileal.com</span><span>St. Petersburg, Florida &middot; sessions held remotely</span></div>
+  </div>
 </div>
 
-<section class="panel" id="art-hero" data-tone="dark">
+<section class="panel" id="art-hero" data-tone="light">
   <div class="wrap">
     <p class="art-crumb rv"><a href="library.html">The Library</a><span>&middot;</span><a href="library.html#assessments">Assessments</a></p>
     <h1 class="rv">The Holding Map</h1>
@@ -306,71 +320,92 @@
   </div>
 </section>
 
-<section class="panel" id="begin" data-tone="dark">
-  <div class="begin-inner">
-    <img class="emblem rv" src="assets/mark-t.png" alt="" aria-hidden="true" loading="lazy">
-    <p class="eyebrow rv">Begin</p>
-    <h2 class="rv">Want to read a map with someone?</h2>
-    <p class="lede rv">Two of the eight dimensions cannot be answered alone. If you want company for those, write and say so. From a person, not a funnel.</p>
-    <div class="cta-row rv">
-      <a class="pill pill--solid" href="mailto:ari@arileal.com?subject=The%20Holding%20Map">Write to Ari</a>
-      <a class="pill pill--ghost" href="mailto:ari@arileal.com">ari@arileal.com</a>
+<section class="panel" id="begin" data-tone="light">
+  <div class="night-card" data-tone="dark">
+    <div class="begin-inner">
+      <img class="emblem rv" src="assets/mark-t.png" alt="" aria-hidden="true" loading="lazy">
+      <p class="eyebrow rv">Begin</p>
+      <h2 class="rv">Want to read a map with someone?</h2>
+      <p class="lede rv">Two of the eight dimensions cannot be answered alone. If you want company for those, write and say so. From a person, not a funnel.</p>
+      <div class="cta-row rv">
+        <a class="pill pill--solid mag" href="mailto:ari@arileal.com?subject=The%20Holding%20Map">Write to Ari</a>
+        <a class="pill pill--ghost mag" href="mailto:ari@arileal.com">ari@arileal.com</a>
+      </div>
     </div>
   </div>
-
-  <footer>
-    <div>
-      <span class="f-title">Reach</span>
-      <a href="mailto:ari@arileal.com">ari@arileal.com</a><br>
-      <a href="tel:+16592745325">(659) ARI-LEAL · 659-274-5325</a><br>
-      St. Petersburg, Florida · sessions held remotely
-    </div>
-    <div>
-      <span class="f-title">The Work</span>
-      <div class="f-links">
-        <a href="coaching.html">Coaching</a>
-        <a href="integration.html">Integration</a>
-        <a href="match-checking.html">Match Checking</a>
-      </div>
-    </div>
-    <div>
-      <span class="f-title">Elsewhere</span>
-      <div class="f-links">
-        <a href="unfold.html">UNFOLD</a>
-        <a href="library.html">Library</a>
-        <a href="index.html#ari">About Ari</a>
-      </div>
-    </div>
-    <div class="disclaimer">
-      Ari Leal LLC offers coaching and educational services. This work is not psychotherapy, medical care, or mental-health treatment, and no offering here provides, encourages, or sources controlled substances.<br><br>
-      © 2026 Ari Leal LLC
-    </div>
-  </footer>
 </section>
+
+<footer class="site-foot">
+  <div class="shell">
+    <div class="foot">
+      <div><p class="fh">Reach</p><a href="mailto:ari@arileal.com">ari@arileal.com</a><a href="tel:+16592745325">(659) ARI-LEAL &middot; 659-274-5325</a><span>St. Petersburg, Florida &middot; sessions held remotely</span></div>
+      <div><p class="fh">The Work</p><a href="coaching.html">Coaching</a><a href="integration.html">Integration</a><a href="match-checking.html">Relationships</a></div>
+      <div><p class="fh">Elsewhere</p><a href="unfold.html">UNFOLD</a><a href="library.html">Library</a><a href="index.html#ari">About Ari</a><a href="https://clinicians.arileal.com">For Clinicians</a></div>
+    </div>
+    <p class="fine">Ari Leal LLC offers coaching and educational services. This work is not psychotherapy, medical care, or mental-health treatment, and no offering here provides, encourages, or sources controlled substances.</p>
+    <p class="fine">&copy; 2026 Ari Leal LLC</p>
+  </div>
+</footer>
 
 <script>
 (function(){
-  var root=document.documentElement; root.classList.add('js');
-  document.body.setAttribute('data-tone','dark');
+  var root=document.documentElement, body=document.body; root.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* reveals */
   var panels=[].slice.call(document.querySelectorAll('.panel'));
-  var nav=document.getElementById('nav');
   if('IntersectionObserver' in window){
-    var reveal=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting)e.target.classList.add('is-in');});},{threshold:0.06});
-    panels.forEach(function(p){reveal.observe(p);});
-    var active=new IntersectionObserver(function(es){es.forEach(function(e){
-      if(!e.isIntersecting)return;
-      document.body.setAttribute('data-tone',e.target.getAttribute('data-tone'));
-    });},{threshold:0.35});
-    panels.forEach(function(p){active.observe(p);});
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}
+    });},{threshold:0,rootMargin:'0px 0px -10% 0px'});
+    panels.forEach(function(p){io.observe(p);});
   }else{panels.forEach(function(p){p.classList.add('is-in');});}
-  panels[0].classList.add('is-in');
-  function onScroll(){nav.classList.toggle('solid',window.scrollY>40);} onScroll();
-  window.addEventListener('scroll',onScroll,{passive:true});
-  var btn=document.getElementById('menuBtn'),dr=document.getElementById('drawer'),cl=document.getElementById('drawerClose');
-  function openD(){dr.classList.add('open');dr.setAttribute('aria-hidden','false');btn.setAttribute('aria-expanded','true');}
-  function closeD(){dr.classList.remove('open');dr.setAttribute('aria-hidden','true');btn.setAttribute('aria-expanded','false');}
-  if(btn){btn.addEventListener('click',openD);} if(cl){cl.addEventListener('click',closeD);}
-  if(dr){dr.querySelectorAll('a').forEach(function(a){a.addEventListener('click',closeD);});}
+  if(panels[0])panels[0].classList.add('is-in');
+
+  /* nav: light over night, a soft fade once the page moves */
+  var darks=[].slice.call(document.querySelectorAll('[data-tone="dark"]'));
+  function paint(){
+    var dark=false, full=false;
+    for(var i=0;i<darks.length;i++){var r=darks[i].getBoundingClientRect();
+      if(r.top<=40&&r.bottom>=40){dark=true;full=!darks[i].classList.contains('night-card');break;}}
+    body.classList.toggle('dark-nav',dark);
+    body.classList.toggle('scrolled',window.scrollY>24&&(!dark||full));
+  }
+  var tick=false;
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(function(){tick=false;paint();});}},{passive:true});
+  window.addEventListener('resize',paint); paint();
+
+  /* menu */
+  var burger=document.getElementById('burger'), menuEl=document.getElementById('menu');
+  function setMenu(open){
+    body.classList.toggle('menu-open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    menuEl.setAttribute('aria-hidden',open?'false':'true');
+    menuEl.inert=!open;
+    if(open){var f=menuEl.querySelector('a');if(f)setTimeout(function(){f.focus({preventScroll:true});},120);}
+    else if(document.activeElement&&menuEl.contains(document.activeElement)){burger.focus();}
+  }
+  burger.addEventListener('click',function(){setMenu(!body.classList.contains('menu-open'));});
+  [].slice.call(menuEl.querySelectorAll('a')).forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&body.classList.contains('menu-open'))setMenu(false);});
+
+  /* magnetic pills: a light spring toward the pointer, fine pointers only */
+  if(fine&&!reduce){
+    [].slice.call(document.querySelectorAll('.mag')).forEach(function(b){
+      var tx=0,ty=0,x=0,y=0,vx=0,vy=0,run=false;
+      function step(){
+        vx=(vx+(tx-x)*.16)*.72; vy=(vy+(ty-y)*.16)*.72; x+=vx; y+=vy;
+        b.style.transform='translate('+x.toFixed(2)+'px,'+y.toFixed(2)+'px)';
+        if(Math.abs(tx-x)+Math.abs(ty-y)+Math.abs(vx)+Math.abs(vy)>.05)requestAnimationFrame(step);
+        else{run=false;if(!tx&&!ty)b.style.transform='';}
+      }
+      function kick(){if(!run){run=true;requestAnimationFrame(step);}}
+      b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();
+        tx=(e.clientX-r.left-r.width/2)*.16; ty=(e.clientY-r.top-r.height/2)*.22; kick();});
+      b.addEventListener('pointerleave',function(){tx=0;ty=0;kick();});
+    });
+  }
 })();
 </script>
 
