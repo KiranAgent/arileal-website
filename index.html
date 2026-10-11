@@ -122,7 +122,7 @@ body.menu-open .menu li:nth-child(1) a{transition-delay:.18s}body.menu-open .men
 
 
 /* ============ HERO: the studio and the form ============ */
-.journey{position:relative;height:560vh;z-index:2}
+.journey{position:relative;height:440vh;z-index:2}
 .pin{position:sticky;top:0;height:100vh;height:100dvh;overflow:hidden;isolation:isolate}
 .studio{position:absolute;inset:0;z-index:0;background:radial-gradient(120% 90% at 50% 38%,#EEECE6 0%,#E1DED6 42%,#CBC6BB 100%)}
 .studio::before{content:'';position:absolute;inset:0;background:linear-gradient(90deg,rgba(150,144,132,.28) 0%,rgba(150,144,132,0) 22%,rgba(150,144,132,0) 78%,rgba(150,144,132,.28) 100%)}
@@ -189,7 +189,16 @@ body.menu-open .menu li:nth-child(1) a{transition-delay:.18s}body.menu-open .men
 .orbit.on .ballwrap img{animation-play-state:running}
 .ballwrap::after{content:'';position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(var(--gold-rgb),.8) 0%,rgba(var(--gold-rgb),.4) 40%,rgba(var(--gold-rgb),0) 72%);mix-blend-mode:overlay;pointer-events:none}
 @keyframes turn{to{transform:rotate(360deg)}}
-.pills{position:absolute;inset:0;z-index:4;pointer-events:none}
+.pills{position:absolute;inset:0;pointer-events:none}
+.rings{position:absolute;inset:0;width:100%;height:100%;z-index:1;pointer-events:none;overflow:visible}
+.rings ellipse{fill:none;stroke:rgba(169,135,74,.42);stroke-width:1}
+.electron{position:absolute;left:50%;top:50%;width:64px;height:64px;margin:-32px 0 0 -32px;border-radius:50%;pointer-events:auto;background:var(--night);display:grid;place-items:center;
+  box-shadow:0 0 0 1px rgba(var(--gold-rgb),.6),0 0 26px 2px rgba(var(--gold-rgb),.38),0 14px 30px -10px rgba(7,11,20,.5);will-change:transform;z-index:3}
+.electron img{width:64%;height:64%;object-fit:contain;mix-blend-mode:screen;transition:scale .3s var(--out)}
+.electron span{position:absolute;left:50%;top:calc(100% + 10px);translate:-50% 4px;white-space:nowrap;font-family:var(--display);font-size:13px;font-weight:500;letter-spacing:.02em;color:var(--ink-deep);
+  background:rgba(255,255,255,.9);border:1px solid rgba(var(--gold-rgb),.6);border-radius:999px;padding:6px 12px;opacity:0;pointer-events:none;transition:opacity .25s ease,translate .3s var(--out)}
+.electron:focus-visible span{opacity:1;translate:-50% 0}
+.electron:active img{scale:.92}
 .pill{position:absolute;left:50%;top:50%;pointer-events:auto;text-decoration:none;color:var(--ink-deep);font-family:var(--display);font-size:clamp(15px,1.3vw,19px);font-weight:500;display:inline-flex;align-items:center;gap:10px;padding:9px 22px 9px 10px;min-height:44px;border:1.5px solid rgba(var(--gold-rgb),.7);border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 12px 34px -12px rgba(var(--gold-rgb),.5);will-change:transform;transition:background .25s ease,border-color .25s ease,scale .3s var(--out)}
 .pill:active{scale:.97}
 .pill img{width:26px;height:26px;border-radius:50%;background:var(--night);padding:3px}
@@ -218,6 +227,13 @@ body.menu-open .menu li:nth-child(1) a{transition-delay:.18s}body.menu-open .men
 .unfold-sec{position:relative;z-index:2;background:var(--shore)}
 .unfold{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(30px,5vw,80px);align-items:center;padding-block:clamp(80px,10vw,140px)}
 .cover{justify-self:center;width:min(100%,280px);box-shadow:0 30px 60px -26px rgba(10,15,25,.55);transform:rotate(-1.4deg);transition:transform .6s var(--out),box-shadow .6s var(--out)}
+.cabinet{position:relative;justify-self:center;width:min(100%,280px);margin:0;isolation:isolate}
+.cabinet img{position:relative;z-index:1;width:100%;height:auto;transition:transform .9s var(--out)}
+.cabinet::before{content:'';position:absolute;left:50%;bottom:-2%;width:86%;height:7%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(96,90,78,.34),rgba(96,90,78,0) 70%);filter:blur(6px);z-index:0}
+.cabinet::after{content:'';position:absolute;left:50%;top:48%;width:120%;height:70%;transform:translate(-50%,-50%);border-radius:50%;z-index:2;pointer-events:none;mix-blend-mode:overlay;
+  background:radial-gradient(ellipse,rgba(var(--gold-rgb),.95) 0%,rgba(var(--gold-rgb),.5) 32%,rgba(var(--gold-rgb),0) 66%)}
+html.m .cabinet.rise{transform:translateY(20px)}
+html.m .cabinet.rise.in{transform:none}
 .unfold h2{font-size:clamp(3rem,7.4vw,6rem);letter-spacing:.04em;line-height:.9;font-weight:500}
 .unfold .rule{width:64px;height:2px;background:var(--ember);border:0;margin:24px 0 18px}
 .unfold .kicker{font-style:italic;color:var(--muted-deep);font-size:clamp(16px,1.6vw,19px);margin-bottom:12px}
@@ -253,11 +269,14 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold-deep);outline-
   .talk:hover i{transform:translate(2px,-2px)}
   .chip:hover{background:var(--ink-deep);color:var(--paper)}
   .pill:hover{background:#fff;border-color:var(--gold);scale:1.03}
+  .electron:hover span{opacity:1;translate:-50% 0}
+  .electron:hover img{scale:1.08}
   .menu a:hover{color:var(--gold)}
   .row:hover::before{transform:scaleX(1)}
   .row:hover > div,.row:hover > .body{transform:translateX(8px)}
   .row:hover img{transform:scale(1.06) rotate(-3deg)}
   .row:hover .go i{transform:translateX(5px)}
+  .cabinet:hover img{transform:translateY(-6px)}
   html.m .unfold .cover.rise.in:hover,html:not(.m) .unfold .cover:hover{transform:rotate(0deg) translateY(-6px);box-shadow:0 40px 70px -28px rgba(10,15,25,.5)}
   .enter:hover{border-bottom-color:var(--ember-ink)}
   .enter:hover span{transform:translateX(5px)}
@@ -315,6 +334,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   .work-head .btn{justify-self:start}
   .unfold{grid-template-columns:1fr}
   .cover{width:min(64%,220px)}
+  .cabinet{width:min(58%,230px)}
   .blob{width:60vmin;height:80vmin;margin:-40vmin 0 0 -30vmin}
 }
 @media (max-width:900px){
@@ -448,9 +468,10 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
       </div>
       <div class="ballwrap" id="ball"><img src="assets/ball.avif" alt="" aria-hidden="true"></div>
       <div class="pills" id="pills">
-        <a class="pill" href="https://www.arileal.com/coaching.html" data-a="-150"><img src="assets/motif-becoming.png" alt="" aria-hidden="true">Coaching</a>
-        <a class="pill" href="https://www.arileal.com/integration.html" data-a="-25"><img src="assets/motif-mystery.png" alt="" aria-hidden="true">Integration</a>
-        <a class="pill" href="https://www.arileal.com/match-checking.html" data-a="140"><img src="assets/motif-kinship.png" alt="" aria-hidden="true">Relationships</a>
+        <svg class="rings" id="rings" aria-hidden="true"><ellipse></ellipse><ellipse></ellipse><ellipse></ellipse></svg>
+        <a class="electron" href="https://www.arileal.com/coaching.html" aria-label="Coaching" data-a="200" data-tilt="-28" data-speed="1"><img src="assets/motif-becoming.png" alt="" aria-hidden="true"><span>Coaching</span></a>
+        <a class="electron" href="https://www.arileal.com/integration.html" aria-label="Integration" data-a="20" data-tilt="32" data-speed="-.82"><img src="assets/motif-mystery.png" alt="" aria-hidden="true"><span>Integration</span></a>
+        <a class="electron" href="https://www.arileal.com/match-checking.html" aria-label="Relationships" data-a="110" data-tilt="90" data-speed=".9"><img src="assets/motif-kinship.png" alt="" aria-hidden="true"><span>Relationships</span></a>
       </div>
       <div class="over" id="orbitOver"><h2>Every one starts with a <b>free 15&#8209;minute call.</b></h2></div>
     </div>
@@ -491,7 +512,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   <!-- ===== UNFOLD (shore, ember) ===== -->
   <section class="unfold-sec" id="unfold">
     <div class="shell unfold">
-      <img class="cover rise" src="assets/unfold-cover.jpg" alt="UNFOLD journal cover" loading="lazy">
+      <figure class="cabinet rise"><img src="assets/cabinet.avif" width="559" height="910" alt="A frosted cabinet with jars, books, a candle and a bell jar on its shelves" loading="lazy"></figure>
       <div class="rise">
         <h2>UNFOLD</h2>
         <hr class="rule">
@@ -603,9 +624,33 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   var disc = document.getElementById('disc'), blobA = document.getElementById('blobA'), blobB = document.getElementById('blobB');
   var stmt1 = document.getElementById('stmt1'), stmt2 = document.getElementById('stmt2');
   var orbitHead = document.getElementById('orbitHead'), orbitOver = document.getElementById('orbitOver'), ball = document.getElementById('ball');
-  var pills = Array.prototype.slice.call(document.querySelectorAll('.pill'));
+  var pills = Array.prototype.slice.call(document.querySelectorAll('.electron'));
+  var rings = Array.prototype.slice.call(document.querySelectorAll('#rings ellipse'));
+  var orbitR = 200, orbitOn = false, orbitT = 0, orbitSpeed = 1, orbitHover = false;
   var darks = Array.prototype.slice.call(document.querySelectorAll('.panel-night,.work'));
   var morph = 0, morphTarget = 0;
+
+  /* the three ways as electrons: each on its own tilted orbit around the soft ball */
+  function placeElectrons(){
+    var cx = 0, cy = 0, rx = orbitR, ry = orbitR * 0.34;
+    var box = document.getElementById('pills'), W = box.clientWidth, H = box.clientHeight;
+    pills.forEach(function(p, i){
+      var tilt = parseFloat(p.getAttribute('data-tilt')) * Math.PI / 180;
+      var th = parseFloat(p.getAttribute('data-a')) * Math.PI / 180 + (reduce ? 0 : orbitT * parseFloat(p.getAttribute('data-speed')));
+      var ex = rx * Math.cos(th), ey = ry * Math.sin(th);
+      var x = ex * Math.cos(tilt) - ey * Math.sin(tilt), y = ex * Math.sin(tilt) + ey * Math.cos(tilt);
+      var front = Math.sin(th);                       /* +1 nearest the viewer, -1 behind the ball */
+      var sc = 0.84 + 0.2 * (front + 1) / 2;
+      p.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
+      p.style.zIndex = front > 0 ? 4 : 1;
+      p.style.opacity = (0.78 + 0.22 * (front + 1) / 2).toFixed(2);
+      var r = rings[i]; if(r){ r.setAttribute('cx', W / 2); r.setAttribute('cy', H / 2); r.setAttribute('rx', rx.toFixed(1)); r.setAttribute('ry', ry.toFixed(1));
+        r.setAttribute('transform', 'rotate(' + (tilt * 180 / Math.PI).toFixed(2) + ' ' + W / 2 + ' ' + H / 2 + ')'); }
+    });
+  }
+  pills.forEach(function(p){ p.addEventListener('pointerenter', function(){ orbitHover = true; }); p.addEventListener('pointerleave', function(){ orbitHover = false; });
+    p.addEventListener('focus', function(){ orbitHover = true; }); p.addEventListener('blur', function(){ orbitHover = false; }); });
+  if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ orbitOn = e.isIntersecting; }); }).observe(orbitSec); } else { orbitOn = true; }
 
   function paint(){
     var vw = window.innerWidth, vh = window.innerHeight;
@@ -622,28 +667,25 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
     var a2 = clamp((pf - 0.6) / 0.1, 0, 1);
     var lift = reduce ? 0 : 24;
     stmt1.style.opacity = a1.toFixed(2); stmt1.style.transform = 'translateY(' + ((1 - a1) * lift).toFixed(1) + 'px)';
-    stmt2.style.opacity = a2.toFixed(2); stmt2.style.transform = 'translateY(' + ((1 - a2) * lift).toFixed(1) + 'px)';
     stmt1.style.pointerEvents = a1 > .5 ? 'auto' : 'none';
     var sun = reduce ? (pf < 0.55 ? 0 : 1) : ease(clamp((pf - 0.44) / 0.24, 0, 1));
     var ang = (-130 + (reduce ? 40 : pf * 150)) * Math.PI / 180, R = Math.min(vw, vh) * 0.3;
     var ax = Math.cos(ang) * R, ay = Math.sin(ang) * R * 0.9, bx = -ax * 1.05, by = -ay * 1.05;
-    var dy = sun * vh * 0.52;
+    var dy = sun * Math.min(vh * 0.52, disc.offsetWidth / 2 * 1.15 - vh * 0.08);   /* the rim settles a little above centre at every screen size */
     blobA.style.transform = 'translate(' + lerp(ax, 0, sun).toFixed(1) + 'px,' + lerp(ay, -vh * 0.06, sun).toFixed(1) + 'px) rotate(' + lerp(35, 0, sun).toFixed(1) + 'deg) scale(' + lerp(1, .72, sun).toFixed(3) + ')';
     blobB.style.transform = 'translate(' + lerp(bx, 0, sun).toFixed(1) + 'px,' + lerp(by, -vh * 0.06, sun).toFixed(1) + 'px) rotate(' + lerp(35, 0, sun).toFixed(1) + 'deg) scale(' + lerp(1, .6, sun).toFixed(3) + ')';
-    disc.style.transform = 'translate(-50%, calc(-50% + ' + dy.toFixed(1) + 'px)) scale(' + lerp(reduce ? 1 : 0.92 + pf * 0.12, 1.15, sun).toFixed(3) + ')';
+    var dsc = lerp(reduce ? 1 : 0.92 + pf * 0.12, 1.15, sun);
+    disc.style.transform = 'translate(-50%, calc(-50% + ' + dy.toFixed(1) + 'px)) scale(' + dsc.toFixed(3) + ')';
+    var dR = disc.offsetWidth / 2 * dsc, s2h = stmt2.firstElementChild.offsetHeight;
+    var s2y = clamp(vh / 2 + dy - dR * 0.42, vh / 2, vh - s2h / 2 - 72) - vh / 2;   /* inside the disc, under its rim, clear of the ticks */
+    stmt2.style.opacity = a2.toFixed(2); stmt2.style.transform = 'translateY(' + (s2y + (1 - a2) * lift).toFixed(1) + 'px)';
     fticks.forEach(function(t,i){ t.classList.toggle('on', i === (pf < 0.55 ? 0 : 1)); });
 
     /* the three ways: pills drift outward, the ball comes forward, the line about the first call arrives */
     var po = ease(prog(orbitSec)), drift = reduce ? 0 : po;
     var base = small ? Math.min(vw * 0.34, 150) : Math.min(vw * 0.2, 290);
-    var rad = base * (1 + 0.55 * drift);
-    pills.forEach(function(p){
-      var a = parseFloat(p.getAttribute('data-a')) * Math.PI / 180;
-      var x = Math.cos(a) * rad, y = Math.sin(a) * rad * (small ? 1.1 : 0.62);
-      var lim = vw / 2 - (p._w || (p._w = p.offsetWidth)) / 2 - 16;
-      x = clamp(x, -lim, lim);
-      p.style.transform = 'translate(calc(-50% + ' + x.toFixed(1) + 'px), calc(-50% + ' + y.toFixed(1) + 'px))';
-    });
+    orbitR = Math.min(base * (1.15 + 0.4 * drift), vw / 2 - 44);
+    placeElectrons();
     var oh = 1 - clamp(po * 1.8, 0, 1);
     orbitHead.style.opacity = oh.toFixed(2);
     orbitHead.style.transform = reduce ? '' : 'translateY(' + ((1 - oh) * -18).toFixed(1) + 'px)';
@@ -658,12 +700,20 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
     for(var i=0;i<darks.length;i++){ var r = darks[i].getBoundingClientRect(); if(r.top <= 40 && r.bottom >= 40){ dark = true; break; } }
     body.classList.toggle('dark-nav', dark);
   }
-  var lastY = -1, lastH = -1;
-  (function loop(){
+  var lastY = -1, lastH = -1, lastT = performance.now();
+  (function loop(now){
+    now = now || performance.now();
+    var dt = Math.min(0.1, (now - lastT) / 1000); lastT = now;
     var y = window.scrollY, h = window.innerHeight;
     if(y !== lastY || h !== lastH){ lastY = y; lastH = h; paint(); }
-    morph += (morphTarget - morph) * (reduce || window.__instant ? 1 : .085);
+    /* the form follows the scroll closely: ~90% of the way in a tenth of a second, the same at 60 or 120 Hz */
+    morph += (morphTarget - morph) * (reduce || window.__instant ? 1 : 1 - Math.exp(-dt * 22));
     if(Math.abs(morphTarget - morph) < .0005) morph = morphTarget;
+    if(orbitOn && !reduce){
+      orbitSpeed += ((orbitHover ? 0 : 1) - orbitSpeed) * (1 - Math.exp(-dt * 6));   /* slows to a stop under the pointer, so it can be clicked */
+      orbitT += dt * (2 * Math.PI / 46) * orbitSpeed;
+      placeElectrons();
+    }
     requestAnimationFrame(loop);
   })();
   paint();
@@ -672,15 +722,24 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   (function(){
     var canvas = document.getElementById('frames'), glow = document.getElementById('glow'), shadow = document.getElementById('shadow');
     var ctx = canvas.getContext('2d');
-    var COUNT = 121, PER = 30, frames = new Array(COUNT);
+    var COUNT = 121, PER = 30, frames = new Array(COUNT), bmp = new Array(COUNT);
     function src(i){ return 'frames/f-' + String(i).padStart(3, '0') + '.avif'; }
-    function nearest(i){ for(var d=0; d<COUNT; d++){ if(frames[i-d] && frames[i-d].ok) return frames[i-d]; if(frames[i+d] && frames[i+d].ok) return frames[i+d]; } return null; }
-    var queue = []; for(var i=0;i<COUNT;i++) queue.push(i);
+    function pic(i){ return bmp[i] || (frames[i] && frames[i].ok ? frames[i] : null); }
+    function nearest(i){ for(var d=0; d<COUNT; d++){ if(i-d>=0 && pic(i-d)) return pic(i-d); if(i+d<COUNT && pic(i+d)) return pic(i+d); } return null; }
+    /* load every 8th frame first so the whole scroll has coverage early, then fill in */
+    var queue = [], seen = {};
+    [8, 4, 2, 1].forEach(function(step){ for(var i=0;i<COUNT;i+=step){ if(!seen[i]){ seen[i] = 1; queue.push(i); } } });
     function pump(){
       if(!queue.length) return;
       var i = queue.shift(), img = new Image();
       img.decoding = 'async';
-      img.onload = function(){ img.ok = true; dirty = true; pump(); };
+      img.onload = function(){
+        /* decode now, off the scroll path, so drawing a frame never waits on the decoder */
+        var done = function(bm){ if(bm){ bmp[i] = bm; } img.ok = true; dirty = true; pump(); };
+        if(window.createImageBitmap){ createImageBitmap(img).then(done, function(){ done(null); }); }
+        else if(img.decode){ img.decode().then(function(){ done(null); }, function(){ done(null); }); }
+        else done(null);
+      };
       img.onerror = function(){ pump(); };
       img.src = src(i); frames[i] = img;
     }
@@ -702,8 +761,8 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
       if(fi !== lastFi){ lastFi = fi; dirty = true; }
       if(dirty){
         var i0 = Math.floor(fi), i1 = Math.min(COUNT - 1, i0 + 1), a = fi - i0;
-        var f0 = frames[i0] && frames[i0].ok ? frames[i0] : nearest(i0);
-        var f1 = frames[i1] && frames[i1].ok ? frames[i1] : null;
+        var f0 = pic(i0) || nearest(i0);
+        var f1 = pic(i1);
         ctx.clearRect(0, 0, size, size);
         if(f0){ ctx.globalAlpha = 1; ctx.drawImage(f0, 0, 0, size, size); }
         if(f1 && a > 0.01){ ctx.globalAlpha = a; ctx.drawImage(f1, 0, 0, size, size); }
