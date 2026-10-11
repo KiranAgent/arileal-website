@@ -680,7 +680,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   /* ---------- scroll scenes ---------- */
   function clamp(v,a,b){ return Math.min(b, Math.max(a, v)); }
   function ease(t){ return t*t*(3-2*t); }
-  function prog(el){ var r = el.getBoundingClientRect(); var total = el.offsetHeight - window.innerHeight; return clamp(-r.top / total, 0, 1); }
+  function prog(el){ var r = el.getBoundingClientRect(); var total = el.offsetHeight - window.innerHeight; if(!(total > 0)) return 0; return clamp(-r.top / total, 0, 1); }
   function lerp(a,b,t){ return a + (b - a)*t; }
 
   var journey = document.querySelector('.journey'), feel = document.querySelector('.feel'), orbitSec = document.querySelector('.orbit');
@@ -750,7 +750,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
     /* the three ways: pills drift outward, the ball comes forward, the line about the first call arrives */
     var po = ease(prog(orbitSec)), drift = reduce ? 0 : po;
     var base = small ? Math.min(vw * 0.34, 150) : Math.min(vw * 0.2, 290);
-    orbitR = Math.min(base * (1.15 + 0.4 * drift), vw / 2 - 44);
+    orbitR = Math.max(40, Math.min(base * (1.15 + 0.4 * drift), vw / 2 - 44));
     placeElectrons();
     var oh = 1 - clamp(po * 1.8, 0, 1);
     orbitHead.style.opacity = oh.toFixed(2);
@@ -776,6 +776,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
     if(y !== lastY || h !== lastH){ lastY = y; lastH = h; paint(); }
     /* the form follows the scroll closely: ~90% of the way in a tenth of a second, the same at 60 or 120 Hz */
     morph += (morphTarget - morph) * (reduce || window.__instant ? 1 : 1 - Math.exp(-dt * 7));   /* soft glide: irons out mouse-wheel scroll steps */
+    if(!isFinite(morph)) morph = isFinite(morphTarget) ? morphTarget : 0;
     if(Math.abs(morphTarget - morph) < .0005) morph = morphTarget;
     if(orbitOn && !reduce){
       orbitSpeed += ((orbitHover ? 0 : 1) - orbitSpeed) * (1 - Math.exp(-dt * 6));   /* slows to a stop under the pointer, so it can be clicked */
