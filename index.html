@@ -181,10 +181,10 @@ body.menu-open .menu li:nth-child(1) a{transition-delay:.18s}body.menu-open .men
 .orbit .pin{display:grid;place-items:center;background:var(--paper)}
 .orbit .pin::before{content:'';position:absolute;left:-8%;top:20%;width:30%;height:70%;background:radial-gradient(ellipse,rgba(var(--gold-rgb),.22),rgba(var(--gold-rgb),0) 65%);filter:blur(40px)}
 .orbit .pin::after{content:'';position:absolute;right:-8%;top:30%;width:28%;height:70%;background:radial-gradient(ellipse,rgba(var(--gold-rgb),.18),rgba(var(--gold-rgb),0) 65%);filter:blur(40px)}
-.orbit .head{position:absolute;top:clamp(90px,14vh,140px);left:0;right:0;z-index:3;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px;align-items:start;padding:0 clamp(20px,2.6vw,36px);will-change:opacity,transform}
+.orbit .head{pointer-events:none;position:absolute;top:clamp(90px,14vh,140px);left:0;right:0;z-index:3;display:grid;grid-template-columns:minmax(0,1.2fr) minmax(0,.8fr);gap:24px;align-items:start;padding:0 clamp(20px,2.6vw,36px);will-change:opacity,transform}
 .orbit .head h2{font-size:clamp(2.2rem,3.6vw,3.4rem);font-weight:400;letter-spacing:-.04em}
 .orbit .head p{justify-self:end;max-width:320px;font-family:var(--display);font-weight:500;font-size:15px;line-height:1.3;margin:6px 0 0}
-.ballwrap{position:relative;width:min(50vmin,460px);height:min(50vmin,460px);z-index:2;isolation:isolate;will-change:transform,opacity}
+.ballwrap{pointer-events:none;position:relative;width:min(50vmin,460px);height:min(50vmin,460px);z-index:2;isolation:isolate;will-change:transform,opacity}
 .ballwrap img{width:100%;height:100%;object-fit:contain;animation:turn 60s linear infinite;animation-play-state:paused}
 .orbit.on .ballwrap img{animation-play-state:running}
 .ballwrap::after{content:'';position:absolute;inset:8%;border-radius:50%;background:radial-gradient(circle,rgba(var(--gold-rgb),.8) 0%,rgba(var(--gold-rgb),.4) 40%,rgba(var(--gold-rgb),0) 72%);mix-blend-mode:overlay;pointer-events:none}
@@ -202,6 +202,9 @@ body.menu-open .menu li:nth-child(1) a{transition-delay:.18s}body.menu-open .men
 .pill{position:absolute;left:50%;top:50%;pointer-events:auto;text-decoration:none;color:var(--ink-deep);font-family:var(--display);font-size:clamp(15px,1.3vw,19px);font-weight:500;display:inline-flex;align-items:center;gap:10px;padding:9px 22px 9px 10px;min-height:44px;border:1.5px solid rgba(var(--gold-rgb),.7);border-radius:999px;background:rgba(255,255,255,.82);backdrop-filter:blur(10px);-webkit-backdrop-filter:blur(10px);box-shadow:0 12px 34px -12px rgba(var(--gold-rgb),.5);will-change:transform;transition:background .25s ease,border-color .25s ease,scale .3s var(--out)}
 .pill:active{scale:.97}
 .pill img{width:26px;height:26px;border-radius:50%;background:var(--night);padding:3px}
+.orbit .over > div{display:flex;flex-direction:column;align-items:center}
+.orbit .over .btn{margin-top:clamp(24px,4vh,36px);pointer-events:none}
+.orbit .over.live .btn{pointer-events:auto}
 .orbit .over{position:absolute;inset:0;z-index:5;display:grid;place-items:center;text-align:center;padding:0 24px;pointer-events:none;opacity:0;will-change:opacity,transform}
 .orbit .over h2{font-size:clamp(2.4rem,5.2vw,5rem);font-weight:400;letter-spacing:-.04em;max-width:14ch}
 
@@ -227,7 +230,7 @@ body.menu-open .menu li:nth-child(1) a{transition-delay:.18s}body.menu-open .men
 .unfold-sec{position:relative;z-index:2;background:var(--shore)}
 .unfold{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(30px,5vw,80px);align-items:center;padding-block:clamp(80px,10vw,140px)}
 .cover{justify-self:center;width:min(100%,280px);box-shadow:0 30px 60px -26px rgba(10,15,25,.55);transform:rotate(-1.4deg);transition:transform .6s var(--out),box-shadow .6s var(--out)}
-.cabinet{position:relative;justify-self:center;width:min(100%,280px);margin:0;isolation:isolate}
+.cabinet{display:block;position:relative;justify-self:center;width:min(100%,280px);margin:0;isolation:isolate}
 .cabinet img{position:relative;z-index:1;width:100%;height:auto;transition:transform .9s var(--out)}
 .cabinet::before{content:'';position:absolute;left:50%;bottom:-2%;width:86%;height:7%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(96,90,78,.34),rgba(96,90,78,0) 70%);filter:blur(6px);z-index:0}
 .cabinet::after{content:'';position:absolute;left:50%;top:48%;width:120%;height:70%;transform:translate(-50%,-50%);border-radius:50%;z-index:2;pointer-events:none;mix-blend-mode:overlay;
@@ -452,7 +455,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
           <p class="meta"><span>Clinically trained</span><span>Coaching, not therapy</span><span>60–90 minutes</span></p>
           <div class="giveback">
             <p class="tag">Giving back</p>
-            <p>What this work earns, it owes forward. 1.5% of revenue goes to <a href="https://twloha.com">To Write Love on Her Arms</a>, a Florida nonprofit funding treatment and recovery for people who need it.</p>
+            <p>What this work earns, it owes forward. A portion of revenue goes to <a href="https://twloha.com">To Write Love on Her Arms</a>, a Florida nonprofit funding treatment and recovery for people who need it.</p>
           </div>
         </div>
       </div>
@@ -473,7 +476,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
         <a class="electron" href="https://www.arileal.com/integration.html" aria-label="Integration" data-a="20" data-tilt="32" data-speed="-.82"><img src="assets/motif-mystery.png" alt="" aria-hidden="true"><span>Integration</span></a>
         <a class="electron" href="https://www.arileal.com/match-checking.html" aria-label="Relationships" data-a="110" data-tilt="90" data-speed=".9"><img src="assets/motif-kinship.png" alt="" aria-hidden="true"><span>Relationships</span></a>
       </div>
-      <div class="over" id="orbitOver"><h2>Every one starts with a <b>free 15&#8209;minute call.</b></h2></div>
+      <div class="over" id="orbitOver"><div><h2>All three start with a <b>free 15&#8209;minute call.</b></h2><a class="btn btn-night mag" id="orbitBook" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Book the free call <i>&#8599;</i></a></div></div>
     </div>
   </section>
 
@@ -512,12 +515,12 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   <!-- ===== UNFOLD (shore, ember) ===== -->
   <section class="unfold-sec" id="unfold">
     <div class="shell unfold">
-      <figure class="cabinet rise"><img src="assets/cabinet.avif" width="559" height="910" alt="A frosted cabinet with jars, books, a candle and a bell jar on its shelves" loading="lazy"></figure>
+      <a class="cabinet rise" href="https://www.arileal.com/unfold.html" aria-label="Enter the Cabinet, the UNFOLD store"><img src="assets/cabinet.avif" width="559" height="910" alt="" loading="lazy"></a>
       <div class="rise">
         <h2>UNFOLD</h2>
         <hr class="rule">
-        <p class="kicker">a season of integration</p>
-        <p class="lede">A 90-day journal that sits beside your practice — books and objects that support the work between sessions, or on your own.</p>
+        <p class="kicker">Nothing in us is broken. Everything in us is unfolding.</p>
+        <p class="lede">Objects for the inner life — instruments made to carry the work between sessions, and beyond them. Journals first; candles, room mists and ritual pieces are in the making.</p>
         <a class="enter" href="https://www.arileal.com/unfold.html">Enter the Cabinet <span aria-hidden="true">&rarr;</span></a>
       </div>
     </div>
@@ -626,7 +629,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   var orbitHead = document.getElementById('orbitHead'), orbitOver = document.getElementById('orbitOver'), ball = document.getElementById('ball');
   var pills = Array.prototype.slice.call(document.querySelectorAll('.electron'));
   var rings = Array.prototype.slice.call(document.querySelectorAll('#rings ellipse'));
-  var orbitR = 200, orbitOn = false, orbitT = 0, orbitSpeed = 1, orbitHover = false;
+  var orbitFade = 0, orbitR = 200, orbitOn = false, orbitT = 0, orbitSpeed = 1, orbitHover = false;
   var darks = Array.prototype.slice.call(document.querySelectorAll('.panel-night,.work'));
   var morph = 0, morphTarget = 0;
 
@@ -643,7 +646,8 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
       var sc = 0.84 + 0.2 * (front + 1) / 2;
       p.style.transform = 'translate3d(' + x.toFixed(1) + 'px,' + y.toFixed(1) + 'px,0) scale(' + sc.toFixed(3) + ')';
       p.style.zIndex = front > 0 ? 4 : 1;
-      p.style.opacity = (0.78 + 0.22 * (front + 1) / 2).toFixed(2);
+      p.style.opacity = ((0.78 + 0.22 * (front + 1) / 2) * (1 - 0.88 * orbitFade)).toFixed(2);
+      p.style.pointerEvents = orbitFade > 0.6 ? 'none' : '';   /* once the closing line arrives, its button takes the click */
       var r = rings[i]; if(r){ r.setAttribute('cx', W / 2); r.setAttribute('cy', H / 2); r.setAttribute('rx', rx.toFixed(1)); r.setAttribute('ry', ry.toFixed(1));
         r.setAttribute('transform', 'rotate(' + (tilt * 180 / Math.PI).toFixed(2) + ' ' + W / 2 + ' ' + H / 2 + ')'); }
     });
@@ -691,6 +695,8 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
     orbitHead.style.transform = reduce ? '' : 'translateY(' + ((1 - oh) * -18).toFixed(1) + 'px)';
     var oo = clamp((po - 0.42) / 0.28, 0, 1);
     orbitOver.style.opacity = oo.toFixed(2);
+    orbitOver.classList.toggle('live', oo > 0.6);
+    orbitFade = oo; document.getElementById('rings').style.opacity = (1 - 0.7 * oo).toFixed(2);
     orbitOver.style.transform = reduce ? '' : 'translateY(' + ((1 - oo) * 20).toFixed(1) + 'px)';
     ball.style.transform = reduce ? '' : 'translateY(' + (oo * -2).toFixed(1) + 'vh) scale(' + (1 + 0.12 * po).toFixed(3) + ')';
     ball.style.opacity = (1 - 0.25 * oo).toFixed(2);
