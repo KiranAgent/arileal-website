@@ -231,10 +231,10 @@ body.menu-open .menu li:nth-child(1) a{transition-delay:.18s}body.menu-open .men
 .unfold{display:grid;grid-template-columns:minmax(0,.85fr) minmax(0,1.15fr);gap:clamp(30px,5vw,80px);align-items:center;padding-block:clamp(80px,10vw,140px)}
 .cover{justify-self:center;width:min(100%,280px);box-shadow:0 30px 60px -26px rgba(10,15,25,.55);transform:rotate(-1.4deg);transition:transform .6s var(--out),box-shadow .6s var(--out)}
 .cabinet{display:block;position:relative;justify-self:center;width:min(100%,280px);margin:0;isolation:isolate}
-.cabinet img{position:relative;z-index:1;width:100%;height:auto;transition:transform .9s var(--out)}
-.cabinet::before{content:'';position:absolute;left:50%;bottom:-2%;width:86%;height:7%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(96,90,78,.34),rgba(96,90,78,0) 70%);filter:blur(6px);z-index:0}
-.cabinet::after{content:'';position:absolute;left:50%;top:48%;width:120%;height:70%;transform:translate(-50%,-50%);border-radius:50%;z-index:2;pointer-events:none;mix-blend-mode:overlay;
-  background:radial-gradient(ellipse,rgba(var(--gold-rgb),.95) 0%,rgba(var(--gold-rgb),.5) 32%,rgba(var(--gold-rgb),0) 66%)}
+.cabinet svg{position:relative;z-index:1;display:block;width:100%;height:auto;color:var(--gold-deep);transition:transform .9s var(--out)}
+.cabinet::before{content:'';position:absolute;left:50%;bottom:2%;width:70%;height:5%;transform:translateX(-50%);border-radius:50%;background:radial-gradient(ellipse,rgba(96,90,78,.22),rgba(96,90,78,0) 70%);filter:blur(6px);z-index:0}
+.cabinet::after{content:'';position:absolute;left:50%;top:50%;width:105%;height:60%;transform:translate(-50%,-50%);border-radius:50%;z-index:0;pointer-events:none;
+  background:radial-gradient(ellipse,rgba(var(--gold-rgb),.34) 0%,rgba(var(--gold-rgb),.16) 40%,rgba(var(--gold-rgb),0) 70%)}
 html.m .cabinet.rise{transform:translateY(20px)}
 html.m .cabinet.rise.in{transform:none}
 .unfold h2{font-size:clamp(3rem,7.4vw,6rem);letter-spacing:.04em;line-height:.9;font-weight:500}
@@ -279,7 +279,7 @@ a:focus-visible,button:focus-visible{outline:2px solid var(--gold-deep);outline-
   .row:hover > div,.row:hover > .body{transform:translateX(8px)}
   .row:hover img{transform:scale(1.06) rotate(-3deg)}
   .row:hover .go i{transform:translateX(5px)}
-  .cabinet:hover img{transform:translateY(-6px)}
+  .cabinet:hover svg{transform:translateY(-6px)}
   html.m .unfold .cover.rise.in:hover,html:not(.m) .unfold .cover:hover{transform:rotate(0deg) translateY(-6px);box-shadow:0 40px 70px -28px rgba(10,15,25,.5)}
   .enter:hover{border-bottom-color:var(--ember-ink)}
   .enter:hover span{transform:translateX(5px)}
@@ -445,7 +445,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
     <div class="panel-night">
       <div class="ari rise">
         <figure class="portrait">
-          <img src="assets/ari-portrait-duotone.jpg" alt="Portrait of Ari Leal" loading="lazy">
+          <img src="assets/ari-portrait-warm.jpg" alt="Portrait of Ari Leal" loading="lazy">
           <figcaption>Sessions one-to-one, by video</figcaption>
         </figure>
         <div>
@@ -469,7 +469,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
         <h2>Three ways<br>to work <b>together.</b></h2>
         <p>All three are coaching, not therapy: <span class="dim">no diagnosis, no clinical record, no insurance.</span></p>
       </div>
-      <div class="ballwrap" id="ball"><img src="assets/ball.avif" alt="" aria-hidden="true"></div>
+      <div class="ballwrap" id="ball"><img src="assets/ball.avif?v=2" alt="" aria-hidden="true"></div>
       <div class="pills" id="pills">
         <svg class="rings" id="rings" aria-hidden="true"><ellipse></ellipse><ellipse></ellipse><ellipse></ellipse></svg>
         <a class="electron" href="https://www.arileal.com/coaching.html" aria-label="Coaching" data-a="200" data-tilt="-28" data-speed="1"><img src="assets/motif-becoming.png" alt="" aria-hidden="true"><span>Coaching</span></a>
@@ -515,7 +515,69 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   <!-- ===== UNFOLD (shore, ember) ===== -->
   <section class="unfold-sec" id="unfold">
     <div class="shell unfold">
-      <a class="cabinet rise" href="https://www.arileal.com/unfold.html" aria-label="Enter the Cabinet, the UNFOLD store"><img src="assets/cabinet.avif" width="559" height="910" alt="" loading="lazy"></a>
+      <a class="cabinet rise" href="https://www.arileal.com/unfold.html" aria-label="Enter the Cabinet, the UNFOLD store">
+        <svg viewBox="0 0 300 470" width="300" height="470" role="img" aria-hidden="true" focusable="false">
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.7">
+            <!-- crown -->
+            <path d="M106 34 Q150 8 194 34"/>
+            <path d="M118 34 Q150 14 182 34" stroke-width="1.1"/>
+            <circle cx="150" cy="24" r="5.2" stroke-width="1.1"/>
+            <path d="M148 19.5 a5.2 5.2 0 0 0 0 9.4 a6.6 6.6 0 0 1 0 -9.4" stroke-width="1.1"/>
+            <!-- cornice -->
+            <path d="M70 40 H230"/>
+            <path d="M62 47 H238"/>
+            <!-- carcass -->
+            <rect x="78" y="47" width="144" height="373" rx="3"/>
+            <rect x="90" y="59" width="120" height="349" rx="2" stroke-width="1.1"/>
+            <!-- shelves -->
+            <path d="M90 176 H210"/><path d="M90 181 H210" stroke-width="1.1"/>
+            <path d="M90 293 H210"/><path d="M90 298 H210" stroke-width="1.1"/>
+            <!-- plinth and feet -->
+            <path d="M70 420 H230"/>
+            <path d="M64 428 H236"/>
+            <path d="M84 428 v12 h14 M202 428 v12 h14" stroke-width="1.1"/>
+          </g>
+          <!-- engraved shading: fine parallel hatching -->
+          <g stroke="currentColor" stroke-width="0.8" opacity="0.5">
+            <path d="M92 66 l8 12 M92 82 l8 12 M92 98 l8 12 M92 114 l8 12 M92 130 l8 12 M92 146 l8 12 M92 183 l8 12 M92 199 l8 12 M92 215 l8 12 M92 231 l8 12 M92 247 l8 12 M92 263 l8 12 M92 300 l8 12 M92 316 l8 12 M92 332 l8 12 M92 348 l8 12 M92 364 l8 12 M92 380 l8 12"/>
+            <path d="M104 182.5 h96 M104 185.5 h92 M104 299.5 h96 M104 302.5 h92 M104 60.5 h100 M104 63.5 h96" stroke-width="0.6"/>
+          </g>
+          <g fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5">
+            <!-- top shelf: bell jar over a small sphere, and the journal -->
+            <path d="M112 174 v-5 a21 27 0 0 1 42 0 v5"/>
+            <circle cx="133" cy="138" r="2.6" stroke-width="1.1"/>
+            <circle cx="133" cy="165" r="8"/>
+            <path d="M128 162 a8 8 0 0 1 7 -4" stroke-width="0.9"/>
+            <path d="M108 174 h50" stroke-width="1.1"/>
+            <rect x="166" y="120" width="32" height="54" rx="1.6"/>
+            <path d="M172 120 v54" stroke-width="1.1"/>
+            <path d="M183 139 a8.5 8.5 0 0 0 7 13 a8.5 8.5 0 1 1 -7 -13" stroke-width="1.1"/>
+            <!-- middle shelf: candle, and the mist bottle -->
+            <rect x="110" y="257" width="22" height="34" rx="2"/>
+            <path d="M121 253 v-4" stroke-width="1.1"/>
+            <path d="M121 236 q5 6 0 12 q-5 -6 0 -12"/>
+            <path d="M111 233 l-4 -4 M131 233 l4 -4 M121 229 v-5" stroke-width="0.9"/>
+            <path d="M113 263 v22 M118 261 v26" stroke-width="0.7" opacity="0.55"/>
+            <circle cx="174" cy="273" r="17"/>
+            <path d="M169 256.5 h10 v-7 h-10 z" stroke-width="1.1"/>
+            <circle cx="188" cy="246" r="4" stroke-width="1.1"/>
+            <path d="M182 248 q-4 1 -7 2" stroke-width="0.9"/>
+            <path d="M195 240 l6 -5 M196 246 l8 -1 M193 235 l3 -7" stroke-width="0.9"/>
+            <path d="M163 268 a12 12 0 0 1 8 -9" stroke-width="0.8" opacity="0.6"/>
+            <!-- bottom shelf: the bath vessel, and the kit -->
+            <path d="M112 380 h52"/>
+            <path d="M114 380 a24 26 0 0 0 48 0" />
+            <path d="M130 406 h16 M133 410 h10" stroke-width="1.1"/>
+            <path d="M138 403 v3 M124 390 a18 16 0 0 0 10 10" stroke-width="0.8" opacity="0.55"/>
+            <path d="M126 370 q4 -6 0 -11 q-3 -5 2 -9" stroke-width="1" opacity="0.8"/>
+            <path d="M140 372 q4 -6 0 -11" stroke-width="1" opacity="0.65"/>
+            <path d="M152 371 q3 -5 0 -9 q-2 -4 2 -8" stroke-width="1" opacity="0.5"/>
+            <rect x="176" y="377" width="34" height="29" rx="2"/>
+            <path d="M193 377 v29 M176 391 h34" stroke-width="1.1"/>
+            <path d="M189 374 q4 -5 8 0 q-4 3 -8 0" stroke-width="0.9"/>
+          </g>
+        </svg>
+      </a>
       <div class="rise">
         <h2>UNFOLD</h2>
         <hr class="rule">
@@ -724,15 +786,259 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
   })();
   paint();
 
-  /* ---------- the hero sequence: pre-rendered frames scrubbed by scroll ---------- */
+  /* ---------- the hero form: drawn live by the GPU, scrubbed by scroll ----------
+     The five forms are signed-distance fields ray-marched in a fragment shader:
+     carved warm alabaster, lit by one key light, a rim light, and a gold lamp at
+     the core. No image frames; the pre-rendered flipbook remains only as the
+     fallback when WebGL2 is unavailable. */
   (function(){
     var canvas = document.getElementById('frames'), glow = document.getElementById('glow'), shadow = document.getElementById('shadow');
+    var t0 = performance.now(), sx = 0, sy = 0, live = true, raf = 0;
+    function watchVis(){ if('IntersectionObserver' in window){ new IntersectionObserver(function(es){ es.forEach(function(e){ var was = live; live = e.isIntersecting; if(live && !was){ dirty = true; raf = requestAnimationFrame(tick); } }); }).observe(document.querySelector('.journey')); } }
+    function pose(t){
+      var gx = fine ? (px / window.innerWidth - .5) : 0, gy = fine ? (py / window.innerHeight - .5) : 0;
+      sx += (gx - sx) * .05; sy += (gy - sy) * .05;
+      var bob = reduce ? 0 : Math.sin(t * .8) * 6;
+      canvas.style.transform = 'translate3d(' + (sx * 12).toFixed(1) + 'px,' + (bob + sy * 8).toFixed(1) + 'px,0)';
+      glow.style.transform = 'translate3d(' + (sx * 12).toFixed(1) + 'px,' + (bob + sy * 8).toFixed(1) + 'px,0) scale(' + (1 + .03 * Math.sin(t * .7)).toFixed(3) + ')';
+      shadow.style.transform = 'translate(calc(-50% + ' + (sx * 10).toFixed(1) + 'px), -50%) scale(' + (1 - bob * .006).toFixed(3) + ')';
+      shadow.style.opacity = (0.9 + bob * .015).toFixed(2);
+    }
+
+    var LIB = `#define PI 3.14159265
+uniform vec2 uRes; uniform float uTime; uniform int uA; uniform int uB; uniform float uF;
+uniform mat3 uRot; uniform float uCamZ; uniform float uGlow;
+float hash3(vec3 p){ p = fract(p*0.3183099 + vec3(0.71,0.113,0.419)); p *= 17.0; return fract(p.x*p.y*p.z*(p.x+p.y+p.z)); }
+float vnoise(vec3 x){ vec3 i = floor(x); vec3 f = fract(x); f = f*f*(3.0-2.0*f);
+ return mix(mix(mix(hash3(i),hash3(i+vec3(1.,0.,0.)),f.x),mix(hash3(i+vec3(0.,1.,0.)),hash3(i+vec3(1.,1.,0.)),f.x),f.y),
+            mix(mix(hash3(i+vec3(0.,0.,1.)),hash3(i+vec3(1.,0.,1.)),f.x),mix(hash3(i+vec3(0.,1.,1.)),hash3(i+vec3(1.,1.,1.)),f.x),f.y),f.z); }
+float smin(float a, float b, float k){ float h = clamp(0.5+0.5*(b-a)/k,0.0,1.0); return mix(b,a,h) - k*h*(1.0-h); }
+float smax(float a, float b, float k){ return -smin(-a,-b,k); }
+float sdEll(vec3 p, vec3 r){ float k0 = length(p/r); float k1 = length(p/(r*r)); return k0*(k0-1.0)/k1; }
+float sdCap(vec3 p, vec3 a, vec3 b, float r){ vec3 pa=p-a, ba=b-a; float h=clamp(dot(pa,ba)/dot(ba,ba),0.0,1.0); return length(pa-ba*h)-r; }
+mat3 rX(float a){ float c=cos(a), s=sin(a); return mat3(1.,0.,0., 0.,c,s, 0.,-s,c); }
+mat3 rY(float a){ float c=cos(a), s=sin(a); return mat3(c,0.,-s, 0.,1.,0., s,0.,c); }
+
+/* 0 · sphere: a full moon with fine relief */
+float fSphere(vec3 p){
+ float d = length(p) - 1.02;
+ d += 0.010*(vnoise(p*3.0)-0.5) + 0.004*(vnoise(p*9.0)-0.5);
+ return d;
+}
+/* 1 · galaxy: two sculpted arms that shape the silhouette, small bright heart */
+float fGalaxy(vec3 p){
+ p = rX(-0.95)*(rY(0.4)*p);
+ p.y += 0.06*sin(length(p.xz)*2.4);
+ float r = length(p.xz);
+ float th = atan(p.z, p.x);
+ float phase = th - log(max(r,0.045))/0.36;
+ float armW = cos(2.0*phase);
+ float arm = smoothstep(0.0, 0.8, armW);
+ float taper = smoothstep(1.34, 0.30, r);
+ float h = 0.012 + 0.16*arm*taper*smoothstep(0.14, 0.38, r)
+         + 0.26*exp(-r*r*8.0);
+ float disc = abs(p.y) - h;
+ float bound = r - (0.86 + 0.40*arm*smoothstep(1.4,0.3,r));  /* the edge follows the arms */
+ float d = smax(disc, bound, 0.07);
+ d = smin(d, length(p) - 0.27, 0.07);
+ d += 0.009*(vnoise(p*7.0)-0.5)*taper;
+ return d*0.6;
+}
+/* 2 · brain: two hemispheres, deep gyri, cerebellum tucked under */
+float fBrain(vec3 p){
+ p = rY(-0.25)*p; p.y -= 0.06;
+ vec3 q = p;
+ float hemi = sdEll(vec3(abs(q.x)-0.34, q.y, q.z), vec3(0.62,0.74,0.92));
+ float d = smax(hemi, -(abs(q.x)*0.5 - 0.012 - q.y*0.02), 0.02); /* longitudinal fissure */
+ float n = vnoise(q*1.6);
+ vec3 gp = q*7.6 + vec3(2.1*n, 1.4*n, -1.8*n);
+ float g = sin(gp.x)*cos(gp.y) + sin(gp.y)*cos(gp.z) + sin(gp.z)*cos(gp.x);
+ float gy = abs(g);
+ d += 0.075*(1.0 - smoothstep(0.0, 0.52, gy)) - 0.020*smoothstep(0.52, 1.5, gy);
+ vec3 cq = p - vec3(0.0,-0.62,-0.42);
+ float cb = sdEll(cq, vec3(0.46,0.30,0.34)) + 0.012*sin(cq.y*44.0);
+ d = smin(d, cb, 0.05);
+ d = smin(d, sdCap(p, vec3(0.0,-0.5,-0.15), vec3(0.02,-0.78,-0.3), 0.11), 0.06);
+ return d*0.6;
+}
+/* 3 · pinecone (kept) */
+float fPine(vec3 p){
+ p = rY(0.3)*(rX(0.18)*p); p.y -= 0.05;
+ float y = p.y;
+ float taper = 1.0 - 0.34*clamp((y+0.2)/1.1, 0.0, 1.0);
+ vec3 q = vec3(p.x/taper, y, p.z/taper);
+ float d = sdEll(q - vec3(0.0,0.05,0.0), vec3(0.6,0.95,0.6))*taper;
+ float th = atan(p.z, p.x);
+ float s1 = sin(8.0*th + 9.0*y), s2 = sin(13.0*th - 12.0*y);
+ d -= 0.07*sqrt(abs(s1*s2));
+ d = smin(d, sdCap(p, vec3(0.0,-0.82,0.0), vec3(0.04,-1.18,0.0), 0.085), 0.08);
+ return d*0.7;
+}
+/* 4 · metatron / flower rings (kept, slightly fuller tubes) */
+uniform vec3 uP[13]; uniform vec3 uLa[51]; uniform vec3 uLb[51];
+float fMeta(vec3 p){
+ p = rX(0.46 + 0.08*sin(uTime*0.27))*(rY(0.22*sin(uTime*0.19))*p);
+ float sa = uTime*0.12, cs = cos(sa), sn = sin(sa); p.xy = mat2(cs, sn, -sn, cs)*p.xy;
+ float S = 0.9; vec3 q = p/S;
+ float dr = 1e9, dn = 1e9, dl = 1e9;
+ for(int i=0;i<13;i++){ vec3 l = q - uP[i]; dr = min(dr, length(vec2(length(l.xy) - 0.44, l.z))); dn = min(dn, length(l)); }
+ for(int i=0;i<51;i++){ vec3 pa = q - uLa[i], ba = uLb[i] - uLa[i]; float h = clamp(dot(pa,ba)/dot(ba,ba),0.0,1.0); dl = min(dl, length(pa - ba*h)); }
+ return S*min(min(dr - 0.040, dl - 0.022), dn - 0.075);
+}
+float form(int k, vec3 p){ if(k==0) return fSphere(p); if(k==1) return fGalaxy(p); if(k==2) return fBrain(p); if(k==3) return fPine(p); return fMeta(p); }
+float map(vec3 p){
+ float d = form(uA, p);
+ if(uF > 0.001){
+  d = mix(d, form(uB, p), uF);
+  float m = sin(uF*PI);
+  d += m*0.05*(vnoise(p*3.1 + vec3(0.0, uTime*0.5, 0.0)) - 0.5);
+ }
+ return d;
+}
+vec3 calcN(vec3 p){ vec2 k = vec2(1.0,-1.0); float e = 0.002;
+ return normalize(k.xyy*map(p+k.xyy*e) + k.yyx*map(p+k.yyx*e) + k.yxy*map(p+k.yxy*e) + k.xxx*map(p+k.xxx*e)); }
+float calcAO(vec3 p, vec3 n){ float occ = 0.0, sca = 1.0; for(int i=0;i<4;i++){ float h = 0.03 + 0.08*float(i); occ += (h - map(p + n*h))*sca; sca *= 0.75; } return clamp(1.0 - 1.5*occ, 0.0, 1.0); }
+float softShadow(vec3 ro, vec3 rd){ float res = 1.0, t = 0.03; for(int i=0;i<28;i++){ float h = map(ro + rd*t); res = min(res, 9.0*h/t); t += clamp(h, 0.02, 0.22); if(res < 0.004 || t > 2.6) break; } return clamp(res, 0.0, 1.0); }
+`;
+    var MAIN = `void main(){
+  vec2 uv = (gl_FragCoord.xy - 0.5*uRes)/uRes.y;
+  vec3 ro = uRot*vec3(0.0, 0.0, uCamZ);
+  vec3 rd = uRot*normalize(vec3(uv*0.62, -1.0));
+  float B = 1.7;
+  float b = dot(ro, rd), c = dot(ro, ro) - B*B, h = b*b - c;
+  if(h < 0.0){ outColor = vec4(0.0); return; }
+  h = sqrt(h);
+  float t = max(-b - h, 0.0), tEnd = -b + h;
+  float minD = 1e9; bool hit = false;
+  for(int i=0;i<150;i++){
+    vec3 p = ro + rd*t; float d = map(p);
+    minD = min(minD, d);
+    if(d < 0.0004*t){ hit = true; break; }
+    t += d*0.85;
+    if(t > tEnd) break;
+  }
+  float pw = t*0.62/uRes.y;
+  if(!hit){
+    /* soft silhouette halo only — no dust */
+    float ea = 1.0 - smoothstep(0.0, 1.4*pw, minD);
+    outColor = ea > 0.004 ? vec4(0.96, 0.93, 0.87, ea*0.9) : vec4(0.0);
+    return;
+  }
+  vec3 p = ro + rd*t;
+  vec3 n = calcN(p);
+  /* fine warm-stone grain on the normal, no needles */
+  vec3 fn = vec3(vnoise(p*22.0), vnoise(p*22.0+7.3), vnoise(p*22.0+13.1)) - 0.5;
+  vec3 nb = normalize(n + 0.06*fn);
+
+  /* how much material the light crosses: drives the inner gold */
+  float thick = 0.0;
+  for(int i=0;i<14;i++){ thick += 0.045; if(map(p + rd*thick) > 0.004) break; }
+
+  vec3 Lkey = uRot*normalize(vec3(-0.55, 0.72, 0.52));
+  vec3 Lrim = uRot*normalize(vec3(0.55, 0.18, -0.85));
+  float dif = clamp(dot(nb, Lkey), 0.0, 1.0);
+  float sh  = softShadow(p + n*0.02, Lkey);
+  float ao  = calcAO(p, n);
+  float sky = clamp(0.5 + 0.5*nb.y, 0.0, 1.0);
+  float fres = pow(1.0 - clamp(dot(n, -rd), 0.0, 1.0), 3.0);
+  vec3 H = normalize(Lkey - rd);
+  float spec = pow(clamp(dot(nb, H), 0.0, 1.0), 48.0) * (0.35 + 0.65*sh);
+  float rim = fres * clamp(dot(n, Lrim)*0.5 + 0.6, 0.0, 1.0);
+
+  vec3 albedo = vec3(0.93, 0.895, 0.83);
+  vec3 keyCol = vec3(1.0, 0.955, 0.875) * 1.5;
+  vec3 skyCol = vec3(0.70, 0.74, 0.80) * 0.38;
+  vec3 bounce = vec3(0.98, 0.88, 0.72) * 0.20 * clamp(-nb.y*0.5 + 0.5, 0.0, 1.0);
+
+  vec3 col = albedo * (keyCol*dif*sh + skyCol*sky*ao + bounce*ao);
+  /* the gold lives inside: thin places let it through */
+  float trans = exp(-thick*4.2);
+  float heart = exp(-dot(p,p)*1.1);              /* the lamp sits at the centre */
+  vec3 ember = vec3(1.0, 0.72, 0.38);
+  col += ember * (0.10 + 0.55*uGlow) * (0.30*trans + 0.70*heart*(0.35+0.65*trans));
+  col += ember * 0.08 * fres * uGlow;            /* warm edge wrap */
+  col += vec3(1.0, 0.98, 0.94) * spec * 0.5;
+  col += vec3(1.0, 0.97, 0.9) * rim * 0.38;
+  col *= mix(0.72, 1.0, ao);
+  col = clamp((col*(2.51*col + 0.03)) / (col*(2.43*col + 0.59) + 0.14), 0.0, 1.0);  /* filmic roll-off */
+  col = pow(col, vec3(1.0/2.2));
+  outColor = vec4(col, 1.0);
+}
+`;
+    var gl = null, prog = null, dirty = true;
+    try { gl = canvas.getContext('webgl2', { alpha:true, antialias:false, premultipliedAlpha:false }); } catch(e){}
+    if(gl){
+      try {
+        var FS = '#version 300 es\nprecision highp float;\nout vec4 outColor;\n' + LIB + MAIN;
+        var VS = '#version 300 es\nin vec2 pos; void main(){ gl_Position = vec4(pos, 0.0, 1.0); }';
+        function sh(type, src){ var o = gl.createShader(type); gl.shaderSource(o, src); gl.compileShader(o); if(!gl.getShaderParameter(o, gl.COMPILE_STATUS)) throw new Error(gl.getShaderInfoLog(o)); return o; }
+        prog = gl.createProgram(); gl.attachShader(prog, sh(gl.VERTEX_SHADER, VS)); gl.attachShader(prog, sh(gl.FRAGMENT_SHADER, FS)); gl.linkProgram(prog);
+        if(!gl.getProgramParameter(prog, gl.LINK_STATUS)) throw new Error(gl.getProgramInfoLog(prog));
+      } catch(e){ prog = null; }
+    }
+    if(!prog){ fallbackFrames(); return; }
+
+    gl.useProgram(prog);
+    var buf = gl.createBuffer(); gl.bindBuffer(gl.ARRAY_BUFFER, buf); gl.bufferData(gl.ARRAY_BUFFER, new Float32Array([-1,-1, 3,-1, -1,3]), gl.STATIC_DRAW);
+    var loc = gl.getAttribLocation(prog, 'pos'); gl.enableVertexAttribArray(loc); gl.vertexAttribPointer(loc, 2, gl.FLOAT, false, 0, 0);
+    var Uc = {}; function U(n){ if(!(n in Uc)) Uc[n] = gl.getUniformLocation(prog, n); return Uc[n]; }
+    gl.uniform3fv(U('uP'), new Float32Array([0,0,0,0.44,0,0.1556,0.22,0.3811,-0.1556,-0.22,0.3811,0.1556,-0.44,0,-0.1556,-0.22,-0.3811,0.1556,0.22,-0.3811,-0.1556,0.88,0,0.3111,0.44,0.7621,-0.3111,-0.44,0.7621,0.3111,-0.88,0,-0.3111,-0.44,-0.7621,0.3111,0.44,-0.7621,-0.3111]));
+    gl.uniform3fv(U('uLa'), new Float32Array([-0.88,0,0,-0.44,-0.7621,0,0.44,-0.7621,0,0.44,0,0,0.44,0,0,0.44,0,0,0.44,0,0,0.44,0,0,0.44,0,0,0.44,0,0,0.44,0,0,0.22,0.3811,0,0.22,0.3811,0,0.22,0.3811,0,0.22,0.3811,0,0.22,0.3811,0,0.22,0.3811,0,0.22,0.3811,0,-0.22,0.3811,0,-0.22,0.3811,0,-0.22,0.3811,0,-0.22,0.3811,0,-0.22,0.3811,0,-0.22,0.3811,0,-0.44,0,0,-0.44,0,0,-0.44,0,0,-0.44,0,0,-0.44,0,0,-0.44,0,0,-0.22,-0.3811,0,-0.22,-0.3811,0,-0.22,-0.3811,0,-0.22,-0.3811,0,-0.22,-0.3811,0,0.22,-0.3811,0,0.22,-0.3811,0,0.22,-0.3811,0,0.22,-0.3811,0,0.88,0,0,0.88,0,0,0.88,0,0,0.88,0,0,0.44,0.7621,0,0.44,0.7621,0,0.44,0.7621,0,-0.44,0.7621,0,-0.44,0.7621,0,-0.88,0,0,-0.88,0,0,-0.44,-0.7621,0]));
+    gl.uniform3fv(U('uLb'), new Float32Array([0.88,0,0,0.44,0.7621,0,-0.44,0.7621,0,0.22,0.3811,0,-0.22,0.3811,0,-0.22,-0.3811,0,0.22,-0.3811,0,0.44,0.7621,0,-0.44,0.7621,0,-0.44,-0.7621,0,0.44,-0.7621,0,-0.22,0.3811,0,-0.44,0,0,0.22,-0.3811,0,0.88,0,0,-0.44,0.7621,0,-0.88,0,0,0.44,-0.7621,0,-0.44,0,0,-0.22,-0.3811,0,0.88,0,0,0.44,0.7621,0,-0.88,0,0,-0.44,-0.7621,0,-0.22,-0.3811,0,0.22,-0.3811,0,0.44,0.7621,0,-0.44,0.7621,0,-0.44,-0.7621,0,0.44,-0.7621,0,0.22,-0.3811,0,0.88,0,0,-0.44,0.7621,0,-0.88,0,0,0.44,-0.7621,0,0.88,0,0,0.44,0.7621,0,-0.88,0,0,-0.44,-0.7621,0,0.44,0.7621,0,-0.44,0.7621,0,-0.44,-0.7621,0,0.44,-0.7621,0,-0.44,0.7621,0,-0.88,0,0,0.44,-0.7621,0,-0.88,0,0,-0.44,-0.7621,0,-0.44,-0.7621,0,0.44,-0.7621,0,0.44,-0.7621,0]));
+    gl.uniform1f(U('uCamZ'), 5.0);
+
+    /* resolution adapts to the device: start high, step down if frames run long */
+    var dpr = Math.min(window.devicePixelRatio || 1, 2), scale = (window.innerWidth < 900 ? 0.85 : 1.0), size = 0;
+    function resize(){ var css = canvas.getBoundingClientRect().width || 600; size = Math.max(160, Math.min(window.__heroCap || 1100, Math.round(css * dpr * scale))); canvas.width = size; canvas.height = size; gl.viewport(0, 0, size, size); dirty = true; }
+    resize(); window.addEventListener('resize', function(){ resize(); }, { passive:true });
+
+    var GW = [1.0, 0.8, 0.45, 0.55, 0.4], WB = [0.42, 0.3, 0.2, 0.42, 0.16];
+    var lastMorph = -1, lastRx = 9, lastRy = 9, lastDraw = 0, slow = 0, fast = 0, prevT = 0, awful = 0;
+    function bail(){ try{ var fresh = canvas.cloneNode(false); canvas.parentNode.replaceChild(fresh, canvas); canvas = fresh; }catch(e){} gl = null; prog = null; fallbackFrames(); }
+    function tick(now){
+      if(!live) return;
+      var t = (now - t0) * .001;
+      pose(t);
+      var k = Math.min(4, Math.floor(morph)), f = morph - k, kb = Math.min(4, k + 1);
+      var fs = f <= 0.30 ? 0 : f >= 0.78 ? 1 : (function(x){ return x*x*(3-2*x); })((f - 0.30) / 0.48);
+      var T = reduce ? 1.2 : t;
+      var wob = WB[k] + (WB[kb] - WB[k]) * fs;
+      var ry = sx * 0.4 + (reduce ? 0 : Math.sin(T * 0.22) * wob);
+      var rx = -sy * 0.22 + 0.06 + (reduce ? 0 : Math.sin(T * 0.21) * 0.05);
+      var meta = (k === 4 || (kb === 4 && fs > 0)) && !reduce;
+      var moving = Math.abs(morph - lastMorph) > 5e-4 || Math.abs(ry - lastRy) > 8e-4 || Math.abs(rx - lastRx) > 8e-4;
+      if(dirty || moving || (meta && now - lastDraw > 33)){
+        /* measure only back-to-back rendered frames, so idle gaps don't count */
+        if(prevT && now - prevT < 50){
+          var dtm = now - prevT;
+          if(dtm > 160 && ++awful > 2){ bail(); return; }   /* a GPU this slow gets the flipbook */
+          if(dtm > 26){ if(++slow > 8 && scale > 0.45){ scale *= 0.85; slow = 0; fast = 0; resize(); } }
+          else if(dtm < 13){ if(++fast > 90 && scale < (window.innerWidth < 900 ? 0.85 : 1.0)){ scale /= 0.85; fast = 0; resize(); } }
+          else { slow = Math.max(0, slow - 1); }
+        }
+        prevT = now;
+        lastMorph = morph; lastRy = ry; lastRx = rx; lastDraw = now; dirty = false;
+        gl.uniform2f(U('uRes'), size, size);
+        gl.uniform1f(U('uTime'), T);
+        gl.uniform1i(U('uA'), k); gl.uniform1i(U('uB'), kb); gl.uniform1f(U('uF'), fs);
+        gl.uniform1f(U('uGlow'), GW[k] + (GW[kb] - GW[k]) * fs);
+        var cy = Math.cos(ry), sy2 = Math.sin(ry), cx = Math.cos(rx), sx2 = Math.sin(rx);
+        gl.uniformMatrix3fv(U('uRot'), false, new Float32Array([cy, 0, -sy2, 0, cx, sx2, sy2, -sx2*cy, cy*cx]));
+        gl.clearColor(0, 0, 0, 0); gl.clear(gl.COLOR_BUFFER_BIT);
+        gl.drawArrays(gl.TRIANGLES, 0, 3);
+      } else { prevT = 0; }
+      raf = requestAnimationFrame(tick);
+    }
+    watchVis();
+    raf = requestAnimationFrame(tick);
+
+    /* ---------- fallback: the pre-rendered frames, scrubbed by scroll ---------- */
+    function fallbackFrames(){
     var ctx = canvas.getContext('2d');
     var COUNT = 121, PER = 30, frames = new Array(COUNT), bmp = new Array(COUNT);
     function src(i){ return 'frames/f-' + String(i).padStart(3, '0') + '.avif'; }
     function pic(i){ return bmp[i] || (frames[i] && frames[i].ok ? frames[i] : null); }
     function nearest(i){ for(var d=0; d<COUNT; d++){ if(i-d>=0 && pic(i-d)) return pic(i-d); if(i+d<COUNT && pic(i+d)) return pic(i+d); } return null; }
-    /* load every 8th frame first so the whole scroll has coverage early, then fill in */
     var queue = [], seen = {};
     [8, 4, 2, 1].forEach(function(step){ for(var i=0;i<COUNT;i+=step){ if(!seen[i]){ seen[i] = 1; queue.push(i); } } });
     function pump(){
@@ -740,7 +1046,6 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
       var i = queue.shift(), img = new Image();
       img.decoding = 'async';
       img.onload = function(){
-        /* decode now, off the scroll path, so drawing a frame never waits on the decoder */
         var done = function(bm){ if(bm){ bmp[i] = bm; } img.ok = true; dirty = true; pump(); };
         if(window.createImageBitmap){ createImageBitmap(img).then(done, function(){ done(null); }); }
         else if(img.decode){ img.decode().then(function(){ done(null); }, function(){ done(null); }); }
@@ -750,19 +1055,13 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
       img.src = src(i); frames[i] = img;
     }
     pump(); setTimeout(function(){ for(var k=0;k<5;k++) pump(); }, 120);
-
-    var dirty = true, lastFi = -1, dpr = Math.min(window.devicePixelRatio || 1, 2), size = 0;
+    var dpr = Math.min(window.devicePixelRatio || 1, 2), size = 0, lastFi = -1;
     function resize(){ var css = canvas.getBoundingClientRect().width || 600; size = Math.min(1100, Math.round(css * dpr)); canvas.width = size; canvas.height = size; dirty = true; }
     resize(); window.addEventListener('resize', resize, { passive:true });
-
-    var t0 = performance.now(), sx = 0, sy = 0, live = true, raf = 0;
-    /* the studio only animates while it is on screen */
-    if('IntersectionObserver' in window){
-      new IntersectionObserver(function(es){ es.forEach(function(e){ var was = live; live = e.isIntersecting; if(live && !was){ dirty = true; raf = requestAnimationFrame(draw); } }); }).observe(document.querySelector('.journey'));
-    }
-    function draw(){
+    function tick(){
       if(!live) return;
       var t = (performance.now() - t0) * .001;
+      pose(t);
       var fi = Math.max(0, Math.min(COUNT - 1, morph * PER));
       if(fi !== lastFi){ lastFi = fi; dirty = true; }
       if(dirty){
@@ -774,16 +1073,11 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
         if(f1 && a > 0.01){ ctx.globalAlpha = a; ctx.drawImage(f1, 0, 0, size, size); }
         ctx.globalAlpha = 1; dirty = false;
       }
-      var gx = fine ? (px / window.innerWidth - .5) : 0, gy = fine ? (py / window.innerHeight - .5) : 0;
-      sx += (gx - sx) * .05; sy += (gy - sy) * .05;
-      var bob = reduce ? 0 : Math.sin(t * .8) * 6;
-      canvas.style.transform = 'perspective(1000px) translate3d(' + (sx * 12).toFixed(1) + 'px,' + (bob + sy * 8).toFixed(1) + 'px,0) rotateX(' + (-sy * 4).toFixed(2) + 'deg) rotateY(' + (sx * 6).toFixed(2) + 'deg)';
-      glow.style.transform = 'translate3d(' + (sx * 12).toFixed(1) + 'px,' + (bob + sy * 8).toFixed(1) + 'px,0) scale(' + (1 + .03 * Math.sin(t * .7)).toFixed(3) + ')';
-      shadow.style.transform = 'translate(calc(-50% + ' + (sx * 10).toFixed(1) + 'px), -50%) scale(' + (1 - bob * .006).toFixed(3) + ')';
-      shadow.style.opacity = (0.9 + bob * .015).toFixed(2);
-      raf = requestAnimationFrame(draw);
+      raf = requestAnimationFrame(tick);
     }
-    raf = requestAnimationFrame(draw);
+    watchVis();
+    raf = requestAnimationFrame(tick);
+    }
   })();
 })();
 </script>
