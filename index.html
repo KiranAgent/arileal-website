@@ -469,7 +469,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
         <h2>Three ways<br>to work <b>together.</b></h2>
         <p>All three are coaching, not therapy: <span class="dim">no diagnosis, no clinical record, no insurance.</span></p>
       </div>
-      <div class="ballwrap" id="ball"><img src="assets/ball.avif?v=3" alt="" aria-hidden="true"></div>
+      <div class="ballwrap" id="ball"><img src="assets/ball.avif?v=4" alt="" aria-hidden="true"></div>
       <div class="pills" id="pills">
         <svg class="rings" id="rings" aria-hidden="true"><ellipse></ellipse><ellipse></ellipse><ellipse></ellipse></svg>
         <a class="electron" href="https://www.arileal.com/coaching.html" aria-label="Coaching" data-a="200" data-tilt="-28" data-speed="1"><img src="assets/motif-becoming.png" alt="" aria-hidden="true"><span>Coaching</span></a>
@@ -775,7 +775,7 @@ html.m.go .journey .frames{opacity:1;transition:opacity 1.6s ease .1s}
     var y = window.scrollY, h = window.innerHeight;
     if(y !== lastY || h !== lastH){ lastY = y; lastH = h; paint(); }
     /* the form follows the scroll closely: ~90% of the way in a tenth of a second, the same at 60 or 120 Hz */
-    morph += (morphTarget - morph) * (reduce || window.__instant ? 1 : 1 - Math.exp(-dt * 22));
+    morph += (morphTarget - morph) * (reduce || window.__instant ? 1 : 1 - Math.exp(-dt * 7));   /* soft glide: irons out mouse-wheel scroll steps */
     if(Math.abs(morphTarget - morph) < .0005) morph = morphTarget;
     if(orbitOn && !reduce){
       orbitSpeed += ((orbitHover ? 0 : 1) - orbitSpeed) * (1 - Math.exp(-dt * 6));   /* slows to a stop under the pointer, so it can be clicked */
