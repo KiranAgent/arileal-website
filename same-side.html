@@ -1,0 +1,724 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Same Side of the Table &mdash; a decision tool for partners in love and business &middot; Ari Leal</title>
+<meta name="description" content="A guided decision tool for couples who run a business together: sort the conversation, score options privately, run a pre-mortem, and give the feelings their own seat.">
+<meta name="theme-color" content="#F3F1EC">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="styles.css?v=5">
+<link rel="icon" href="favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="assets/favicon-16.png">
+<link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F3F1EC">
+<style>
+/* ===== Same Side of the Table — page-scoped; inherits the tone tokens ===== */
+.st-wide{max-width:960px;margin:0 auto}
+#art-body .st-wide p{margin-bottom:0}
+.st-intro{display:grid;grid-template-columns:1fr 1fr;gap:26px 44px;margin-top:6px}
+.st-intro h3{font-family:var(--fr);font-weight:500;font-size:19px;color:var(--fg);margin-bottom:8px}
+#art-body .st-intro p{font-size:16px;line-height:1.72;margin:0}
+
+/* progress */
+.st-steps{display:flex;gap:6px;flex-wrap:wrap;margin:clamp(40px,6vh,64px) 0 18px;padding:0;list-style:none}
+.st-steps li{flex:1 1 90px}
+.st-steps button{width:100%;text-align:left;background:none;border:0;border-top:2px solid var(--rule);padding:10px 2px 0;cursor:pointer;
+  font-family:var(--ar);font-size:11px;font-weight:600;letter-spacing:.16em;text-transform:uppercase;color:var(--dim);transition:color .2s var(--ease),border-color .2s var(--ease)}
+.st-steps button[aria-current="step"]{border-top-color:var(--fg);color:var(--fg)}
+.st-steps button.done{border-top-color:var(--accent);color:var(--accent)}
+.st-steps button:disabled{cursor:default;opacity:.45}
+
+/* cards */
+.st-card{background:var(--surface);border:1px solid var(--rule);border-radius:24px;padding:clamp(26px,3vw,40px) clamp(20px,3vw,40px)}
+.st-card + .st-card{margin-top:16px}
+.st-card > .eyebrow{display:block;margin-bottom:10px}
+.st-card h2{font-family:var(--fr);font-weight:500;font-size:clamp(23px,2.8vw,30px);line-height:1.2;color:var(--fg);margin:0 0 10px;text-wrap:balance}
+.st-card h3{font-family:var(--fr);font-weight:500;font-size:19px;line-height:1.3;color:var(--fg);margin:26px 0 8px}
+#art-body .st-card p{font-size:15.5px;line-height:1.7;max-width:64ch}
+#art-body .st-card p.st-hint{font-size:14px;color:var(--dim);margin-top:6px}
+.st-pane[hidden]{display:none!important}
+
+/* fields */
+.st-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;margin-top:16px}
+.st-field{display:flex;flex-direction:column;gap:7px;min-width:0}
+.st-field.full{grid-column:1/-1}
+.st-field label,.st-lbl{font-family:var(--ar);font-size:12px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.st-field input,.st-field textarea,.st-field select{width:100%;font:inherit;font-family:var(--body);font-size:16px;color:var(--fg);background:var(--bg);
+  border:1px solid var(--rule);border-radius:14px;padding:12px 14px;min-height:48px;transition:border-color .2s var(--ease)}
+.st-field textarea{min-height:96px;resize:vertical;line-height:1.55}
+.st-field input:focus,.st-field textarea:focus,.st-field select:focus{outline:none;border-color:var(--fg)}
+
+/* choice rows (checkbox / radio) */
+.st-choices{display:grid;gap:8px;margin-top:14px}
+.st-choice{position:relative;display:flex;gap:14px;align-items:flex-start;background:var(--bg);border:1px solid var(--rule);border-radius:16px;padding:14px 16px;cursor:pointer;transition:border-color .2s var(--ease)}
+.st-choice input{margin-top:4px;accent-color:var(--fg);width:17px;height:17px;flex:none}
+.st-choice span{font-size:15.5px;line-height:1.55;color:var(--fg)}
+.st-choice small{display:block;font-size:13.5px;color:var(--dim);margin-top:2px}
+.st-choice:has(input:checked){border-color:var(--fg)}
+
+/* chips */
+.st-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.st-chip{font:inherit;font-family:var(--body);font-size:14.5px;color:var(--dim);background:var(--bg);border:1px solid var(--rule);border-radius:999px;padding:9px 16px;cursor:pointer;transition:all .2s var(--ease)}
+.st-chip[aria-pressed="true"]{background:var(--fg);color:var(--bg);border-color:var(--fg)}
+.st-add{display:flex;gap:8px;margin-top:12px;max-width:520px}
+.st-add input{flex:1;min-width:0;font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--rule);border-radius:999px;padding:10px 16px}
+
+/* buttons row */
+.st-nav{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-top:28px}
+.st-nav .st-msg{font-size:14px;color:var(--ember-ink)}
+.st-link{font:inherit;font-size:14px;background:none;border:0;color:var(--dim);text-decoration:underline;text-underline-offset:3px;cursor:pointer;padding:6px 0}
+
+/* notices */
+.st-note{border-left:2px solid var(--accent);padding:4px 0 4px 18px;margin-top:18px}
+#art-body .st-note p{font-size:15px}
+.st-alert{border:1px solid var(--fg);border-radius:20px;padding:20px 22px;margin-top:18px}
+.st-alert h4{font-family:var(--fr);font-weight:500;font-size:18px;color:var(--fg);margin:0 0 6px}
+#art-body .st-alert p{font-size:15px}
+
+/* pause timer */
+.st-timer{font-family:var(--display);font-size:clamp(44px,7vw,64px);font-weight:500;font-variant-numeric:tabular-nums;color:var(--fg);letter-spacing:-.02em;margin:10px 0 4px}
+
+/* private scoring */
+.st-turn{display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px}
+.st-who{font-family:var(--fr);font-size:clamp(20px,2.4vw,26px);color:var(--fg)}
+.st-tbl{overflow-x:auto;margin-top:18px;-webkit-overflow-scrolling:touch}
+.st-tbl table{border-collapse:collapse;width:100%;min-width:520px;font-variant-numeric:tabular-nums}
+.st-tbl th,.st-tbl td{padding:10px 10px;border-bottom:1px solid var(--rule);text-align:left;vertical-align:middle;font-size:14.5px}
+.st-tbl th{font-family:var(--ar);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dim)}
+.st-tbl td.num,.st-tbl th.num{text-align:center}
+.st-tbl select{font:inherit;font-size:15px;color:var(--fg);background:var(--bg);border:1px solid var(--rule);border-radius:10px;padding:7px 8px;min-width:58px}
+.st-tbl tr.st-top td{font-weight:600}
+.st-locked{text-align:center;padding:28px 10px}
+.st-locked .st-who{display:block;margin-bottom:6px}
+
+/* results */
+.st-bars{display:grid;gap:14px;margin-top:16px}
+.st-bar-row{display:grid;grid-template-columns:minmax(0,180px) 1fr 52px;gap:12px;align-items:center}
+.st-bar-row b{font-weight:500;font-size:15px;color:var(--fg);overflow-wrap:anywhere}
+.st-bar{position:relative;height:30px;background:var(--bg);border:1px solid var(--rule);border-radius:999px;overflow:hidden}
+.st-bar i{position:absolute;left:0;height:50%;border-radius:0}
+.st-bar i.a{top:0;background:var(--fg)}
+.st-bar i.b{bottom:0;background:var(--accent)}
+.st-bar-row span{font-family:var(--display);font-variant-numeric:tabular-nums;font-size:15px;color:var(--fg);text-align:right}
+.st-key{display:flex;gap:18px;flex-wrap:wrap;margin-top:12px;font-size:13.5px;color:var(--dim)}
+.st-key em{display:inline-block;width:18px;height:8px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.st-gaps{display:grid;gap:8px;margin-top:12px;padding:0;list-style:none}
+.st-gaps li{background:var(--bg);border:1px solid var(--rule);border-radius:14px;padding:12px 16px;font-size:15px;line-height:1.55;color:var(--fg)}
+.st-gaps li small{color:var(--dim)}
+
+/* person flag in pre-mortem */
+.st-flag{font-size:13.5px;color:var(--ember-ink);min-height:1.2em}
+
+/* record */
+.st-record{background:var(--bg);border:1px solid var(--rule);border-radius:20px;padding:clamp(22px,3vw,34px);margin-top:18px}
+.st-record h3{margin-top:0}
+.st-record dl{display:grid;grid-template-columns:minmax(0,200px) 1fr;gap:10px 18px;margin:14px 0 0}
+.st-record dt{font-family:var(--ar);font-size:11.5px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--dim);padding-top:3px}
+.st-record dd{margin:0;font-size:15px;line-height:1.6;color:var(--fg);white-space:pre-wrap;overflow-wrap:anywhere}
+.st-fine{font-size:13px;color:var(--dim);margin-top:22px;line-height:1.6}
+
+@media(max-width:720px){
+  .st-intro,.st-grid{grid-template-columns:1fr}
+  .st-record dl{grid-template-columns:1fr;gap:2px 0}
+  .st-record dd{margin-bottom:10px}
+  .st-bar-row{grid-template-columns:1fr 46px}
+  .st-bar-row b{grid-column:1/-1}
+}
+@media print{
+  nav.top,.menu,.site-foot,#art-hero,.st-intro-wrap,.st-steps,.st-nav,.st-noprint{display:none!important}
+  body{background:#fff!important}
+  .st-card{border:0;padding:0;background:#fff}
+  .st-record{border:0;padding:0}
+  .panel{padding:0!important}
+}
+</style>
+</head>
+<body>
+
+<nav class="top" aria-label="Primary">
+  <div class="nav-l">
+    <a class="sig" href="index.html" aria-label="Ari Leal, home">
+      <img class="sig-ink" src="assets/signature-ink.png" alt="Ari Leal">
+      <img class="sig-light" src="assets/signature.png" alt="" aria-hidden="true">
+    </a>
+  </div>
+  <div class="nav-r">
+    <a class="talk" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Begin <i>&#8599;</i></a>
+    <span class="bar"></span>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+  </div>
+</nav>
+
+<div class="menu" id="menu" aria-hidden="true" inert>
+  <div>
+    <ul>
+      <li><a href="index.html#work">The Work</a></li>
+      <li><a href="index.html#unfold">UNFOLD <small>The Cabinet</small></a></li>
+      <li><a href="library.html">Library</a></li>
+      <li><a href="index.html#ari">About</a></li>
+      <li><a href="#begin">Begin</a></li>
+      <li><a href="https://clinicians.arileal.com">For Clinicians</a></li>
+    </ul>
+    <div class="menu-foot"><span>ari@arileal.com</span><span>St. Petersburg, Florida &middot; sessions held remotely</span></div>
+  </div>
+</div>
+
+<section class="panel" id="art-hero" data-tone="light">
+  <div class="wrap">
+    <p class="art-crumb rv"><a href="library.html">The Library</a><span>&middot;</span><a href="library.html#assessments">Assessments</a></p>
+    <h1 class="rv">Same Side of the Table</h1>
+    <p class="standfirst rv">A decision tool for partners who build together &mdash; in love and in business.</p>
+    <p class="art-meta rv">A coaching tool &middot; about 45 minutes</p>
+    <hr class="art-rule rv">
+  </div>
+</section>
+
+<section class="panel" id="art-body" data-tone="light">
+  <div class="wrap">
+
+    <div class="col st-intro-wrap">
+      <p class="lead">When the people deciding share a business and a bed, every choice carries two conversations at once: what is best for the company, and what happened between you last month. This table separates them &mdash; not by leaving the feelings out, but by giving them their own seat.</p>
+    </div>
+
+    <div class="st-wide st-intro-wrap">
+      <div class="st-intro" style="margin-top:34px">
+        <div><h3>How it works</h3>
+          <p>Eight short steps. You name the decision, sort what kind of conversation this is, agree who decides, score the options privately, look only at where you differ, imagine the failure together, say what the decision means to each of you, and write down what you chose.</p></div>
+        <div><h3>Before you start</h3>
+          <p>Use one device, side by side. Each of you scores in private &mdash; pass the screen and look away. Nothing you enter leaves this device; it stays in this browser until you press Start over.</p></div>
+      </div>
+    </div>
+
+    <div class="st-wide" id="st-app">
+      <ol class="st-steps" id="st-steps" aria-label="Steps"></ol>
+
+      <!-- 0 · THE DECISION -->
+      <div class="st-pane" data-step="0">
+        <div class="st-card">
+          <span class="eyebrow">Step 1 &middot; The decision</span>
+          <h2>Say it in one sentence.</h2>
+          <p>Name the choice in front of you as a question with real options. If you can&rsquo;t write it in a sentence, you may be holding two decisions &mdash; pick one for today.</p>
+          <div class="st-grid">
+            <div class="st-field"><label for="nA">Partner one</label><input id="nA" data-k="nameA" autocomplete="off" placeholder="First name"></div>
+            <div class="st-field"><label for="nB">Partner two</label><input id="nB" data-k="nameB" autocomplete="off" placeholder="First name"></div>
+            <div class="st-field full"><label for="q">The decision</label><input id="q" data-k="question" autocomplete="off" placeholder="e.g. Do we open a second location next spring?"></div>
+          </div>
+          <h3>The real options</h3>
+          <p class="st-hint">Two to four. &ldquo;Wait and decide in 90 days&rdquo; counts as an option.</p>
+          <div class="st-grid" id="st-opts"></div>
+          <button type="button" class="st-link" id="st-addopt">+ Add an option</button>
+          <div class="st-grid">
+            <div class="st-field"><label for="by">Decide by</label><input id="by" type="date" data-k="by"></div>
+            <div class="st-field"><label for="rev">If it goes wrong, can we undo it?</label>
+              <select id="rev" data-k="reversible">
+                <option value="">Choose one</option>
+                <option value="easy">Easily &mdash; a two-way door</option>
+                <option value="costly">Yes, but it would cost us</option>
+                <option value="oneway">No &mdash; a one-way door</option>
+              </select></div>
+          </div>
+          <p class="st-note" id="st-oneway" hidden>A one-way door deserves the slow version: finish every step, and sleep on it before you sign anything.</p>
+        </div>
+      </div>
+
+      <!-- 1 · SORT -->
+      <div class="st-pane" data-step="1" hidden>
+        <div class="st-card">
+          <span class="eyebrow">Step 2 &middot; Sort the conversation</span>
+          <h2>First, check the room.</h2>
+          <p>Right now, is either of you: heart pounding, voice rising, wanting to leave, or rehearsing your next point instead of listening?</p>
+          <div class="st-choices">
+            <label class="st-choice"><input type="radio" name="flood" value="no" data-k="flood"><span>We&rsquo;re both steady enough to think.</span></label>
+            <label class="st-choice"><input type="radio" name="flood" value="yes" data-k="flood"><span>One of us is flooded.</span></label>
+          </div>
+          <div class="st-alert" id="st-pause" hidden>
+            <h4>Take twenty minutes apart.</h4>
+            <p>A flooded body can&rsquo;t weigh options; it can only defend. Go to separate rooms and do something absorbing that isn&rsquo;t this &mdash; a walk, dishes, music. Don&rsquo;t rehearse your case. Come back when the timer ends.</p>
+            <div class="st-timer" id="st-clock" aria-live="off">20:00</div>
+            <button type="button" class="pill pill--ghost" id="st-timerbtn">Start the timer</button>
+          </div>
+
+          <h3>Is this a decision, or an injury wearing a decision&rsquo;s clothes?</h3>
+          <p class="st-hint">Check any that are true.</p>
+          <div class="st-choices" id="st-signs"></div>
+          <div class="st-alert" id="st-injury" hidden>
+            <h4>Something older may be at this table.</h4>
+            <p>When the heat is bigger than the stakes, the decision is often carrying an unresolved hurt. You can still decide today &mdash; but name it out loud first, agree it isn&rsquo;t what you&rsquo;re deciding, and take it to the right room. For the relationship, that room is a couples therapist. This table is for the business.</p>
+          </div>
+
+          <h3>Who has the final word on this one?</h3>
+          <p class="st-hint">Many of these fights are about authority, not options. Settle it before you discuss.</p>
+          <div class="st-choices" id="st-rights"></div>
+          <div class="st-field" id="st-tiewrap" hidden style="margin-top:14px">
+            <label for="tie">If we can&rsquo;t agree by our deadline</label>
+            <select id="tie" data-k="tiebreak">
+              <option value="">Choose a tie-break</option>
+              <option value="status">We keep things as they are</option>
+              <option value="reversible">We take the more reversible option</option>
+              <option value="advisor">We ask a trusted advisor to break the tie</option>
+              <option value="owner">Whoever runs that part of the business decides</option>
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <!-- 2 · CRITERIA -->
+      <div class="st-pane" data-step="2" hidden>
+        <div class="st-card">
+          <span class="eyebrow">Step 3 &middot; What matters</span>
+          <h2>Agree on the yardsticks &mdash; not the answer.</h2>
+          <p>Choose three to six things this decision should be judged by. You don&rsquo;t have to agree on how much each one matters; you&rsquo;ll each weigh them privately next.</p>
+          <div class="st-chips" id="st-crit"></div>
+          <div class="st-add"><input id="st-critnew" placeholder="Add your own" aria-label="Add your own criterion"><button type="button" class="pill pill--ghost" id="st-critadd">Add</button></div>
+        </div>
+      </div>
+
+      <!-- 3 · PRIVATE SCORES -->
+      <div class="st-pane" data-step="3" hidden>
+        <div class="st-card" id="st-scorecard"></div>
+      </div>
+
+      <!-- 4 · REVEAL -->
+      <div class="st-pane" data-step="4" hidden>
+        <div class="st-card" id="st-reveal"></div>
+      </div>
+
+      <!-- 5 · PRE-MORTEM -->
+      <div class="st-pane" data-step="5" hidden>
+        <div class="st-card" id="st-pm"></div>
+      </div>
+
+      <!-- 6 · MEANING -->
+      <div class="st-pane" data-step="6" hidden>
+        <div class="st-card" id="st-mean"></div>
+      </div>
+
+      <!-- 7 · RECORD -->
+      <div class="st-pane" data-step="7" hidden>
+        <div class="st-card" id="st-rec"></div>
+      </div>
+
+      <div class="st-nav">
+        <button type="button" class="pill pill--ghost" id="st-back">Back</button>
+        <span class="st-msg" id="st-msg" aria-live="polite"></span>
+        <button type="button" class="pill pill--solid" id="st-next">Continue <i>&rarr;</i></button>
+      </div>
+      <p class="st-fine st-noprint">A coaching tool from Ari Leal LLC. It supports business decisions between partners; it is not couples therapy and does not treat relationship distress. If the same hurt keeps returning to the table, a licensed couples therapist is the right next step. <button type="button" class="st-link" id="st-reset">Start over</button></p>
+    </div>
+
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="shell">
+    <div class="foot">
+      <div><p class="fh">Reach</p><a href="mailto:ari@arileal.com">ari@arileal.com</a><a href="tel:+16592745325">(659) ARI-LEAL &middot; 659-274-5325</a><span>St. Petersburg, Florida &middot; sessions held remotely</span></div>
+      <div><p class="fh">The Work</p><a href="coaching.html">Coaching</a><a href="integration.html">Integration</a><a href="match-checking.html">Relationships</a></div>
+      <div><p class="fh">Elsewhere</p><a href="unfold.html">UNFOLD</a><a href="library.html">Library</a><a href="index.html#ari">About Ari</a><a href="https://clinicians.arileal.com">For Clinicians</a></div>
+    </div>
+    <p class="fine">Ari Leal LLC offers coaching and educational services. This work is not psychotherapy, medical care, or mental-health treatment, and no offering here provides, encourages, or sources controlled substances.</p>
+    <p class="fine">&copy; 2026 Ari Leal LLC</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, body=document.body; root.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* reveals */
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}
+    });},{threshold:0,rootMargin:'0px 0px -10% 0px'});
+    panels.forEach(function(p){io.observe(p);});
+  }else{panels.forEach(function(p){p.classList.add('is-in');});}
+  if(panels[0])panels[0].classList.add('is-in');
+
+  /* nav: light over night, a soft fade once the page moves */
+  var darks=[].slice.call(document.querySelectorAll('[data-tone="dark"]'));
+  function paint(){
+    var dark=false, full=false;
+    for(var i=0;i<darks.length;i++){var r=darks[i].getBoundingClientRect();
+      if(r.top<=40&&r.bottom>=40){dark=true;full=!darks[i].classList.contains('night-card');break;}}
+    body.classList.toggle('dark-nav',dark);
+    body.classList.toggle('scrolled',window.scrollY>24&&(!dark||full));
+  }
+  var tick=false;
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(function(){tick=false;paint();});}},{passive:true});
+  window.addEventListener('resize',paint); paint();
+
+  /* menu */
+  var burger=document.getElementById('burger'), menuEl=document.getElementById('menu');
+  function setMenu(open){
+    body.classList.toggle('menu-open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    menuEl.setAttribute('aria-hidden',open?'false':'true');
+    menuEl.inert=!open;
+    if(open){var f=menuEl.querySelector('a');if(f)setTimeout(function(){f.focus({preventScroll:true});},120);}
+    else if(document.activeElement&&menuEl.contains(document.activeElement)){burger.focus();}
+  }
+  burger.addEventListener('click',function(){setMenu(!body.classList.contains('menu-open'));});
+  [].slice.call(menuEl.querySelectorAll('a')).forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&body.classList.contains('menu-open'))setMenu(false);});
+
+  /* magnetic pills: a light spring toward the pointer, fine pointers only */
+  if(fine&&!reduce){
+    [].slice.call(document.querySelectorAll('.mag')).forEach(function(b){
+      var tx=0,ty=0,x=0,y=0,vx=0,vy=0,run=false;
+      function step(){
+        vx=(vx+(tx-x)*.16)*.72; vy=(vy+(ty-y)*.16)*.72; x+=vx; y+=vy;
+        b.style.transform='translate('+x.toFixed(2)+'px,'+y.toFixed(2)+'px)';
+        if(Math.abs(tx-x)+Math.abs(ty-y)+Math.abs(vx)+Math.abs(vy)>.05)requestAnimationFrame(step);
+        else{run=false;if(!tx&&!ty)b.style.transform='';}
+      }
+      function kick(){if(!run){run=true;requestAnimationFrame(step);}}
+      b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();
+        tx=(e.clientX-r.left-r.width/2)*.16; ty=(e.clientY-r.top-r.height/2)*.22; kick();});
+      b.addEventListener('pointerleave',function(){tx=0;ty=0;kick();});
+    });
+  }
+})();
+</script>
+
+<script>
+/* Same Side of the Table — all state stays in this browser. */
+(function(){
+  'use strict';
+  var KEY = 'sst-v1';
+  var STEPS = ['Decision','Sort','Criteria','Score','Compare','Pre-mortem','Meaning','Record'];
+  var SIGNS = [
+    'We have argued about this, or something like it, before.',
+    'The heat feels bigger than the actual stakes.',
+    'It keeps turning into who is right instead of what is best.',
+    'One of us is keeping score of past decisions.',
+    'Part of what we want is for the other to admit something.'
+  ];
+  var CRIT = ['Money in the next 12 months','Long-term value','Risk if it goes badly','How reversible it is','Fit with what we stand for',
+    'Time and energy it costs us','Effect on our team or clients','Effect on our life at home'];
+
+  function blank(){ return { step:0, nameA:'', nameB:'', question:'', options:['',''], by:'', reversible:'', flood:'', signs:[], rights:'', tiebreak:'',
+    crit:[], score:{A:null,B:null}, lockA:false, lockB:false, turn:'A', leading:'', pmA:'', pmB:'', pmShown:false, tripwires:'',
+    mean:{A:{protect:'',fear:'',need:''},B:{protect:'',fear:'',need:''}}, older:false,
+    chosen:'', agreed:'', firstStep:'', owner:'', review:'' }; }
+  var S = load() || blank();
+  function load(){ try{ var t = localStorage.getItem(KEY); return t ? Object.assign(blank(), JSON.parse(t)) : null; }catch(e){ return null; } }
+  function save(){ try{ localStorage.setItem(KEY, JSON.stringify(S)); }catch(e){} }
+
+  function $(id){ return document.getElementById(id); }
+  function esc(s){ return String(s == null ? '' : s).replace(/[&<>"']/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];}); }
+  function A(){ return S.nameA.trim() || 'Partner one'; }
+  function B(){ return S.nameB.trim() || 'Partner two'; }
+  function nm(p){ return p === 'A' ? A() : B(); }
+  function opts(){ return S.options.map(function(o){return o.trim();}).filter(Boolean); }
+  function fmtDate(v){ if(!v) return ''; var p=v.split('-').map(Number); return new Date(p[0],p[1]-1,p[2]).toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'}); }
+
+  /* ---------- generic bindings for simple fields ---------- */
+  document.querySelectorAll('[data-k]').forEach(function(el){
+    var k = el.getAttribute('data-k');
+    if(el.type === 'radio'){ el.checked = S[k] === el.value; }
+    else { el.value = S[k] || ''; }
+    el.addEventListener(el.tagName === 'SELECT' || el.type === 'radio' ? 'change' : 'input', function(){
+      if(el.type === 'radio' && !el.checked) return;
+      S[k] = el.value; save(); sync();
+    });
+  });
+
+  /* ---------- step 0: options ---------- */
+  function drawOpts(){
+    var box = $('st-opts'); box.innerHTML = '';
+    S.options.forEach(function(v, i){
+      var d = document.createElement('div'); d.className = 'st-field';
+      d.innerHTML = '<label for="opt'+i+'">Option '+(i+1)+'</label><input id="opt'+i+'" autocomplete="off" value="'+esc(v)+'">';
+      d.querySelector('input').addEventListener('input', function(e){ S.options[i] = e.target.value; if(S.lockA||S.lockB||S.score.A) resetScores(); save(); sync(); });
+      box.appendChild(d);
+    });
+    $('st-addopt').hidden = S.options.length >= 4;
+  }
+  $('st-addopt').addEventListener('click', function(){ if(S.options.length < 4){ S.options.push(''); save(); drawOpts(); $('opt'+(S.options.length-1)).focus(); } });
+
+  /* ---------- step 1: signs + rights ---------- */
+  function drawSort(){
+    var sb = $('st-signs'); sb.innerHTML = '';
+    SIGNS.forEach(function(t, i){
+      var l = document.createElement('label'); l.className = 'st-choice';
+      l.innerHTML = '<input type="checkbox"'+(S.signs.indexOf(i) > -1 ? ' checked' : '')+'><span>'+esc(t)+'</span>';
+      l.querySelector('input').addEventListener('change', function(e){
+        S.signs = S.signs.filter(function(x){return x !== i;}); if(e.target.checked) S.signs.push(i); save(); sync();
+      });
+      sb.appendChild(l);
+    });
+    var rb = $('st-rights'); rb.innerHTML = '';
+    [['A', A()+' decides, after hearing '+B()+' out','This sits in '+A()+'’s part of the business.'],
+     ['B', B()+' decides, after hearing '+A()+' out','This sits in '+B()+'’s part of the business.'],
+     ['both','We both have to agree','Shared territory — so we also need a tie-break.']].forEach(function(r){
+      var l = document.createElement('label'); l.className = 'st-choice';
+      l.innerHTML = '<input type="radio" name="rights" value="'+r[0]+'"'+(S.rights === r[0] ? ' checked' : '')+'><span>'+esc(r[1])+'<small>'+esc(r[2])+'</small></span>';
+      l.querySelector('input').addEventListener('change', function(){ S.rights = r[0]; save(); sync(); });
+      rb.appendChild(l);
+    });
+  }
+  var clock = null, left = 1200;
+  $('st-timerbtn').addEventListener('click', function(){
+    if(clock){ clearInterval(clock); clock = null; left = 1200; paintClock(); this.textContent = 'Start the timer'; return; }
+    this.textContent = 'Reset'; left = 1200;
+    clock = setInterval(function(){ left--; paintClock(); if(left <= 0){ clearInterval(clock); clock = null; $('st-clock').textContent = 'Welcome back.'; $('st-timerbtn').textContent = 'Start the timer'; } }, 1000);
+  });
+  function paintClock(){ $('st-clock').textContent = Math.floor(left/60) + ':' + String(left%60).padStart(2,'0'); }
+
+  /* ---------- step 2: criteria ---------- */
+  function drawCrit(){
+    var box = $('st-crit'); box.innerHTML = '';
+    var all = CRIT.concat(S.crit.filter(function(c){ return CRIT.indexOf(c) < 0; }));
+    all.forEach(function(c){
+      var b = document.createElement('button'); b.type = 'button'; b.className = 'st-chip'; b.textContent = c;
+      b.setAttribute('aria-pressed', S.crit.indexOf(c) > -1 ? 'true' : 'false');
+      b.addEventListener('click', function(){
+        var i = S.crit.indexOf(c); if(i > -1) S.crit.splice(i,1); else if(S.crit.length < 6) S.crit.push(c);
+        resetScores(); save(); drawCrit(); sync();
+      });
+      box.appendChild(b);
+    });
+  }
+  function addCrit(){ var v = $('st-critnew').value.trim(); if(v && S.crit.indexOf(v) < 0 && S.crit.length < 6){ S.crit.push(v); resetScores(); save(); } $('st-critnew').value=''; drawCrit(); sync(); }
+  $('st-critadd').addEventListener('click', addCrit);
+  $('st-critnew').addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); addCrit(); } });
+  function resetScores(){ S.score = {A:null,B:null}; S.lockA = S.lockB = false; S.turn = 'A'; }
+
+  /* ---------- step 3: private scoring ---------- */
+  function emptyScore(){ return { w: S.crit.map(function(){return 3;}), s: S.crit.map(function(){ return opts().map(function(){return 0;}); }) }; }
+  function sel(name, val, lo, hi, blankLbl){
+    var h = '<select data-s="'+name+'">'; if(blankLbl) h += '<option value="0">'+blankLbl+'</option>';
+    for(var v = lo; v <= hi; v++) h += '<option value="'+v+'"'+(v === val ? ' selected' : '')+'>'+v+'</option>';
+    return h + '</select>';
+  }
+  function drawScore(){
+    var c = $('st-scorecard'), p = S.turn, o = opts();
+    if(S.lockA && S.lockB){
+      c.innerHTML = '<span class="eyebrow">Step 4 &middot; Private scores</span><h2>Both of you have scored.</h2><p>Continue to see the results together.</p>' +
+        '<p class="st-hint">Want to change something? <button type="button" class="st-link" id="st-rescore">Clear both scores and start this step again</button>.</p>';
+      $('st-rescore').addEventListener('click', function(){ resetScores(); save(); drawScore(); sync(); });
+      return;
+    }
+    if(!S.score[p] || S.score[p].w.length !== S.crit.length) S.score[p] = emptyScore();
+    var me = S.score[p];
+    var rows = S.crit.map(function(cr, i){
+      return '<tr><td>'+esc(cr)+'</td><td class="num">'+sel('w-'+i, me.w[i], 1, 5)+'</td>' +
+        o.map(function(_, j){ return '<td class="num">'+sel('s-'+i+'-'+j, me.s[i][j], 1, 10, '–')+'</td>'; }).join('') + '</tr>';
+    }).join('');
+    c.innerHTML = '<span class="eyebrow">Step 4 &middot; Private scores</span>' +
+      '<div class="st-turn"><span class="st-who">'+esc(nm(p))+', this screen is yours.</span></div>' +
+      '<p>'+esc(nm(p === 'A' ? 'B' : 'A'))+', look away until '+esc(nm(p))+' locks in. Scoring alone keeps either of you from anchoring the other.</p>' +
+      '<p class="st-hint"><b>Weight</b>: how much this yardstick matters to you, 1&ndash;5. <b>Scores</b>: how well each option does on it, 1 (badly) to 10 (very well).</p>' +
+      '<div class="st-tbl"><table><thead><tr><th>Yardstick</th><th class="num">Weight</th>' +
+      o.map(function(x){ return '<th class="num">'+esc(x)+'</th>'; }).join('') + '</tr></thead><tbody>'+rows+'</tbody></table></div>' +
+      '<div class="st-nav" style="margin-top:20px"><span class="st-msg" id="st-lockmsg"></span><button type="button" class="pill pill--solid" id="st-lock">Lock my scores</button></div>';
+    c.querySelectorAll('select').forEach(function(s){
+      s.addEventListener('change', function(){
+        var parts = s.getAttribute('data-s').split('-'), v = Number(s.value);
+        if(parts[0] === 'w') me.w[+parts[1]] = v; else me.s[+parts[1]][+parts[2]] = v; save();
+      });
+    });
+    $('st-lock').addEventListener('click', function(){
+      var missing = me.s.some(function(r){ return r.some(function(v){ return !v; }); });
+      if(missing){ $('st-lockmsg').textContent = 'Score every option on every yardstick first.'; return; }
+      if(p === 'A'){ S.lockA = true; S.turn = 'B'; } else { S.lockB = true; }
+      save(); window.scrollTo({top: $('st-app').offsetTop - 90, behavior:'smooth'});
+      if(S.lockA && !S.lockB){
+        c.innerHTML = '<div class="st-locked"><span class="st-who">'+esc(A())+'&rsquo;s scores are locked and hidden.</span>' +
+          '<p style="margin:0 auto">Pass the screen to '+esc(B())+'.</p><div class="cta-row"><button type="button" class="pill pill--solid" id="st-ready">I&rsquo;m '+esc(B())+' &mdash; ready</button></div></div>';
+        $('st-ready').addEventListener('click', function(){ drawScore(); });
+      } else drawScore();
+      sync();
+    });
+  }
+
+  /* ---------- results ---------- */
+  function totals(p){
+    var sc = S.score[p], o = opts(); if(!sc) return o.map(function(){return 0;});
+    var wsum = sc.w.reduce(function(a,b){return a+b;},0) || 1;
+    return o.map(function(_, j){ var t = 0; sc.w.forEach(function(w,i){ t += w * sc.s[i][j]; }); return Math.round(t / (wsum * 10) * 100); });
+  }
+  function ranking(){
+    var ta = totals('A'), tb = totals('B');
+    return opts().map(function(o,j){ return {o:o, a:ta[j], b:tb[j], avg:Math.round((ta[j]+tb[j])/2)}; }).sort(function(x,y){ return y.avg - x.avg; });
+  }
+  function gaps(){
+    var g = [], o = opts(), a = S.score.A, b = S.score.B;
+    S.crit.forEach(function(c,i){
+      if(Math.abs(a.w[i] - b.w[i]) >= 2) g.push({d:Math.abs(a.w[i]-b.w[i])*2, t:'<b>'+esc(c)+'</b> matters more to '+esc(a.w[i] > b.w[i] ? A() : B())+' <small>(weight '+Math.max(a.w[i],b.w[i])+' vs '+Math.min(a.w[i],b.w[i])+')</small>'});
+      o.forEach(function(x,j){ var d = Math.abs(a.s[i][j] - b.s[i][j]);
+        if(d >= 3) g.push({d:d, t:'<b>'+esc(x)+'</b> on <b>'+esc(c.toLowerCase())+'</b>: '+esc(A())+' gave it '+a.s[i][j]+', '+esc(B())+' gave it '+b.s[i][j]}); });
+    });
+    return g.sort(function(x,y){return y.d - x.d;}).slice(0,6);
+  }
+  function drawReveal(){
+    var r = ranking(), g = gaps(), top = r[0];
+    var bars = r.map(function(x){ return '<div class="st-bar-row"><b>'+esc(x.o)+'</b><div class="st-bar" role="img" aria-label="'+esc(A())+' '+x.a+', '+esc(B())+' '+x.b+'"><i class="a" style="width:'+x.a+'%"></i><i class="b" style="width:'+x.b+'%"></i></div><span>'+x.avg+'</span></div>'; }).join('');
+    var sameTop = (function(){ var ta = totals('A'), tb = totals('B'); return ta.indexOf(Math.max.apply(null,ta)) === tb.indexOf(Math.max.apply(null,tb)); })();
+    $('st-reveal').innerHTML = '<span class="eyebrow">Step 5 &middot; Compare</span><h2>'+(sameTop ? 'You landed in the same place.' : 'You landed in different places.')+'</h2>' +
+      '<p>'+(sameTop ? 'Your private scores point to the same option. The gaps below are still worth a minute &mdash; they are where the plan can fail.' : 'That is useful, not bad news. Don&rsquo;t argue the totals; talk only about the gaps below. They show exactly where you see the world differently.')+'</p>' +
+      '<div class="st-bars">'+bars+'</div>' +
+      '<div class="st-key"><span><em style="background:var(--fg)"></em>'+esc(A())+'</span><span><em style="background:var(--accent)"></em>'+esc(B())+'</span><span>Right column: your average, out of 100</span></div>' +
+      '<h3>Where you differ</h3>' +
+      (g.length ? '<p class="st-hint">For each one, the person who scored higher speaks first. The other asks one question: &ldquo;What do you know or see that I don&rsquo;t?&rdquo;</p><ul class="st-gaps">' + g.map(function(x){return '<li>'+x.t+'</li>';}).join('') + '</ul>'
+                : '<p class="st-hint">No large gaps. You see this decision much the same way.</p>') +
+      '<p class="st-note"><span>The numbers serve the conversation; they don&rsquo;t make the decision. If talking through a gap changes someone&rsquo;s mind, that is the tool working.</span></p>';
+    if(!S.leading) S.leading = top.o;
+  }
+
+  /* ---------- pre-mortem ---------- */
+  function personFlag(txt){
+    var names = [S.nameA, S.nameB].map(function(n){ return n.trim().toLowerCase(); }).filter(Boolean);
+    var words = txt.toLowerCase().match(/[a-zÀ-ɏ']+/g) || [];
+    return words.some(function(w){ return ['you','your','youre','you\'re','he','she','his','her','him'].indexOf(w) > -1 || names.indexOf(w) > -1; });
+  }
+  function drawPM(){
+    var o = opts();
+    $('st-pm').innerHTML = '<span class="eyebrow">Step 6 &middot; Pre-mortem</span><h2>It&rsquo;s six months from now, and it failed.</h2>' +
+      '<p>Imagine you chose the option below and it went badly. Each of you writes why &mdash; separately, then you read them together. One rule: name causes, not people. &ldquo;Cash ran short in month three,&rdquo; not &ldquo;you overspent.&rdquo;</p>' +
+      '<div class="st-field" style="margin-top:16px;max-width:520px"><label for="lead">The option we&rsquo;re testing</label><select id="lead">'+o.map(function(x){return '<option'+(x===S.leading?' selected':'')+'>'+esc(x)+'</option>';}).join('')+'</select></div>' +
+      '<div class="st-grid">' + ['A','B'].map(function(p){
+        return '<div class="st-field"><label for="pm'+p+'">'+esc(nm(p))+' &mdash; why it failed</label><textarea id="pm'+p+'" placeholder="It failed because…">'+esc(S['pm'+p])+'</textarea><span class="st-flag" id="pf'+p+'"></span></div>';
+      }).join('') + '</div>' +
+      '<div class="st-field full" style="margin-top:18px"><label for="trip">What will we watch for? <span style="text-transform:none;letter-spacing:0;font-weight:400">The early signs that it&rsquo;s going that way &mdash; and what we&rsquo;ll do if we see them.</span></label><textarea id="trip" placeholder="If bookings are under 60% by month two, we pause hiring.">'+esc(S.tripwires)+'</textarea></div>';
+    $('lead').addEventListener('change', function(e){ S.leading = e.target.value; save(); });
+    ['A','B'].forEach(function(p){
+      var ta = $('pm'+p);
+      function chk(){ $('pf'+p).textContent = personFlag(ta.value) ? 'That reads like it’s about a person. Can you name the cause instead?' : ''; }
+      ta.addEventListener('input', function(){ S['pm'+p] = ta.value; save(); chk(); }); chk();
+    });
+    $('trip').addEventListener('input', function(e){ S.tripwires = e.target.value; save(); });
+  }
+
+  /* ---------- meaning ---------- */
+  function drawMean(){
+    var Q = [['protect','What I’m protecting with this decision is…'],['fear','What I’m afraid of losing is…'],['need','What I need from you to commit to it is…']];
+    $('st-mean').innerHTML = '<span class="eyebrow">Step 7 &middot; What it means</span><h2>Give the feelings their own seat.</h2>' +
+      '<p>Decisions between partners always mean something beyond the business. Say it here, plainly, instead of letting it leak into the scores. Speak to the decision, not about the other person. The listener&rsquo;s only job is to say back what they heard.</p>' +
+      '<div class="st-grid">' + ['A','B'].map(function(p){
+        return '<div><p class="st-lbl" style="margin-bottom:10px">'+esc(nm(p))+'</p>' + Q.map(function(q){
+          return '<div class="st-field" style="margin-bottom:12px"><label for="m'+p+q[0]+'" style="text-transform:none;letter-spacing:0;font-size:14px;font-weight:500;color:var(--fg)">'+q[1]+'</label><textarea id="m'+p+q[0]+'" data-p="'+p+'" data-q="'+q[0]+'" style="min-height:72px">'+esc(S.mean[p][q[0]])+'</textarea></div>';
+        }).join('') + '</div>';
+      }).join('') + '</div>' +
+      '<label class="st-choice" style="margin-top:8px"><input type="checkbox" id="older"'+(S.older?' checked':'')+'><span>Something came up that is older than this decision.<small>Check this if a past hurt surfaced while you were talking.</small></span></label>' +
+      '<div class="st-alert" id="st-olderbox"'+(S.older?'':' hidden')+'><h4>Name it, then set it down here.</h4><p>Say in one sentence what it is, and agree that it is real and separate from today&rsquo;s choice. Then take it where it can actually be worked through &mdash; a dedicated conversation, or a couples therapist. A business decision can&rsquo;t repair a relational wound, and it shouldn&rsquo;t have to carry one.</p></div>';
+    document.querySelectorAll('#st-mean textarea').forEach(function(t){ t.addEventListener('input', function(){ S.mean[t.dataset.p][t.dataset.q] = t.value; save(); }); });
+    $('older').addEventListener('change', function(e){ S.older = e.target.checked; $('st-olderbox').hidden = !S.older; save(); });
+  }
+
+  /* ---------- record ---------- */
+  var RIGHTS = function(){ return {A: A()+' decides, after hearing '+B()+' out', B: B()+' decides, after hearing '+A()+' out', both:'We both agree'}; };
+  var TIE = {status:'we keep things as they are', reversible:'we take the more reversible option', advisor:'a trusted advisor breaks the tie', owner:'whoever runs that part of the business decides'};
+  var REV = {easy:'Easily (two-way door)', costly:'Yes, at a cost', oneway:'No (one-way door)'};
+  function drawRec(){
+    var o = opts(), r = ranking();
+    $('st-rec').innerHTML = '<span class="eyebrow">Step 8 &middot; The record</span><h2>Write down what you chose.</h2>' +
+      '<p>A decision you can&rsquo;t point back to gets re-litigated. Keep this.</p>' +
+      '<div class="st-grid st-noprint">' +
+        '<div class="st-field"><label for="ch">We chose</label><select id="ch"><option value="">Choose one</option>'+o.map(function(x){return '<option'+(x===S.chosen?' selected':'')+'>'+esc(x)+'</option>';}).join('')+'<option value="__wait"'+(S.chosen==='__wait'?' selected':'')+'>Not yet &mdash; we&rsquo;ll revisit</option></select></div>' +
+        '<div class="st-field"><label for="rv">We&rsquo;ll review it on</label><input id="rv" type="date" value="'+esc(S.review)+'"></div>' +
+        '<div class="st-field"><label for="fs">First concrete step</label><input id="fs" value="'+esc(S.firstStep)+'" placeholder="Call the landlord about the lease terms"></div>' +
+        '<div class="st-field"><label for="ow">Who owns that step, and by when</label><input id="ow" value="'+esc(S.owner)+'" placeholder="Maya, by Friday"></div>' +
+        '<div class="st-field full"><label for="ag">What we agreed, in our words</label><textarea id="ag">'+esc(S.agreed)+'</textarea></div>' +
+      '</div><div class="st-record" id="st-sheet"></div>' +
+      '<div class="cta-row st-noprint" style="justify-content:flex-start"><button type="button" class="pill pill--solid mag" id="st-print">Print or save as PDF</button><button type="button" class="pill pill--ghost mag" id="st-copy">Copy as text</button><span class="st-msg" id="st-copymsg" style="align-self:center;font-size:14px;color:var(--dim)"></span></div>';
+    [['ch','chosen','change'],['rv','review','change'],['fs','firstStep','input'],['ow','owner','input'],['ag','agreed','input']].forEach(function(f){
+      $(f[0]).addEventListener(f[2], function(e){ S[f[1]] = e.target.value; save(); sheet(); });
+    });
+    $('st-print').addEventListener('click', function(){ window.print(); });
+    $('st-copy').addEventListener('click', function(){
+      var txt = plain();
+      function done(ok){ $('st-copymsg').textContent = ok ? 'Copied.' : 'Select the record above and copy it.'; }
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(function(){done(true);},function(){done(false);}); else done(false);
+    });
+    sheet();
+  }
+  function rows(){
+    var r = ranking(), out = [];
+    out.push(['Decision', S.question || '—']);
+    out.push(['Partners', A()+' & '+B()]);
+    out.push(['Date', new Date().toLocaleDateString('en-US',{month:'long',day:'numeric',year:'numeric'})]);
+    out.push(['We chose', S.chosen === '__wait' ? 'Not yet — revisit on the review date' : (S.chosen || '—')]);
+    out.push(['Who had the final word', (RIGHTS()[S.rights] || '—') + (S.rights === 'both' && S.tiebreak ? '; if stuck, '+TIE[S.tiebreak] : '')]);
+    out.push(['Reversible?', REV[S.reversible] || '—']);
+    out.push(['Scores (avg of 100)', r.map(function(x){ return x.o+': '+x.avg+' ('+A()+' '+x.a+', '+B()+' '+x.b+')'; }).join('\n')]);
+    out.push(['Judged by', S.crit.join(', ')]);
+    if(S.agreed) out.push(['What we agreed', S.agreed]);
+    if(S.firstStep) out.push(['First step', S.firstStep + (S.owner ? ' — '+S.owner : '')]);
+    if(S.tripwires) out.push(['We’ll watch for', S.tripwires]);
+    if(S.review) out.push(['Review on', fmtDate(S.review)]);
+    if(S.older) out.push(['Set aside', 'Something older than this decision came up. We named it and agreed to take it to its own conversation.']);
+    return out;
+  }
+  function sheet(){
+    $('st-sheet').innerHTML = '<h3>Same Side of the Table &mdash; decision record</h3><dl>' + rows().map(function(r){ return '<dt>'+esc(r[0])+'</dt><dd>'+esc(r[1])+'</dd>'; }).join('') + '</dl>';
+  }
+  function plain(){ return 'SAME SIDE OF THE TABLE — DECISION RECORD\n\n' + rows().map(function(r){ return r[0].toUpperCase()+'\n'+r[1]; }).join('\n\n'); }
+
+  /* ---------- navigation ---------- */
+  function ready(i){
+    if(i === 0){ if(!S.question.trim()) return 'Write the decision in one sentence.'; if(opts().length < 2) return 'Name at least two options.'; }
+    if(i === 1){ if(!S.flood) return 'Check the room first.'; if(S.flood === 'yes' && clock) return 'Finish the pause first — or reset the timer if you’re both steady.'; if(!S.rights) return 'Agree who has the final word.'; if(S.rights === 'both' && !S.tiebreak) return 'Pick a tie-break.'; }
+    if(i === 2){ if(S.crit.length < 3) return 'Choose at least three yardsticks.'; }
+    if(i === 3){ if(!(S.lockA && S.lockB)) return 'Both of you need to lock in your scores.'; }
+    return '';
+  }
+  function maxReach(){ for(var i = 0; i < STEPS.length - 1; i++){ if(ready(i)) return i; } return STEPS.length - 1; }
+  function drawSteps(){
+    var ol = $('st-steps'), reach = maxReach(); ol.innerHTML = '';
+    STEPS.forEach(function(t, i){
+      var li = document.createElement('li'), b = document.createElement('button'); b.type = 'button'; b.textContent = (i+1)+' '+t;
+      if(i === S.step) b.setAttribute('aria-current','step'); else if(i < S.step) b.className = 'done';
+      b.disabled = i > reach; b.addEventListener('click', function(){ go(i); });
+      li.appendChild(b); ol.appendChild(li);
+    });
+  }
+  function go(i){
+    S.step = Math.max(0, Math.min(STEPS.length - 1, i)); save();
+    document.querySelectorAll('.st-pane').forEach(function(p){ p.hidden = +p.dataset.step !== S.step; });
+    if(S.step === 1) drawSort();
+    if(S.step === 2) drawCrit();
+    if(S.step === 3) drawScore();
+    if(S.step === 4) drawReveal();
+    if(S.step === 5) drawPM();
+    if(S.step === 6) drawMean();
+    if(S.step === 7) drawRec();
+    $('st-msg').textContent = '';
+    sync();
+  }
+  function sync(){
+    $('st-oneway').hidden = S.reversible !== 'oneway';
+    $('st-pause').hidden = S.flood !== 'yes';
+    $('st-injury').hidden = S.signs.length < 2;
+    $('st-tiewrap').hidden = S.rights !== 'both';
+    $('st-back').style.visibility = S.step === 0 ? 'hidden' : 'visible';
+    $('st-next').style.display = S.step === STEPS.length - 1 ? 'none' : '';
+    drawSteps();
+  }
+  $('st-next').addEventListener('click', function(){
+    var m = ready(S.step); if(m){ $('st-msg').textContent = m; return; }
+    go(S.step + 1); window.scrollTo({top: $('st-app').offsetTop - 90, behavior:'smooth'});
+  });
+  $('st-back').addEventListener('click', function(){ go(S.step - 1); window.scrollTo({top: $('st-app').offsetTop - 90, behavior:'smooth'}); });
+  $('st-reset').addEventListener('click', function(){
+    var b = this;
+    if(b.dataset.sure){ try{ localStorage.removeItem(KEY); }catch(e){} S = blank(); location.reload(); return; }
+    b.dataset.sure = '1'; b.textContent = 'Tap again to erase everything';
+    setTimeout(function(){ delete b.dataset.sure; b.textContent = 'Start over'; }, 4000);
+  });
+  /* names feed the labels in later steps */
+  ['nA','nB'].forEach(function(id){ $(id).addEventListener('input', function(){ if(S.step === 1) drawSort(); }); });
+
+  drawOpts();
+  go(S.step);
+})();
+</script>
+</body>
+</html>
