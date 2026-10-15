@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Not found &middot; Ari Leal</title>
+<meta name="robots" content="noindex">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Schibsted+Grotesk:wght@400;500;600;700;800&family=Instrument+Sans:ital,wght@0,400;0,500;0,600;1,400&display=swap">
+<link rel="stylesheet" href="/styles.css?v=5">
+<link rel="icon" href="/favicon.ico" sizes="any">
+<link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16.png">
+<link rel="apple-touch-icon" href="/assets/apple-touch-icon.png">
+<meta name="theme-color" content="#F3F1EC">
+</head>
+<body>
+
+<nav class="top" aria-label="Primary">
+  <div class="nav-l">
+    <a class="sig" href="/index.html" aria-label="Ari Leal, home">
+      <img class="sig-ink" src="/assets/signature-ink.png" alt="Ari Leal">
+      <img class="sig-light" src="/assets/signature.png" alt="" aria-hidden="true">
+    </a>
+  </div>
+  <div class="nav-r">
+    <a class="talk" href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Begin <i>&#8599;</i></a>
+    <span class="bar"></span>
+    <button class="burger" id="burger" type="button" aria-label="Menu" aria-expanded="false" aria-controls="menu"><i></i><i></i></button>
+  </div>
+</nav>
+
+<div class="menu" id="menu" aria-hidden="true" inert>
+  <div>
+    <ul>
+      <li><a href="/index.html#work">The Work</a></li>
+      <li><a href="/index.html#unfold">UNFOLD <small>The Cabinet</small></a></li>
+      <li><a href="/library.html">Library</a></li>
+      <li><a href="/index.html#ari">About</a></li>
+      <li><a href="https://app.squareup.com/appointments/book/y8st43sq5wj07b/LZYYP3QT7T5X4/start">Begin</a></li>
+      <li><a href="https://clinicians.arileal.com">For Clinicians</a></li>
+    </ul>
+    <div class="menu-foot"><span>ari@arileal.com</span><span>St. Petersburg, Florida &middot; sessions held remotely</span></div>
+  </div>
+</div>
+
+<section class="panel" id="lost" data-tone="light">
+  <div class="wrap" style="min-height:70vh;display:flex;flex-direction:column;justify-content:center;gap:18px;max-width:640px">
+    <p class="eyebrow rv">404</p>
+    <h1 class="rv" style="font-size:clamp(34px,5vw,56px);line-height:1.08;margin:0">This page isn&rsquo;t here.</h1>
+    <p class="lede rv">It may have moved, or the link was mistyped. Nothing is lost that can&rsquo;t be found again.</p>
+    <div class="cta-row rv" style="display:flex;gap:12px;flex-wrap:wrap;margin-top:8px">
+      <a class="pill pill--solid" href="/">Return home</a>
+      <a class="pill pill--ghost" href="/library.html">Visit the Library</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site-foot">
+  <div class="shell">
+    <div class="foot">
+      <div><p class="fh">Reach</p><a href="mailto:ari@arileal.com">ari@arileal.com</a><a href="tel:+16592745325">(659) ARI-LEAL &middot; 659-274-5325</a><span>St. Petersburg, Florida &middot; sessions held remotely</span></div>
+      <div><p class="fh">The Work</p><a href="/coaching.html">Coaching</a><a href="/integration.html">Integration</a><a href="/match-checking.html">Relationships</a></div>
+      <div><p class="fh">Elsewhere</p><a href="/unfold.html">UNFOLD</a><a href="/library.html">Library</a><a href="/index.html#ari">About Ari</a><a href="https://clinicians.arileal.com">For Clinicians</a></div>
+    </div>
+    <p class="fine">Ari Leal LLC offers coaching and educational services. This work is not psychotherapy, medical care, or mental-health treatment, and no offering here provides, encourages, or sources controlled substances.</p>
+    <p class="fine">&copy; 2026 Ari Leal LLC</p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  var root=document.documentElement, body=document.body; root.classList.add('js');
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var fine=window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+
+  /* reveals */
+  var panels=[].slice.call(document.querySelectorAll('.panel'));
+  if('IntersectionObserver' in window){
+    var io=new IntersectionObserver(function(es){es.forEach(function(e){
+      if(e.isIntersecting){e.target.classList.add('is-in');io.unobserve(e.target);}
+    });},{threshold:0,rootMargin:'0px 0px -10% 0px'});
+    panels.forEach(function(p){io.observe(p);});
+  }else{panels.forEach(function(p){p.classList.add('is-in');});}
+  if(panels[0])panels[0].classList.add('is-in');
+
+  /* nav: light over night, a soft fade once the page moves */
+  var darks=[].slice.call(document.querySelectorAll('[data-tone="dark"]'));
+  function paint(){
+    var dark=false, full=false;
+    for(var i=0;i<darks.length;i++){var r=darks[i].getBoundingClientRect();
+      if(r.top<=40&&r.bottom>=40){dark=true;full=!darks[i].classList.contains('night-card');break;}}
+    body.classList.toggle('dark-nav',dark);
+    body.classList.toggle('scrolled',window.scrollY>24&&(!dark||full));
+  }
+  var tick=false;
+  window.addEventListener('scroll',function(){if(!tick){tick=true;requestAnimationFrame(function(){tick=false;paint();});}},{passive:true});
+  window.addEventListener('resize',paint); paint();
+
+  /* menu */
+  var burger=document.getElementById('burger'), menuEl=document.getElementById('menu');
+  function setMenu(open){
+    body.classList.toggle('menu-open',open);
+    burger.setAttribute('aria-expanded',open?'true':'false');
+    menuEl.setAttribute('aria-hidden',open?'false':'true');
+    menuEl.inert=!open;
+    if(open){var f=menuEl.querySelector('a');if(f)setTimeout(function(){f.focus({preventScroll:true});},120);}
+    else if(document.activeElement&&menuEl.contains(document.activeElement)){burger.focus();}
+  }
+  burger.addEventListener('click',function(){setMenu(!body.classList.contains('menu-open'));});
+  [].slice.call(menuEl.querySelectorAll('a')).forEach(function(a){a.addEventListener('click',function(){setMenu(false);});});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&body.classList.contains('menu-open'))setMenu(false);});
+
+  /* magnetic pills: a light spring toward the pointer, fine pointers only */
+  if(fine&&!reduce){
+    [].slice.call(document.querySelectorAll('.mag')).forEach(function(b){
+      var tx=0,ty=0,x=0,y=0,vx=0,vy=0,run=false;
+      function step(){
+        vx=(vx+(tx-x)*.16)*.72; vy=(vy+(ty-y)*.16)*.72; x+=vx; y+=vy;
+        b.style.transform='translate('+x.toFixed(2)+'px,'+y.toFixed(2)+'px)';
+        if(Math.abs(tx-x)+Math.abs(ty-y)+Math.abs(vx)+Math.abs(vy)>.05)requestAnimationFrame(step);
+        else{run=false;if(!tx&&!ty)b.style.transform='';}
+      }
+      function kick(){if(!run){run=true;requestAnimationFrame(step);}}
+      b.addEventListener('pointermove',function(e){var r=b.getBoundingClientRect();
+        tx=(e.clientX-r.left-r.width/2)*.16; ty=(e.clientY-r.top-r.height/2)*.22; kick();});
+      b.addEventListener('pointerleave',function(){tx=0;ty=0;kick();});
+    });
+  }
+})();
+</script>
+</body>
+</html>
